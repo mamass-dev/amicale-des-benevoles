@@ -19,7 +19,7 @@ export default async function HomePage() {
   return (
     <>
       {/* Hero avec vraie photo */}
-      <section className="relative min-h-[92vh] flex items-center overflow-hidden">
+      <section className="relative min-h-[70vh] sm:min-h-[92vh] flex items-center overflow-hidden">
         <Image
           src="/images/events/swimrunman.jpg"
           alt="Bénévoles de l'Amicale en action"

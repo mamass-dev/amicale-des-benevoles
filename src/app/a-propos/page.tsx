@@ -166,7 +166,7 @@ export default async function AProposPage() {
           {/* Comité */}
           <div>
             <h3 className="text-xl font-bold mb-6">Comité directeur</h3>
-            <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-4">
               {teamMembers.board.map((m) => (
                 <div key={m.name} className="p-4 rounded-xl bg-card border border-border text-center">
                   <div className="w-14 h-14 rounded-full mx-auto mb-2 overflow-hidden relative">

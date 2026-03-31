@@ -50,7 +50,7 @@ export default async function HebergementPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative min-h-[85vh] flex items-center overflow-hidden">
+      <section className="relative min-h-[60vh] sm:min-h-[85vh] flex items-center overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-teal-50/50 via-white to-amber-50/30" />
         <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-primary/6 rounded-full blur-[100px] -translate-y-1/4 -translate-x-1/4" />
         <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-accent/8 rounded-full blur-[80px] translate-y-1/4 translate-x-1/4" />
@@ -72,7 +72,7 @@ export default async function HebergementPage() {
                 Publie une annonce d&apos;hébergement ou consulte celles des autres bénévoles. Contactez-vous directement et organisez le séjour entre vous. Simple, gratuit, humain.
               </p>
 
-              <div className="mt-8 flex gap-8">
+              <div className="mt-8 flex flex-col sm:flex-row gap-4 sm:gap-8">
                 {[
                   { value: "26", label: "lits disponibles" },
                   { value: "48", label: "bénévoles hébergés" },

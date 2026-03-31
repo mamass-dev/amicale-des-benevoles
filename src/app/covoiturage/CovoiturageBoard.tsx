@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { Car, Search, Plus, MapPin, Calendar, User, Mail, Phone, MessageSquare, Send, CheckCircle, ChevronRight, ChevronDown, X, ArrowRight, Sparkles, Filter } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import RevealContact from "@/components/RevealContact";
+import ContactForm from "@/components/ContactForm";
 
 type EventOption = { slug: string; name: string; dates: string };
 
@@ -173,8 +173,14 @@ export default function CovoiturageBoard({ events }: { events: EventOption[] }) 
               <p className="text-sm text-muted mb-4 line-clamp-2">{l.message}</p>
             )}
 
-            {/* Contact — masqué par défaut */}
-            <RevealContact name={l.name} email={l.email} phone={l.phone} color="secondary" />
+            {/* Contact — formulaire de mise en relation */}
+            <ContactForm
+              posterName={l.name}
+              posterEmail={l.email}
+              listingType="covoiturage"
+              context={`${l.cityFrom} → ${l.eventName}`}
+              color="secondary"
+            />
           </div>
         ))}
       </div>
@@ -206,7 +212,7 @@ export default function CovoiturageBoard({ events }: { events: EventOption[] }) 
                   </p>
                 </div>
               ) : (
-                <div className="p-8">
+                <div className="p-4 sm:p-8">
                   <div className="flex items-center justify-between mb-6">
                     <h3 className="text-xl font-bold">Nouvelle annonce</h3>
                     <button onClick={() => setShowForm(false)} className="p-2 rounded-lg hover:bg-slate-100 transition-colors">
@@ -245,7 +251,7 @@ export default function CovoiturageBoard({ events }: { events: EventOption[] }) 
                       </select>
                     </div>
 
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div>
                         <label className="flex items-center gap-2 text-sm font-medium mb-1.5">
                           <MapPin className="h-4 w-4 text-secondary" /> Ville de départ
@@ -262,7 +268,7 @@ export default function CovoiturageBoard({ events }: { events: EventOption[] }) 
                       )}
                     </div>
 
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div>
                         <label className="flex items-center gap-2 text-sm font-medium mb-1.5">
                           <User className="h-4 w-4 text-secondary" /> Prénom

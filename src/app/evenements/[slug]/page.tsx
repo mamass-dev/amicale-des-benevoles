@@ -46,7 +46,7 @@ export default async function EventPage({ params }: Props) {
           </Link>
 
           {/* Image hero */}
-          <div className="relative aspect-[21/9] rounded-2xl overflow-hidden mb-8 shadow-lg">
+          <div className="relative aspect-[16/9] sm:aspect-[21/9] rounded-2xl overflow-hidden mb-8 shadow-lg">
             <Image
               src={event.image}
               alt={event.name}

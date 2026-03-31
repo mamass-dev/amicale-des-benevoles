@@ -84,7 +84,7 @@ export default function EventCard({ event }: { event: Event }) {
 
         <p className="text-sm text-muted line-clamp-2 mb-4">{event.description}</p>
 
-        <div className="flex gap-2">
+        <div className="flex flex-col sm:flex-row gap-2">
           <Link
             href={`/evenements/${event.slug}`}
             className="flex-1 text-center rounded-lg border border-border px-4 py-2 text-sm font-medium hover:bg-slate-50 transition-colors"

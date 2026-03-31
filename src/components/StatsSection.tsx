@@ -53,7 +53,7 @@ export default function StatsSection({ stats }: { stats: Stat[] }) {
         <p className="text-center text-slate-300 mb-12 max-w-2xl mx-auto">
           Des résultats qui témoignent de la qualité de nos programmes et de l&apos;engagement de notre communauté.
         </p>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-8">
           {stats.map((stat) => (
             <div key={stat.label} className="text-center">
               <AnimatedNumber value={stat.value} suffix={stat.suffix} />

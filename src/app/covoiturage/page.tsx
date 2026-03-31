@@ -50,7 +50,7 @@ export default async function CovoituragePage() {
   return (
     <>
       {/* Hero immersif */}
-      <section className="relative min-h-[85vh] flex items-center overflow-hidden">
+      <section className="relative min-h-[60vh] sm:min-h-[85vh] flex items-center overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-teal-50/50 via-white to-slate-50" />
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-secondary/8 rounded-full blur-[100px] -translate-y-1/3 translate-x-1/4" />
         <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-primary/5 rounded-full blur-[80px] translate-y-1/3 -translate-x-1/4" />
@@ -74,7 +74,7 @@ export default async function CovoituragePage() {
                 10% des bénévoles ne peuvent pas venir à cause du transport. Publie une annonce ou consulte celles des autres bénévoles et organisez-vous directement entre vous.
               </p>
 
-              <div className="mt-8 flex gap-8">
+              <div className="mt-8 flex flex-col sm:flex-row gap-4 sm:gap-8">
                 {[
                   { value: "38", label: "trajets proposés" },
                   { value: "124", label: "bénévoles connectés" },
