@@ -81,7 +81,7 @@ export default async function OrganisateursPage() {
       </section>
 
       {/* Méthodologie */}
-      <section className="py-16 bg-slate-50">
+      <section className="py-16 bg-primary/5">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-center mb-12">Notre méthodologie</h2>
 

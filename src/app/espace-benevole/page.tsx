@@ -74,7 +74,7 @@ export default function EspaceBenevolePage() {
       </section>
 
       {/* Pas encore inscrit */}
-      <section className="py-16 bg-slate-50">
+      <section className="py-16 bg-primary/5">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold mb-4">Pas encore inscrit ?</h2>
           <p className="text-muted text-lg mb-8 max-w-xl mx-auto">

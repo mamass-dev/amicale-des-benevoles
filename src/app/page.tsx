@@ -111,8 +111,8 @@ export default async function HomePage() {
               },
               {
                 icon: Users,
-                title: "La mission utile",
-                description: "Sans bénévole, il n'y a pas d'événement. Tes missions sont établies avec l'organisateur pour garantir la qualité de l'expérience.",
+                title: "Le sentiment d'utilité",
+                description: "Sans bénévole, il n'y a pas d'événement. Ta présence compte et fait concrètement vivre l'événement — c'est une fierté partagée.",
                 color: "text-secondary bg-secondary/10",
               },
               {
@@ -184,7 +184,7 @@ export default async function HomePage() {
       </section>
 
       {/* Nouveautés : Covoiturage & Hébergement */}
-      <section className="py-20 bg-gradient-to-br from-slate-50 to-teal-50">
+      <section className="py-20 bg-gradient-to-br from-orange-50 to-amber-50">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <span className="inline-block px-4 py-1.5 rounded-full bg-accent/10 text-accent text-sm font-semibold mb-4">
@@ -266,7 +266,7 @@ export default async function HomePage() {
       </section>
 
       {/* Témoignages */}
-      <section className="py-24 bg-slate-50">
+      <section className="py-24 bg-primary/5">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl sm:text-4xl font-bold text-center mb-12">Ils nous font confiance</h2>
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">

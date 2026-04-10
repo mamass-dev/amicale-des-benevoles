@@ -52,6 +52,7 @@ export default function Footer() {
             <h3 className="font-semibold text-white mb-4 text-sm uppercase tracking-wider">Navigation</h3>
             <ul className="space-y-2">
               {[
+                { href: "/", label: "Accueil" },
                 { href: "/a-propos", label: "À propos" },
                 { href: "/evenements", label: "Événements" },
                 { href: "/organisateurs", label: "Organisateurs" },

@@ -23,13 +23,11 @@ export const metadata: Metadata = {
 
 export default async function EvenementsPage() {
   const events = await getEvents();
-  const sportifs = events.filter((e: { type: string }) => e.type === "sportif");
-  const culturels = events.filter((e: { type: string }) => e.type === "culturel");
 
   return (
     <>
       <section className="relative py-20 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5" />
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5" />
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <h1 className="text-4xl sm:text-5xl font-bold tracking-tight">
             Nos <span className="text-primary">événements</span> 2026
@@ -41,30 +39,10 @@ export default async function EvenementsPage() {
         </div>
       </section>
 
-      {/* Sportifs */}
       <section className="py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-bold mb-8 flex items-center gap-2">
-            <span className="text-2xl">🏃</span> Événements sportifs
-            <span className="text-sm font-normal text-muted">({sportifs.length})</span>
-          </h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {sportifs.map((event) => (
-              <EventCard key={event.slug} event={event} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Culturels */}
-      <section className="py-16 bg-slate-50">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-bold mb-8 flex items-center gap-2">
-            <span className="text-2xl">🎭</span> Événements culturels
-            <span className="text-sm font-normal text-muted">({culturels.length})</span>
-          </h2>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {culturels.map((event) => (
+            {events.map((event) => (
               <EventCard key={event.slug} event={event} />
             ))}
           </div>

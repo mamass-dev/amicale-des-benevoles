@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import { MapPin, Calendar, Users, ArrowLeft, ArrowRight, Car, BedDouble } from "lucide-react";
+import { MapPin, Calendar, ArrowLeft, ArrowRight, Car, BedDouble } from "lucide-react";
 import { getEvents, getEventBySlug } from "@/sanity/lib/fetch";
 
 type Props = {
@@ -33,9 +33,6 @@ export default async function EventPage({ params }: Props) {
   const { slug } = await params;
   const event = await getEventBySlug(slug);
   if (!event) notFound();
-
-  const fillPercent = Math.round((event.spotsFilled / event.spots) * 100);
-  const spotsLeft = event.spots - event.spotsFilled;
 
   return (
     <>
@@ -79,30 +76,6 @@ export default async function EventPage({ params }: Props) {
           </div>
 
           <p className="text-lg text-muted leading-relaxed mb-8">{event.description}</p>
-
-          {/* Jauge */}
-          <div className="p-6 rounded-2xl bg-card border border-border mb-8">
-            <div className="flex items-center justify-between mb-4">
-              <div className="flex items-center gap-2">
-                <Users className="h-5 w-5 text-primary" />
-                <span className="font-semibold">Bénévoles inscrits</span>
-              </div>
-              <span className="text-2xl font-bold text-primary">{event.spotsFilled}/{event.spots}</span>
-            </div>
-            <div className="h-3 bg-slate-100 rounded-full overflow-hidden mb-2">
-              <div
-                className={`h-full rounded-full transition-all ${fillPercent >= 80 ? "bg-primary" : "bg-secondary"}`}
-                style={{ width: `${fillPercent}%` }}
-              />
-            </div>
-            <p className="text-sm text-muted">
-              {spotsLeft > 0 ? (
-                <>Encore <strong>{spotsLeft} places</strong> disponibles</>
-              ) : (
-                <span className="text-primary font-semibold">Complet !</span>
-              )}
-            </p>
-          </div>
 
           {/* CTA inscription */}
           <div className="flex flex-wrap gap-4 mb-12">

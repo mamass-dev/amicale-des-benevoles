@@ -63,7 +63,7 @@ export default async function AProposPage() {
       </section>
 
       {/* Notre histoire */}
-      <section className="py-16 bg-slate-50">
+      <section className="py-16 bg-primary/5">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold mb-12 text-center">D&apos;où venons-nous ?</h2>
           <div className="max-w-3xl mx-auto space-y-8">
@@ -142,7 +142,7 @@ export default async function AProposPage() {
       </section>
 
       {/* Équipe */}
-      <section className="py-16 bg-slate-50">
+      <section className="py-16 bg-primary/5">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-center mb-12">Notre équipe</h2>
 
@@ -190,8 +190,28 @@ export default async function AProposPage() {
         </div>
       </section>
 
+      {/* Engagement inclusif */}
+      <section className="py-16">
+        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+          <div className="p-8 sm:p-10 rounded-3xl bg-gradient-to-br from-accent/10 via-primary/5 to-accent/5 border border-accent/20">
+            <div className="flex flex-col sm:flex-row gap-6 items-start">
+              <div className="inline-flex p-3 rounded-xl bg-accent/15 text-accent shrink-0">
+                <Heart className="h-7 w-7" fill="currentColor" />
+              </div>
+              <div>
+                <h2 className="text-2xl sm:text-3xl font-bold mb-3">Un espace sûr pour toutes et tous</h2>
+                <p className="text-muted leading-relaxed">
+                  L&apos;Amicale est engagée pour un bénévolat inclusif et respectueux.
+                  <strong className="text-foreground"> Maëlle Dufresnes</strong> est notre référente LGBTQIA+ et anti-discrimination : elle accompagne et écoute tout bénévole qui en ressentirait le besoin, en toute confidentialité.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Ambassadeurs */}
-      <section className="py-16 bg-slate-50">
+      <section className="py-16 bg-primary/5">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-3xl font-bold mb-4">Les ambassadeurs</h2>
