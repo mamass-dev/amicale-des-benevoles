@@ -49,10 +49,10 @@ import {
 async function query<T>(groq: string, params?: Record<string, string>): Promise<T | null> {
   if (!sanityEnabled || !client) return null;
   try {
-    if (params) {
-      return await client.fetch<T>(groq, params);
-    }
-    return await client.fetch<T>(groq);
+    return await client.fetch<T>(groq, params ?? {}, {
+      // Revalidation toutes les 30s en prod, pas de cache en dev.
+      next: { revalidate: process.env.NODE_ENV === "development" ? 0 : 30 },
+    });
   } catch {
     return null;
   }
