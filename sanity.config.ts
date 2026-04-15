@@ -19,9 +19,44 @@ export default defineConfig({
           .items([
             // Page d'accueil custom
             S.listItem()
-              .title("🏠 Accueil")
+              .title("🏠 Bienvenue")
               .child(
                 S.component(StudioWelcome).title("Bienvenue")
+              ),
+            S.divider(),
+
+            // Textes des pages (singletons)
+            S.listItem()
+              .title("📝 Textes des pages")
+              .child(
+                S.list()
+                  .title("Textes des pages")
+                  .items([
+                    S.listItem().title("🏠 Accueil").child(
+                      S.document().schemaType("homePage").documentId("homePage").title("Accueil")
+                    ),
+                    S.listItem().title("ℹ️ À propos").child(
+                      S.document().schemaType("aboutPage").documentId("aboutPage").title("À propos")
+                    ),
+                    S.listItem().title("📅 Événements (page)").child(
+                      S.document().schemaType("eventsPage").documentId("eventsPage").title("Page Événements")
+                    ),
+                    S.listItem().title("🤝 Organisateurs").child(
+                      S.document().schemaType("organizersPage").documentId("organizersPage").title("Organisateurs")
+                    ),
+                    S.listItem().title("🚗 Covoiturage").child(
+                      S.document().schemaType("carpoolPage").documentId("carpoolPage").title("Covoiturage")
+                    ),
+                    S.listItem().title("🛏️ Hébergement").child(
+                      S.document().schemaType("housingPage").documentId("housingPage").title("Hébergement")
+                    ),
+                    S.listItem().title("👤 Espace bénévole").child(
+                      S.document().schemaType("volunteerPage").documentId("volunteerPage").title("Espace bénévole")
+                    ),
+                    S.listItem().title("⚖️ Mentions légales").child(
+                      S.document().schemaType("legalPage").documentId("legalPage").title("Mentions légales")
+                    ),
+                  ])
               ),
             S.divider(),
 
@@ -142,5 +177,41 @@ export default defineConfig({
   ],
   schema: {
     types: schemaTypes,
+  },
+  document: {
+    actions: (prev, { schemaType }) => {
+      const singletons = [
+        "siteSettings",
+        "homePage",
+        "aboutPage",
+        "carpoolPage",
+        "housingPage",
+        "eventsPage",
+        "organizersPage",
+        "volunteerPage",
+        "legalPage",
+      ];
+      if (singletons.includes(schemaType)) {
+        return prev.filter((a) => !["duplicate", "delete", "unpublish"].includes(a.action ?? ""));
+      }
+      return prev;
+    },
+    newDocumentOptions: (prev, { creationContext }) => {
+      if (creationContext.type === "global") {
+        const singletons = [
+          "siteSettings",
+          "homePage",
+          "aboutPage",
+          "carpoolPage",
+          "housingPage",
+          "eventsPage",
+          "organizersPage",
+          "volunteerPage",
+          "legalPage",
+        ];
+        return prev.filter((t) => !singletons.includes(t.templateId ?? ""));
+      }
+      return prev;
+    },
   },
 });

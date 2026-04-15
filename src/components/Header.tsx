@@ -6,7 +6,17 @@ import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
-const navLinks = [
+type NavLink = { label: string; href: string };
+type HeaderProps = {
+  settings: {
+    siteName?: string;
+    navLinks?: NavLink[];
+    navCtaLabel?: string;
+    inscriptionUrl?: string;
+  };
+};
+
+const defaultNavLinks: NavLink[] = [
   { href: "/", label: "Accueil" },
   { href: "/a-propos", label: "À propos" },
   { href: "/evenements", label: "Événements" },
@@ -16,18 +26,20 @@ const navLinks = [
   { href: "/espace-benevole", label: "Espace bénévole" },
 ];
 
-export default function Header() {
+export default function Header({ settings }: HeaderProps) {
   const [open, setOpen] = useState(false);
+  const navLinks = settings.navLinks?.length ? settings.navLinks : defaultNavLinks;
+  const ctaLabel = settings.navCtaLabel || "Rejoindre l'Amicale";
+  const joinUrl = settings.inscriptionUrl || "https://event.recrewteer.com/v2/organization/121/form/7034";
+  const siteName = settings.siteName || "Amicale des Bénévoles";
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-lg border-b border-border">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           <Link href="/" className="flex items-center gap-2.5">
-            <Image src="/images/logo/logo-new.png" alt="Amicale des Bénévoles" width={36} height={36} className="rounded-lg" />
-            <span className="font-bold text-lg tracking-tight">
-              Amicale des Bénévoles
-            </span>
+            <Image src="/images/logo/logo-new.png" alt={siteName} width={36} height={36} className="rounded-lg" />
+            <span className="font-bold text-lg tracking-tight">{siteName}</span>
           </Link>
 
           <nav className="hidden lg:flex items-center gap-1">
@@ -44,12 +56,12 @@ export default function Header() {
 
           <div className="hidden lg:block">
             <a
-              href="https://event.recrewteer.com/v2/organization/121/form/7034"
+              href={joinUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-primary/25 hover:bg-primary-dark transition-all hover:shadow-xl hover:shadow-primary/30"
             >
-              Rejoindre l&apos;Amicale
+              {ctaLabel}
             </a>
           </div>
 
@@ -83,12 +95,12 @@ export default function Header() {
                 </Link>
               ))}
               <a
-                href="https://event.recrewteer.com/v2/organization/121/form/7034"
+                href={joinUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mt-3 block w-full text-center rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-primary/25"
               >
-                Rejoindre l&apos;Amicale
+                {ctaLabel}
               </a>
             </div>
           </motion.div>

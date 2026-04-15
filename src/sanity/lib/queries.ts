@@ -69,6 +69,18 @@ export const siteSettingsQuery = groq`
   *[_type == "siteSettings"][0] {
     siteName, siteDescription, email, phone1, phone2,
     address, rna, facebookUrl, instagramUrl, linkedinUrl,
-    whatsappUrl, inscriptionUrl
+    whatsappUrl, inscriptionUrl,
+    navLinks, navCtaLabel,
+    footerTagline, footerNavTitle, footerContactTitle, footerSocialTitle,
+    footerCopyright, footerLegalLabel, ctaJoinLabel
   }
 `;
+
+export const homePageQuery = groq`*[_type == "homePage"][0]`;
+export const aboutPageQuery = groq`*[_type == "aboutPage"][0]`;
+export const carpoolPageQuery = groq`*[_type == "carpoolPage"][0]`;
+export const housingPageQuery = groq`*[_type == "housingPage"][0]`;
+export const eventsPageQuery = groq`*[_type == "eventsPage"][0]`;
+export const organizersPageQuery = groq`*[_type == "organizersPage"][0]`;
+export const volunteerPageQuery = groq`*[_type == "volunteerPage"][0]`;
+export const legalPageQuery = groq`*[_type == "legalPage"][0]`;

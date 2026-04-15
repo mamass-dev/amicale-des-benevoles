@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "seed:pages": "node scripts/seed-pages.mjs"
   },
   "dependencies": {
     "@sanity/icons": "^3.7.4",

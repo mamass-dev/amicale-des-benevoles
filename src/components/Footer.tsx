@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Heart, Mail, Phone, MapPin } from "lucide-react";
+import { Mail, Phone, MapPin } from "lucide-react";
 
 function FacebookIcon({ className }: { className?: string }) {
   return (
@@ -26,40 +26,82 @@ function LinkedInIcon({ className }: { className?: string }) {
   );
 }
 
-const socials = [
-  { href: "https://www.facebook.com/amicaledesbenevoles", Icon: FacebookIcon, label: "Facebook" },
-  { href: "https://www.instagram.com/amicale_des_benevoles/", Icon: InstagramIcon, label: "Instagram" },
-  { href: "https://www.linkedin.com/company/amicaledesbenevoles", Icon: LinkedInIcon, label: "LinkedIn" },
+type NavLink = { label: string; href: string };
+
+type FooterProps = {
+  settings: {
+    siteName?: string;
+    footerTagline?: string;
+    footerNavTitle?: string;
+    footerContactTitle?: string;
+    footerSocialTitle?: string;
+    footerCopyright?: string;
+    footerLegalLabel?: string;
+    navLinks?: NavLink[];
+    navCtaLabel?: string;
+    address?: string;
+    email?: string;
+    phone1?: string;
+    phone2?: string;
+    rna?: string;
+    facebookUrl?: string;
+    instagramUrl?: string;
+    linkedinUrl?: string;
+    inscriptionUrl?: string;
+  };
+};
+
+const defaultNavLinks: NavLink[] = [
+  { href: "/", label: "Accueil" },
+  { href: "/a-propos", label: "À propos" },
+  { href: "/evenements", label: "Événements" },
+  { href: "/organisateurs", label: "Organisateurs" },
+  { href: "/covoiturage", label: "Covoiturage" },
+  { href: "/hebergement", label: "Hébergement" },
+  { href: "/espace-benevole", label: "Espace bénévole" },
 ];
 
-export default function Footer() {
+export default function Footer({ settings }: FooterProps) {
+  const siteName = settings.siteName || "Amicale des Bénévoles";
+  const navLinks = settings.navLinks?.length ? settings.navLinks : defaultNavLinks;
+  const joinUrl = settings.inscriptionUrl || "https://event.recrewteer.com/v2/organization/121/form/7034";
+  const ctaLabel = settings.navCtaLabel || "Rejoindre l'Amicale";
+  const tagline =
+    settings.footerTagline ||
+    "Association loi 1901 pour la promotion et le développement du bénévolat dans le milieu événementiel sportif et culturel.";
+  const address = settings.address || "107 rue Bechevelin, 69007 Lyon";
+  const email = settings.email || "contact@amicaledesbenevoles.org";
+  const rna = settings.rna || "W691100560";
+  const copyright = (settings.footerCopyright || "© {year} Amicale des Bénévoles. Tous droits réservés.").replace(
+    "{year}",
+    String(new Date().getFullYear())
+  );
+
+  const socials = [
+    { href: settings.facebookUrl || "https://www.facebook.com/amicaledesbenevoles", Icon: FacebookIcon, label: "Facebook" },
+    { href: settings.instagramUrl || "https://www.instagram.com/amicale_des_benevoles/", Icon: InstagramIcon, label: "Instagram" },
+    { href: settings.linkedinUrl || "https://www.linkedin.com/company/amicaledesbenevoles", Icon: LinkedInIcon, label: "LinkedIn" },
+  ].filter((s) => !!s.href);
+
   return (
     <footer className="bg-secondary text-slate-300">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           <div>
             <div className="flex items-center gap-2.5 mb-4">
-              <Image src="/images/logo/logo-new.png" alt="Amicale des Bénévoles" width={32} height={32} className="rounded-lg" />
-              <span className="font-bold text-white text-lg">Amicale des Bénévoles</span>
+              <Image src="/images/logo/logo-new.png" alt={siteName} width={32} height={32} className="rounded-lg" />
+              <span className="font-bold text-white text-lg">{siteName}</span>
             </div>
-            <p className="text-sm text-slate-400 leading-relaxed">
-              Association loi 1901 pour la promotion et le développement du bénévolat dans le milieu événementiel sportif et culturel.
-            </p>
-            <p className="text-xs text-slate-500 mt-3">RNA W691100560</p>
+            <p className="text-sm text-slate-400 leading-relaxed">{tagline}</p>
+            {rna && <p className="text-xs text-slate-500 mt-3">RNA {rna}</p>}
           </div>
 
           <div>
-            <h3 className="font-semibold text-white mb-4 text-sm uppercase tracking-wider">Navigation</h3>
+            <h3 className="font-semibold text-white mb-4 text-sm uppercase tracking-wider">
+              {settings.footerNavTitle || "Navigation"}
+            </h3>
             <ul className="space-y-2">
-              {[
-                { href: "/", label: "Accueil" },
-                { href: "/a-propos", label: "À propos" },
-                { href: "/evenements", label: "Événements" },
-                { href: "/organisateurs", label: "Organisateurs" },
-                { href: "/covoiturage", label: "Covoiturage" },
-                { href: "/hebergement", label: "Hébergement" },
-                { href: "/espace-benevole", label: "Espace bénévole" },
-              ].map((link) => (
+              {navLinks.map((link) => (
                 <li key={link.href}>
                   <Link href={link.href} className="text-sm hover:text-white transition-colors">
                     {link.label}
@@ -70,30 +112,36 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="font-semibold text-white mb-4 text-sm uppercase tracking-wider">Contact</h3>
+            <h3 className="font-semibold text-white mb-4 text-sm uppercase tracking-wider">
+              {settings.footerContactTitle || "Contact"}
+            </h3>
             <ul className="space-y-3">
               <li className="flex items-start gap-2 text-sm">
                 <MapPin className="h-4 w-4 mt-0.5 shrink-0 text-primary" />
-                107 rue Bechevelin, 69007 Lyon
+                {address}
               </li>
               <li className="flex items-center gap-2 text-sm">
                 <Mail className="h-4 w-4 shrink-0 text-primary" />
-                <a href="mailto:contact@amicaledesbenevoles.org" className="hover:text-white transition-colors">
-                  contact@amicaledesbenevoles.org
+                <a href={`mailto:${email}`} className="hover:text-white transition-colors">
+                  {email}
                 </a>
               </li>
-              <li className="flex items-center gap-2 text-sm">
-                <Phone className="h-4 w-4 shrink-0 text-primary" />
-                <div>
-                  <div>Quentin : 06 88 65 19 60</div>
-                  <div>Jordan : 06 20 33 10 09</div>
-                </div>
-              </li>
+              {(settings.phone1 || settings.phone2) && (
+                <li className="flex items-center gap-2 text-sm">
+                  <Phone className="h-4 w-4 shrink-0 text-primary" />
+                  <div>
+                    {settings.phone1 && <div>{settings.phone1}</div>}
+                    {settings.phone2 && <div>{settings.phone2}</div>}
+                  </div>
+                </li>
+              )}
             </ul>
           </div>
 
           <div>
-            <h3 className="font-semibold text-white mb-4 text-sm uppercase tracking-wider">Suivez-nous</h3>
+            <h3 className="font-semibold text-white mb-4 text-sm uppercase tracking-wider">
+              {settings.footerSocialTitle || "Suivez-nous"}
+            </h3>
             <div className="flex gap-3">
               {socials.map((social) => (
                 <a
@@ -109,22 +157,20 @@ export default function Footer() {
               ))}
             </div>
             <a
-              href="https://event.recrewteer.com/v2/organization/121/form/7034"
+              href={joinUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="mt-6 inline-flex items-center gap-2 rounded-full bg-primary px-6 py-2.5 text-sm font-semibold text-white hover:bg-primary-dark transition-colors"
             >
-              Rejoindre l&apos;Amicale
+              {ctaLabel}
             </a>
           </div>
         </div>
 
         <div className="mt-12 pt-8 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center gap-4">
-          <p className="text-xs text-slate-500">
-            &copy; {new Date().getFullYear()} Amicale des Bénévoles. Tous droits réservés.
-          </p>
+          <p className="text-xs text-slate-500">{copyright}</p>
           <Link href="/mentions-legales" className="text-xs text-slate-500 hover:text-stone-300 transition-colors">
-            Mentions légales
+            {settings.footerLegalLabel || "Mentions légales"}
           </Link>
         </div>
       </div>

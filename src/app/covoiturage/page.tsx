@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
-import { Car, MapPin, Calendar, Users, Leaf, Euro, ArrowRight, ArrowDown, Shield, Clock, Zap, Heart, ChevronRight } from "lucide-react";
+import { Car, MapPin, Calendar, Users, Leaf, ArrowRight, ArrowDown, Zap, Heart, ChevronRight } from "lucide-react";
 import Link from "next/link";
-import { getEvents } from "@/sanity/lib/fetch";
+import { getEvents, getCarpoolContent, getSiteSettings } from "@/sanity/lib/fetch";
 import CovoiturageBoard from "./CovoiturageBoard";
 import FaqAccordion from "@/components/FaqAccordion";
+import { getIcon } from "@/lib/icons";
 
 export const metadata: Metadata = {
   title: "Covoiturage Bénévole | Partagez vos trajets entre bénévoles",
@@ -46,10 +47,11 @@ const faqs = [
 ];
 
 export default async function CovoituragePage() {
-  const events = await getEvents();
+  const [events, content, settings] = await Promise.all([getEvents(), getCarpoolContent(), getSiteSettings()]);
+  const joinUrl = settings.inscriptionUrl || "https://event.recrewteer.com/v2/organization/121/form/7034";
+
   return (
     <>
-      {/* Hero immersif */}
       <section className="relative min-h-[60vh] sm:min-h-[85vh] flex items-center overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-teal-50/50 via-white to-slate-50" />
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-secondary/8 rounded-full blur-[100px] -translate-y-1/3 translate-x-1/4" />
@@ -62,24 +64,18 @@ export default async function CovoituragePage() {
             <div>
               <div className="inline-flex items-center gap-2 rounded-full bg-secondary/10 border border-secondary/20 px-4 py-2 text-sm font-medium text-secondary mb-8">
                 <Zap className="h-4 w-4" />
-                100% autonome entre bénévoles
+                {content.heroBadge}
               </div>
               <h1 className="text-5xl sm:text-6xl font-bold tracking-tight leading-[1.08]">
-                Partage ton trajet,<br />
+                {content.heroTitle1}<br />
                 <span className="bg-gradient-to-r from-secondary to-cyan-600 bg-clip-text text-transparent">
-                  multiplie l&apos;impact
+                  {content.heroTitle2}
                 </span>
               </h1>
-              <p className="mt-6 text-lg text-muted max-w-lg leading-relaxed">
-                10% des bénévoles ne peuvent pas venir à cause du transport. Publie une annonce ou consulte celles des autres bénévoles et organisez-vous directement entre vous.
-              </p>
+              <p className="mt-6 text-lg text-muted max-w-lg leading-relaxed">{content.heroDescription}</p>
 
               <div className="mt-8 flex flex-col sm:flex-row gap-4 sm:gap-8">
-                {[
-                  { value: "38", label: "trajets proposés" },
-                  { value: "124", label: "bénévoles connectés" },
-                  { value: "12t", label: "de CO2 évités" },
-                ].map((s) => (
+                {content.heroStats.map((s) => (
                   <div key={s.label}>
                     <div className="text-2xl font-bold text-secondary">{s.value}</div>
                     <div className="text-xs text-muted">{s.label}</div>
@@ -92,7 +88,7 @@ export default async function CovoituragePage() {
                   href="#annonces"
                   className="inline-flex items-center gap-2 rounded-full bg-secondary px-7 py-3.5 text-base font-semibold text-white shadow-lg shadow-secondary/25 hover:shadow-xl hover:shadow-secondary/30 hover:bg-secondary-dark transition-all"
                 >
-                  Voir les annonces
+                  {content.heroCtaPrimary}
                   <ArrowDown className="h-5 w-5" />
                 </a>
                 <a
@@ -100,12 +96,11 @@ export default async function CovoituragePage() {
                   className="inline-flex items-center gap-2 rounded-full border-2 border-secondary/20 px-7 py-3.5 text-base font-semibold text-secondary hover:bg-secondary/5 transition-all"
                 >
                   <Car className="h-5 w-5" />
-                  Publier une annonce
+                  {content.heroCtaSecondary}
                 </a>
               </div>
             </div>
 
-            {/* Visual côté droit */}
             <div className="hidden lg:block relative">
               <div className="absolute -inset-4 bg-gradient-to-br from-secondary/10 to-slate-200/20 rounded-3xl blur-2xl" />
               <div className="relative space-y-4">
@@ -166,81 +161,62 @@ export default async function CovoituragePage() {
         </div>
       </section>
 
-      {/* Bande de confiance */}
       <section className="border-y border-border bg-white">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {[
-              { icon: Euro, title: "Frais partagés", desc: "Jusqu'à 80% d'économies vs seul" },
-              { icon: Leaf, title: "Éco-responsable", desc: "-67 kg CO2 par trajet partagé" },
-              { icon: Shield, title: "Entre bénévoles", desc: "Communauté de confiance" },
-              { icon: Clock, title: "Contact direct", desc: "Organisez-vous entre vous" },
-            ].map((a) => (
-              <div key={a.title} className="flex items-start gap-3">
-                <div className="p-2 rounded-lg bg-secondary/8 text-secondary shrink-0 mt-0.5">
-                  <a.icon className="h-5 w-5" />
+            {content.trustItems.map((a) => {
+              const Icon = getIcon(a.icon, MapPin);
+              return (
+                <div key={a.title} className="flex items-start gap-3">
+                  <div className="p-2 rounded-lg bg-secondary/8 text-secondary shrink-0 mt-0.5">
+                    <Icon className="h-5 w-5" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-sm">{a.title}</h3>
+                    <p className="text-xs text-muted mt-0.5">{a.description}</p>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="font-semibold text-sm">{a.title}</h3>
-                  <p className="text-xs text-muted mt-0.5">{a.desc}</p>
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
 
-      {/* Comment ça marche */}
       <section className="py-24 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-white via-slate-50/30 to-white" />
         <div className="relative mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <span className="inline-block px-4 py-1.5 rounded-full bg-secondary/10 text-secondary text-sm font-semibold mb-4">Simple et autonome</span>
-            <h2 className="text-3xl sm:text-4xl font-bold">3 étapes, zéro intermédiaire</h2>
+            <span className="inline-block px-4 py-1.5 rounded-full bg-secondary/10 text-secondary text-sm font-semibold mb-4">{content.howBadge}</span>
+            <h2 className="text-3xl sm:text-4xl font-bold">{content.howTitle}</h2>
           </div>
 
           <div className="grid md:grid-cols-3 gap-0 relative">
             <div className="hidden md:block absolute top-12 left-[16.6%] right-[16.6%] h-0.5 bg-gradient-to-r from-secondary/20 via-secondary to-secondary/20" />
 
-            {[
-              {
-                step: "01",
-                icon: Car,
-                title: "Publie ton annonce",
-                desc: "Tu proposes des places ou tu cherches un trajet ? Publie une annonce en 1 minute avec tes coordonnées.",
-                color: "from-secondary to-cyan-600",
-              },
-              {
-                step: "02",
-                icon: Calendar,
-                title: "Consulte les annonces",
-                desc: "Parcours les annonces des autres bénévoles, filtre par événement et trouve le trajet qui te correspond.",
-                color: "from-teal-500 to-secondary",
-              },
-              {
-                step: "03",
-                icon: Users,
-                title: "Contactez-vous directement",
-                desc: "Les coordonnées sont sur chaque annonce. Appelez-vous, envoyez un message et organisez le trajet ensemble.",
-                color: "from-secondary to-slate-700",
-              },
-            ].map((s) => (
-              <div key={s.step} className="relative text-center px-6 py-8">
-                <div className={`relative z-10 inline-flex items-center justify-center w-24 h-24 rounded-2xl bg-gradient-to-br ${s.color} text-white shadow-lg shadow-secondary/20 mb-6`}>
-                  <s.icon className="h-10 w-10" />
-                  <span className="absolute -top-2 -right-2 w-7 h-7 rounded-full bg-white text-secondary font-bold text-xs flex items-center justify-center shadow border border-secondary/20">
-                    {s.step}
-                  </span>
+            {content.howSteps.map((s, idx) => {
+              const Icon = getIcon(s.icon, Car);
+              const gradients = [
+                "from-secondary to-cyan-600",
+                "from-teal-500 to-secondary",
+                "from-secondary to-slate-700",
+              ];
+              return (
+                <div key={s.step} className="relative text-center px-6 py-8">
+                  <div className={`relative z-10 inline-flex items-center justify-center w-24 h-24 rounded-2xl bg-gradient-to-br ${gradients[idx] ?? gradients[0]} text-white shadow-lg shadow-secondary/20 mb-6`}>
+                    <Icon className="h-10 w-10" />
+                    <span className="absolute -top-2 -right-2 w-7 h-7 rounded-full bg-white text-secondary font-bold text-xs flex items-center justify-center shadow border border-secondary/20">
+                      {s.step}
+                    </span>
+                  </div>
+                  <h3 className="font-bold text-lg mb-2">{s.title}</h3>
+                  <p className="text-muted text-sm leading-relaxed">{s.description}</p>
                 </div>
-                <h3 className="font-bold text-lg mb-2">{s.title}</h3>
-                <p className="text-muted text-sm leading-relaxed">{s.desc}</p>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
 
-      {/* Tableau d'annonces */}
       <section className="py-24 relative" id="annonces">
         <div className="absolute inset-0 bg-gradient-to-b from-stone-50 to-white" />
         <div className="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
@@ -248,60 +224,51 @@ export default async function CovoituragePage() {
         </div>
       </section>
 
-      {/* Témoignage */}
       <section className="py-16 border-y border-border">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row gap-8 items-center">
             <div className="shrink-0">
               <div className="w-20 h-20 rounded-full bg-gradient-to-br from-secondary to-cyan-600 flex items-center justify-center text-white text-3xl font-bold shadow-lg shadow-secondary/20">
-                S
+                {content.testimonialAuthor.charAt(0)}
               </div>
             </div>
             <blockquote>
               <p className="text-lg italic text-muted leading-relaxed">
-                &ldquo;J&apos;ai trouvé un covoiturage pour la SaintéLyon en 10 minutes sur le tableau d&apos;annonces.
-                J&apos;ai appelé le conducteur, on s&apos;est organisés et on est partis à 4.
-                C&apos;est simple, direct et ça crée du lien avant même d&apos;arriver.&rdquo;
+                &ldquo;{content.testimonialText}&rdquo;
               </p>
               <footer className="mt-3 font-semibold">
-                Sarah L. <span className="text-muted font-normal">&mdash; Bénévole depuis 2024</span>
+                {content.testimonialAuthor} <span className="text-muted font-normal">&mdash; {content.testimonialRole}</span>
               </footer>
             </blockquote>
           </div>
         </div>
       </section>
 
-      {/* FAQ */}
       <section className="py-24">
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-3">Questions fréquentes</h2>
-            <p className="text-muted">Tout ce que tu dois savoir sur le covoiturage entre bénévoles.</p>
+            <h2 className="text-3xl font-bold mb-3">{content.faqTitle}</h2>
+            <p className="text-muted">{content.faqSubtitle}</p>
           </div>
           <FaqAccordion items={faqs} color="secondary" />
         </div>
       </section>
 
-      {/* CTA */}
       <section className="py-20 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-secondary to-cyan-600" />
         <div className="absolute inset-0 opacity-10" style={{ backgroundImage: "radial-gradient(circle at 1px 1px, white 1px, transparent 0)", backgroundSize: "24px 24px" }} />
         <div className="relative mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-                Pas encore inscrit à l&apos;Amicale ?
-              </h2>
-              <p className="text-white/80 mb-8 text-lg leading-relaxed">
-                Le covoiturage est réservé aux bénévoles de l&apos;Amicale. Rejoins-nous pour publier et consulter les annonces.
-              </p>
+              <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">{content.ctaTitle}</h2>
+              <p className="text-white/80 mb-8 text-lg leading-relaxed">{content.ctaDescription}</p>
               <a
-                href="https://event.recrewteer.com/v2/organization/121/form/7034"
+                href={joinUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-full bg-white text-secondary px-7 py-3.5 font-semibold hover:bg-slate-50 transition-colors shadow-xl"
               >
-                Rejoindre l&apos;Amicale <ArrowRight className="h-5 w-5" />
+                {content.ctaButton} <ArrowRight className="h-5 w-5" />
               </a>
             </div>
             <div>
@@ -311,8 +278,8 @@ export default async function CovoituragePage() {
                     <Heart className="h-7 w-7 text-white" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-bold text-white">Besoin d&apos;un hébergement aussi ?</h3>
-                    <p className="text-sm text-white/70 mt-1">Consulte les annonces d&apos;hébergement solidaire</p>
+                    <h3 className="text-lg font-bold text-white">{content.ctaCrossLinkTitle}</h3>
+                    <p className="text-sm text-white/70 mt-1">{content.ctaCrossLinkText}</p>
                   </div>
                   <ChevronRight className="h-5 w-5 text-white/50 group-hover:text-white group-hover:translate-x-1 transition-all ml-auto" />
                 </div>

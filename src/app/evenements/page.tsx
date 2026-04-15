@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import EventCard from "@/components/EventCard";
 import { ArrowRight } from "lucide-react";
-import { getEvents } from "@/sanity/lib/fetch";
+import { getEvents, getEventsPageContent, getSiteSettings } from "@/sanity/lib/fetch";
 
 export const metadata: Metadata = {
   title: "Événements bénévoles 2026 | Sportifs & Culturels en France",
@@ -22,7 +22,13 @@ export const metadata: Metadata = {
 };
 
 export default async function EvenementsPage() {
-  const events = await getEvents();
+  const [events, content, settings] = await Promise.all([
+    getEvents(),
+    getEventsPageContent(),
+    getSiteSettings(),
+  ]);
+  const joinUrl = settings.inscriptionUrl || "https://event.recrewteer.com/v2/organization/121/form/7034";
+  const description = content.heroDescription.replace("{count}", String(events.length));
 
   return (
     <>
@@ -30,12 +36,9 @@ export default async function EvenementsPage() {
         <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5" />
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <h1 className="text-4xl sm:text-5xl font-bold tracking-tight">
-            Nos <span className="text-primary">événements</span> 2026
+            {content.heroTitle1} <span className="text-primary">{content.heroTitle2}</span> 2026
           </h1>
-          <p className="mt-4 text-lg text-muted max-w-2xl">
-            {events.length} événements sportifs et culturels dans le quart Sud-Est de la France.
-            Qu&apos;importe les raisons qui t&apos;amènent à t&apos;engager, ton acte citoyen est précieux !
-          </p>
+          <p className="mt-4 text-lg text-muted max-w-2xl">{description}</p>
         </div>
       </section>
 
@@ -49,20 +52,17 @@ export default async function EvenementsPage() {
         </div>
       </section>
 
-      {/* CTA */}
       <section className="py-16 bg-primary text-white">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold mb-4">Un événement te plaît ?</h2>
-          <p className="text-white/80 mb-8 text-lg">
-            Inscris-toi à l&apos;Amicale pour accéder aux inscriptions, au covoiturage et à l&apos;hébergement solidaire.
-          </p>
+          <h2 className="text-3xl font-bold mb-4">{content.ctaTitle}</h2>
+          <p className="text-white/80 mb-8 text-lg">{content.ctaDescription}</p>
           <a
-            href="https://event.recrewteer.com/v2/organization/121/form/7034"
+            href={joinUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 rounded-full bg-white text-primary px-7 py-3.5 font-semibold hover:bg-slate-100 transition-colors shadow-lg"
           >
-            Rejoindre l&apos;Amicale <ArrowRight className="h-5 w-5" />
+            {content.ctaButton} <ArrowRight className="h-5 w-5" />
           </a>
         </div>
       </section>

@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
-import { BedDouble, Heart, Shield, MapPin, Calendar, ArrowRight, ArrowDown, Home, Users, Star, Zap, ChevronRight, Clock, Wifi, Coffee, Key } from "lucide-react";
+import { BedDouble, Heart, MapPin, Calendar, ArrowRight, ArrowDown, Home, Users, Zap, ChevronRight } from "lucide-react";
 import Link from "next/link";
-import { getEvents } from "@/sanity/lib/fetch";
+import { getEvents, getHousingContent, getSiteSettings } from "@/sanity/lib/fetch";
 import HebergementBoard from "./HebergementBoard";
 import FaqAccordion from "@/components/FaqAccordion";
+import { getIcon } from "@/lib/icons";
 
 export const metadata: Metadata = {
   title: "Hébergement Solidaire | Logement entre bénévoles",
@@ -46,10 +47,11 @@ const faqs = [
 ];
 
 export default async function HebergementPage() {
-  const events = await getEvents();
+  const [events, content, settings] = await Promise.all([getEvents(), getHousingContent(), getSiteSettings()]);
+  const joinUrl = settings.inscriptionUrl || "https://event.recrewteer.com/v2/organization/121/form/7034";
+
   return (
     <>
-      {/* Hero */}
       <section className="relative min-h-[60vh] sm:min-h-[85vh] flex items-center overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-teal-50/50 via-white to-amber-50/30" />
         <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-primary/6 rounded-full blur-[100px] -translate-y-1/4 -translate-x-1/4" />
@@ -60,24 +62,18 @@ export default async function HebergementPage() {
             <div>
               <div className="inline-flex items-center gap-2 rounded-full bg-primary/10 border border-primary/15 px-4 py-2 text-sm font-medium text-primary mb-8">
                 <Heart className="h-4 w-4" fill="currentColor" />
-                100% autonome entre bénévoles
+                {content.heroBadge}
               </div>
               <h1 className="text-5xl sm:text-6xl font-bold tracking-tight leading-[1.08]">
-                Un toit, un lit,<br />
+                {content.heroTitle1}<br />
                 <span className="bg-gradient-to-r from-primary to-cyan-500 bg-clip-text text-transparent">
-                  une expérience partagée
+                  {content.heroTitle2}
                 </span>
               </h1>
-              <p className="mt-6 text-lg text-muted max-w-lg leading-relaxed">
-                Publie une annonce d&apos;hébergement ou consulte celles des autres bénévoles. Contactez-vous directement et organisez le séjour entre vous. Simple, gratuit, humain.
-              </p>
+              <p className="mt-6 text-lg text-muted max-w-lg leading-relaxed">{content.heroDescription}</p>
 
               <div className="mt-8 flex flex-col sm:flex-row gap-4 sm:gap-8">
-                {[
-                  { value: "26", label: "lits disponibles" },
-                  { value: "48", label: "bénévoles hébergés" },
-                  { value: "100%", label: "gratuit & solidaire" },
-                ].map((s) => (
+                {content.heroStats.map((s) => (
                   <div key={s.label}>
                     <div className="text-2xl font-bold text-primary">{s.value}</div>
                     <div className="text-xs text-muted">{s.label}</div>
@@ -90,7 +86,7 @@ export default async function HebergementPage() {
                   href="#annonces"
                   className="inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3.5 text-base font-semibold text-white shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/30 hover:bg-primary-dark transition-all"
                 >
-                  Voir les annonces
+                  {content.heroCtaPrimary}
                   <ArrowDown className="h-5 w-5" />
                 </a>
                 <a
@@ -98,12 +94,11 @@ export default async function HebergementPage() {
                   className="inline-flex items-center gap-2 rounded-full border-2 border-primary/20 px-7 py-3.5 text-base font-semibold text-primary hover:bg-primary/5 transition-all"
                 >
                   <Home className="h-5 w-5" />
-                  Publier une annonce
+                  {content.heroCtaSecondary}
                 </a>
               </div>
             </div>
 
-            {/* Visual côté droit */}
             <div className="hidden lg:block relative">
               <div className="absolute -inset-4 bg-gradient-to-br from-primary/8 to-teal-200/15 rounded-3xl blur-2xl" />
               <div className="relative space-y-4">
@@ -162,81 +157,62 @@ export default async function HebergementPage() {
         </div>
       </section>
 
-      {/* Bande de confiance */}
       <section className="border-y border-border bg-white">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {[
-              { icon: Heart, title: "100% gratuit", desc: "Hébergement solidaire, pas commercial" },
-              { icon: Shield, title: "Entre bénévoles", desc: "Tous inscrits à l'Amicale" },
-              { icon: Clock, title: "Contact direct", desc: "Organisez-vous entre vous" },
-              { icon: Star, title: "Autonome", desc: "Publiez, consultez, contactez" },
-            ].map((a) => (
-              <div key={a.title} className="flex items-start gap-3">
-                <div className="p-2 rounded-lg bg-primary/8 text-primary shrink-0 mt-0.5">
-                  <a.icon className="h-5 w-5" />
+            {content.trustItems.map((a) => {
+              const Icon = getIcon(a.icon, Heart);
+              return (
+                <div key={a.title} className="flex items-start gap-3">
+                  <div className="p-2 rounded-lg bg-primary/8 text-primary shrink-0 mt-0.5">
+                    <Icon className="h-5 w-5" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-sm">{a.title}</h3>
+                    <p className="text-xs text-muted mt-0.5">{a.description}</p>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="font-semibold text-sm">{a.title}</h3>
-                  <p className="text-xs text-muted mt-0.5">{a.desc}</p>
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
 
-      {/* Comment ça marche */}
       <section className="py-24 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-white via-teal-50/20 to-white" />
         <div className="relative mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-semibold mb-4">Simple et autonome</span>
-            <h2 className="text-3xl sm:text-4xl font-bold">3 étapes, zéro intermédiaire</h2>
+            <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-semibold mb-4">{content.howBadge}</span>
+            <h2 className="text-3xl sm:text-4xl font-bold">{content.howTitle}</h2>
           </div>
 
           <div className="grid md:grid-cols-3 gap-0 relative">
             <div className="hidden md:block absolute top-12 left-[16.6%] right-[16.6%] h-0.5 bg-gradient-to-r from-primary/20 via-primary to-primary/20" />
 
-            {[
-              {
-                step: "01",
-                icon: Home,
-                title: "Publie ton annonce",
-                desc: "Tu proposes un lit ou tu en cherches un ? Publie une annonce avec tes coordonnées en 1 minute.",
-                color: "from-primary to-cyan-500",
-              },
-              {
-                step: "02",
-                icon: Calendar,
-                title: "Consulte les annonces",
-                desc: "Parcours les annonces des autres bénévoles. Filtre par événement pour trouver ce qui te correspond.",
-                color: "from-teal-400 to-cyan-500",
-              },
-              {
-                step: "03",
-                icon: Users,
-                title: "Contactez-vous directement",
-                desc: "Email ou téléphone affiché sur chaque annonce. Appelez-vous et organisez le séjour ensemble.",
-                color: "from-teal-600 to-secondary",
-              },
-            ].map((s) => (
-              <div key={s.step} className="relative text-center px-6 py-8">
-                <div className={`relative z-10 inline-flex items-center justify-center w-24 h-24 rounded-2xl bg-gradient-to-br ${s.color} text-white shadow-lg shadow-primary/20 mb-6`}>
-                  <s.icon className="h-10 w-10" />
-                  <span className="absolute -top-2 -right-2 w-7 h-7 rounded-full bg-white text-primary font-bold text-xs flex items-center justify-center shadow border border-primary/20">
-                    {s.step}
-                  </span>
+            {content.howSteps.map((s, idx) => {
+              const Icon = getIcon(s.icon, Home);
+              const gradients = [
+                "from-primary to-cyan-500",
+                "from-teal-400 to-cyan-500",
+                "from-teal-600 to-secondary",
+              ];
+              return (
+                <div key={s.step} className="relative text-center px-6 py-8">
+                  <div className={`relative z-10 inline-flex items-center justify-center w-24 h-24 rounded-2xl bg-gradient-to-br ${gradients[idx] ?? gradients[0]} text-white shadow-lg shadow-primary/20 mb-6`}>
+                    <Icon className="h-10 w-10" />
+                    <span className="absolute -top-2 -right-2 w-7 h-7 rounded-full bg-white text-primary font-bold text-xs flex items-center justify-center shadow border border-primary/20">
+                      {s.step}
+                    </span>
+                  </div>
+                  <h3 className="font-bold text-lg mb-2">{s.title}</h3>
+                  <p className="text-muted text-sm leading-relaxed">{s.description}</p>
                 </div>
-                <h3 className="font-bold text-lg mb-2">{s.title}</h3>
-                <p className="text-muted text-sm leading-relaxed">{s.desc}</p>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
 
-      {/* Tableau d'annonces */}
       <section className="py-24 relative" id="annonces">
         <div className="absolute inset-0 bg-gradient-to-b from-stone-50 to-white" />
         <div className="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
@@ -244,60 +220,51 @@ export default async function HebergementPage() {
         </div>
       </section>
 
-      {/* Témoignage */}
       <section className="py-16 border-y border-border">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row gap-8 items-center">
             <div className="shrink-0">
               <div className="w-20 h-20 rounded-full bg-gradient-to-br from-primary to-cyan-500 flex items-center justify-center text-white text-3xl font-bold shadow-lg shadow-primary/20">
-                P
+                {content.testimonialAuthor.charAt(0)}
               </div>
             </div>
             <blockquote>
               <p className="text-lg italic text-muted leading-relaxed">
-                &ldquo;J&apos;ai publié une annonce pour proposer ma chambre d&apos;amis pendant le Festival de Danse.
-                En deux jours, deux bénévoles m&apos;ont contacté directement. On s&apos;est appelés, on a organisé le séjour
-                et on est devenus amis. Simple, humain et sans prise de tête.&rdquo;
+                &ldquo;{content.testimonialText}&rdquo;
               </p>
               <footer className="mt-3 font-semibold">
-                Pierre D. <span className="text-muted font-normal">&mdash; Hôte depuis 2024</span>
+                {content.testimonialAuthor} <span className="text-muted font-normal">&mdash; {content.testimonialRole}</span>
               </footer>
             </blockquote>
           </div>
         </div>
       </section>
 
-      {/* FAQ */}
       <section className="py-24">
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-3">Questions fréquentes</h2>
-            <p className="text-muted">Tout ce que tu dois savoir sur l&apos;hébergement solidaire.</p>
+            <h2 className="text-3xl font-bold mb-3">{content.faqTitle}</h2>
+            <p className="text-muted">{content.faqSubtitle}</p>
           </div>
           <FaqAccordion items={faqs} color="primary" />
         </div>
       </section>
 
-      {/* CTA */}
       <section className="py-20 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-primary to-teal-600" />
         <div className="absolute inset-0 opacity-10" style={{ backgroundImage: "radial-gradient(circle at 1px 1px, white 1px, transparent 0)", backgroundSize: "24px 24px" }} />
         <div className="relative mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-                Rejoins la communauté
-              </h2>
-              <p className="text-white/80 mb-8 text-lg leading-relaxed">
-                L&apos;hébergement solidaire est réservé aux bénévoles de l&apos;Amicale. Inscris-toi pour publier et consulter les annonces.
-              </p>
+              <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">{content.ctaTitle}</h2>
+              <p className="text-white/80 mb-8 text-lg leading-relaxed">{content.ctaDescription}</p>
               <a
-                href="https://event.recrewteer.com/v2/organization/121/form/7034"
+                href={joinUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-full bg-white text-primary px-7 py-3.5 font-semibold hover:bg-slate-50 transition-colors shadow-xl"
               >
-                Rejoindre l&apos;Amicale <ArrowRight className="h-5 w-5" />
+                {content.ctaButton} <ArrowRight className="h-5 w-5" />
               </a>
             </div>
             <div>
@@ -307,8 +274,8 @@ export default async function HebergementPage() {
                     <Zap className="h-7 w-7 text-white" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-bold text-white">Besoin d&apos;un trajet aussi ?</h3>
-                    <p className="text-sm text-white/70 mt-1">Consulte les annonces de covoiturage</p>
+                    <h3 className="text-lg font-bold text-white">{content.ctaCrossLinkTitle}</h3>
+                    <p className="text-sm text-white/70 mt-1">{content.ctaCrossLinkText}</p>
                   </div>
                   <ChevronRight className="h-5 w-5 text-white/50 group-hover:text-white group-hover:translate-x-1 transition-all ml-auto" />
                 </div>
