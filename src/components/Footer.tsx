@@ -31,6 +31,7 @@ type NavLink = { label: string; href: string };
 type FooterProps = {
   settings: {
     siteName?: string;
+    logo?: string;
     footerTagline?: string;
     footerNavTitle?: string;
     footerContactTitle?: string;
@@ -63,6 +64,7 @@ const defaultNavLinks: NavLink[] = [
 
 export default function Footer({ settings }: FooterProps) {
   const siteName = settings.siteName || "Amicale des Bénévoles";
+  const logoSrc = settings.logo || "/images/logo/logo-new.png";
   const navLinks = settings.navLinks?.length ? settings.navLinks : defaultNavLinks;
   const joinUrl = settings.inscriptionUrl || "https://event.recrewteer.com/v2/organization/121/form/7034";
   const ctaLabel = settings.navCtaLabel || "Rejoindre l'Amicale";
@@ -89,7 +91,7 @@ export default function Footer({ settings }: FooterProps) {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           <div>
             <div className="flex items-center gap-2.5 mb-4">
-              <Image src="/images/logo/logo-new.png" alt={siteName} width={32} height={32} className="rounded-lg" />
+              <Image src={logoSrc} alt={siteName} width={32} height={32} className="rounded-lg" />
               <span className="font-bold text-white text-lg">{siteName}</span>
             </div>
             <p className="text-sm text-slate-400 leading-relaxed">{tagline}</p>

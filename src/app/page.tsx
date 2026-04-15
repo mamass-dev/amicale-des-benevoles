@@ -4,7 +4,6 @@ import { ArrowRight, Heart, Car, BedDouble, Star, ChevronRight } from "lucide-re
 import Marquee from "@/components/Marquee";
 import StatsSection from "@/components/StatsSection";
 import EventCard from "@/components/EventCard";
-import { galleryImages } from "@/lib/data";
 import {
   getEvents,
   getTestimonials,
@@ -31,7 +30,7 @@ export default async function HomePage() {
     <>
       <section className="relative min-h-[70vh] sm:min-h-[92vh] flex items-center overflow-hidden">
         <Image
-          src="/images/events/swimrunman.jpg"
+          src={content.heroImage}
           alt="Bénévoles de l'Amicale en action"
           fill
           className="object-cover"
@@ -84,7 +83,7 @@ export default async function HomePage() {
           <div className="grid lg:grid-cols-2 gap-16 items-center mb-20">
             <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl">
               <Image
-                src="/images/events/hero-benevoles.jpg"
+                src={content.missionImage}
                 alt="Groupe de bénévoles de l'Amicale en montagne"
                 fill
                 className="object-cover"
@@ -133,7 +132,7 @@ export default async function HomePage() {
 
       <section className="relative h-80 sm:h-96 lg:h-[28rem]">
         <Image
-          src="/images/events/benevoles-openlakes.webp"
+          src={content.bannerImage}
           alt="Bénévoles de l'Amicale au bord du lac lors de l'OpenLakes"
           fill
           className="object-cover"
@@ -217,19 +216,14 @@ export default async function HomePage() {
           <p className="text-muted text-center">{content.gallerySubtitle}</p>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-2 px-2 mb-2">
-          {[
-            "/images/events/event-outdoor.jpg",
-            "/images/events/benevoles-saintelyon.jpg",
-            "/images/events/gf-ventoux.jpg",
-            "/images/events/groupe-benevoles.jpg",
-          ].map((src, i) => (
+          {content.mosaicImages.map((src, i) => (
             <div key={i} className="relative aspect-[4/3] rounded-xl overflow-hidden">
               <Image src={src} alt={`Bénévoles en action ${i + 1}`} fill className="object-cover hover:scale-105 transition-transform duration-500" sizes="(max-width: 768px) 50vw, 25vw" />
             </div>
           ))}
         </div>
         <div className="flex gap-2 overflow-x-auto pb-4 px-2 snap-x snap-mandatory">
-          {galleryImages.map((src, i) => (
+          {content.galleryImages.map((src, i) => (
             <div key={i} className="shrink-0 w-40 h-40 sm:w-48 sm:h-48 rounded-xl overflow-hidden relative snap-center">
               <Image
                 src={src}
@@ -285,7 +279,7 @@ export default async function HomePage() {
 
       <section className="relative py-24 overflow-hidden">
         <Image
-          src="/images/events/event-outdoor.jpg"
+          src={content.ctaImage}
           alt="Foule de bénévoles lors d'un événement"
           fill
           className="object-cover"

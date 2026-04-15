@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "seed:pages": "node scripts/seed-pages.mjs"
+    "seed:pages": "node scripts/seed-pages.mjs",
+    "seed:images": "node scripts/upload-images.mjs"
   },
   "dependencies": {
     "@sanity/icons": "^3.7.4",

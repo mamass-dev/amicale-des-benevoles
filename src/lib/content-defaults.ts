@@ -2,6 +2,40 @@
 // (ou en local sans projet Sanity configuré). Le CMS Studio surcharge ces valeurs.
 
 export const homeDefaults = {
+  heroImage: "/images/events/swimrunman.jpg",
+  missionImage: "/images/events/hero-benevoles.jpg",
+  bannerImage: "/images/events/benevoles-openlakes.webp",
+  ctaImage: "/images/events/event-outdoor.jpg",
+  mosaicImages: [
+    "/images/events/event-outdoor.jpg",
+    "/images/events/benevoles-saintelyon.jpg",
+    "/images/events/gf-ventoux.jpg",
+    "/images/events/groupe-benevoles.jpg",
+  ],
+  galleryImages: [
+    "/images/gallery/0_frame.jpg",
+    "/images/gallery/2_frame.jpg",
+    "/images/gallery/4_frame.jpg",
+    "/images/gallery/6_frame.jpg",
+    "/images/gallery/8_frame.jpg",
+    "/images/gallery/10_frame.jpg",
+    "/images/gallery/12_frame.jpg",
+    "/images/gallery/14_frame.jpg",
+    "/images/gallery/16_frame.jpg",
+    "/images/gallery/18_frame.jpg",
+    "/images/gallery/20_frame.jpg",
+    "/images/gallery/22_frame.jpg",
+    "/images/gallery/24_frame.jpg",
+    "/images/gallery/26_frame.jpg",
+    "/images/gallery/28_frame.jpg",
+    "/images/gallery/30_frame.jpg",
+    "/images/gallery/32_frame.jpg",
+    "/images/gallery/34_frame.jpg",
+    "/images/gallery/36_frame.jpg",
+    "/images/gallery/38_frame.jpg",
+    "/images/gallery/40_frame.jpg",
+    "/images/gallery/43_frame.jpg",
+  ],
   heroBadge: "Association loi 1901 — Depuis 2019",
   heroTitle1: "Créateur d'expériences",
   heroTitle2: "citoyennes",
@@ -67,6 +101,8 @@ export const homeDefaults = {
 };
 
 export const aboutDefaults = {
+  heroImage: "/images/events/groupe-benevoles.jpg",
+  teamGroupImage: "/images/team/equipe.png",
   heroTitle1: "Notre",
   heroTitle2: "histoire",
   heroDescription:
@@ -302,6 +338,7 @@ export const legalDefaults = {
 };
 
 export const siteDefaults = {
+  logo: "/images/logo/logo-new.png",
   navLinks: [
     { label: "Accueil", href: "/" },
     { label: "À propos", href: "/a-propos" },

@@ -72,12 +72,25 @@ export const siteSettingsQuery = groq`
     whatsappUrl, inscriptionUrl,
     navLinks, navCtaLabel,
     footerTagline, footerNavTitle, footerContactTitle, footerSocialTitle,
-    footerCopyright, footerLegalLabel, ctaJoinLabel
+    footerCopyright, footerLegalLabel, ctaJoinLabel,
+    "logo": logo.asset->url
   }
 `;
 
-export const homePageQuery = groq`*[_type == "homePage"][0]`;
-export const aboutPageQuery = groq`*[_type == "aboutPage"][0]`;
+export const homePageQuery = groq`*[_type == "homePage"][0]{
+  ...,
+  "heroImage": heroImage.asset->url,
+  "missionImage": missionImage.asset->url,
+  "bannerImage": bannerImage.asset->url,
+  "ctaImage": ctaImage.asset->url,
+  "mosaicImages": mosaicImages[].asset->url,
+  "galleryImages": galleryImages[].asset->url
+}`;
+export const aboutPageQuery = groq`*[_type == "aboutPage"][0]{
+  ...,
+  "heroImage": heroImage.asset->url,
+  "teamGroupImage": teamGroupImage.asset->url
+}`;
 export const carpoolPageQuery = groq`*[_type == "carpoolPage"][0]`;
 export const housingPageQuery = groq`*[_type == "housingPage"][0]`;
 export const eventsPageQuery = groq`*[_type == "eventsPage"][0]`;

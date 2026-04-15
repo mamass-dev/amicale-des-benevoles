@@ -16,6 +16,14 @@ export default defineType({
     { name: "ambassadors", title: "Ambassadeurs" },
   ],
   fields: [
+    defineField({
+      name: "heroImage",
+      title: "Photo hero",
+      type: "image",
+      description: "Photo principale du hero (à droite du titre).",
+      options: { hotspot: true },
+      group: "hero",
+    }),
     defineField({ name: "heroTitle1", title: "Titre hero (partie 1)", type: "string", group: "hero" }),
     defineField({ name: "heroTitle2", title: "Titre hero (mot coloré)", type: "string", group: "hero" }),
     defineField({ name: "heroDescription", title: "Description hero", type: "text", rows: 4, group: "hero" }),
@@ -74,6 +82,14 @@ export default defineType({
     defineField({ name: "teamTitle", title: "Titre équipe", type: "string", group: "team" }),
     defineField({ name: "teamStaffTitle", title: "Sous-titre staff", type: "string", group: "team" }),
     defineField({ name: "teamBoardTitle", title: "Sous-titre comité", type: "string", group: "team" }),
+    defineField({
+      name: "teamGroupImage",
+      title: "Photo de groupe équipe",
+      type: "image",
+      description: "Grande photo de groupe affichée après la liste d'équipe.",
+      options: { hotspot: true },
+      group: "team",
+    }),
 
     defineField({ name: "inclusiveTitle", title: "Titre engagement inclusif", type: "string", group: "inclusive" }),
     defineField({ name: "inclusiveText", title: "Texte engagement inclusif", type: "text", rows: 4, group: "inclusive" }),

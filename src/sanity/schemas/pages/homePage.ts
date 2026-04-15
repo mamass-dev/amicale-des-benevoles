@@ -18,8 +18,18 @@ export default defineType({
     { name: "partners", title: "Partenaires" },
     { name: "cta", title: "CTA final" },
   ],
+  // Les images sont ajoutées dans chaque groupe correspondant.
+  // Format recommandé : JPG/PNG, 1920x1280px pour les grands visuels.
   fields: [
     // Hero
+    defineField({
+      name: "heroImage",
+      title: "Photo hero",
+      type: "image",
+      description: "Grande photo de fond du hero. Format paysage recommandé.",
+      options: { hotspot: true },
+      group: "hero",
+    }),
     defineField({ name: "heroBadge", title: "Badge hero", type: "string", group: "hero" }),
     defineField({ name: "heroTitle1", title: "Titre hero (partie 1)", type: "string", group: "hero" }),
     defineField({ name: "heroTitle2", title: "Titre hero (mot coloré)", type: "string", group: "hero" }),
@@ -29,6 +39,14 @@ export default defineType({
     defineField({ name: "heroCtaSecondary", title: "CTA secondaire", type: "string", group: "hero" }),
 
     // Mission
+    defineField({
+      name: "missionImage",
+      title: "Photo mission",
+      type: "image",
+      description: "Photo à côté du texte de mission (ratio 4:3).",
+      options: { hotspot: true },
+      group: "mission",
+    }),
     defineField({ name: "missionTitle", title: "Titre mission", type: "string", group: "mission" }),
     defineField({ name: "missionText1", title: "Mission paragraphe 1", type: "text", rows: 4, group: "mission" }),
     defineField({ name: "missionText2", title: "Mission paragraphe 2", type: "text", rows: 4, group: "mission" }),
@@ -70,6 +88,14 @@ export default defineType({
     }),
 
     // Bandeau
+    defineField({
+      name: "bannerImage",
+      title: "Photo bandeau",
+      type: "image",
+      description: "Grande photo pleine largeur du bandeau.",
+      options: { hotspot: true },
+      group: "banner",
+    }),
     defineField({ name: "bannerText", title: "Texte bandeau photo", type: "string", group: "banner" }),
     defineField({ name: "bannerSubtext", title: "Sous-texte bandeau", type: "string", group: "banner" }),
 
@@ -91,6 +117,23 @@ export default defineType({
     // Galerie
     defineField({ name: "galleryTitle", title: "Titre galerie", type: "string", group: "gallery" }),
     defineField({ name: "gallerySubtitle", title: "Sous-titre galerie", type: "string", group: "gallery" }),
+    defineField({
+      name: "mosaicImages",
+      title: "Mosaïque (4 photos)",
+      description: "4 grandes photos en haut de la galerie.",
+      type: "array",
+      of: [{ type: "image", options: { hotspot: true } }],
+      validation: (Rule) => Rule.max(4),
+      group: "gallery",
+    }),
+    defineField({
+      name: "galleryImages",
+      title: "Galerie défilante",
+      description: "Photos du carrousel horizontal.",
+      type: "array",
+      of: [{ type: "image", options: { hotspot: true } }],
+      group: "gallery",
+    }),
 
     // Témoignages
     defineField({ name: "testimonialsTitle", title: "Titre témoignages", type: "string", group: "testimonials" }),
@@ -99,6 +142,14 @@ export default defineType({
     defineField({ name: "partnersLabel", title: "Label partenaires", type: "string", group: "partners" }),
 
     // CTA final
+    defineField({
+      name: "ctaImage",
+      title: "Photo CTA final",
+      type: "image",
+      description: "Photo de fond de la section CTA.",
+      options: { hotspot: true },
+      group: "cta",
+    }),
     defineField({ name: "ctaTitle", title: "CTA titre", type: "string", group: "cta" }),
     defineField({ name: "ctaDescription", title: "CTA description", type: "text", rows: 3, group: "cta" }),
     defineField({ name: "ctaPrimary", title: "CTA bouton principal", type: "string", group: "cta" }),

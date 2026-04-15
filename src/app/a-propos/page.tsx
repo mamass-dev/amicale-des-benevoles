@@ -41,7 +41,7 @@ export default async function AProposPage() {
               <p className="mt-4 text-lg text-muted leading-relaxed">{content.heroDescription}</p>
             </div>
             <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-xl">
-              <Image src="/images/events/groupe-benevoles.jpg" alt="L'équipe de l'Amicale des Bénévoles" fill className="object-cover" sizes="(max-width: 1024px) 100vw, 50vw" />
+              <Image src={content.heroImage} alt="L'équipe de l'Amicale des Bénévoles" fill className="object-cover" sizes="(max-width: 1024px) 100vw, 50vw" />
             </div>
           </div>
         </div>
@@ -149,7 +149,7 @@ export default async function AProposPage() {
       <section className="py-16">
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
           <div className="relative aspect-[2/1] rounded-3xl overflow-hidden shadow-xl">
-            <Image src="/images/team/equipe.png" alt="L'équipe de l'Amicale des Bénévoles" fill className="object-cover" sizes="100vw" />
+            <Image src={content.teamGroupImage} alt="L'équipe de l'Amicale des Bénévoles" fill className="object-cover" sizes="100vw" />
           </div>
         </div>
       </section>

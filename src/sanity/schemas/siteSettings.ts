@@ -24,6 +24,14 @@ export default defineType({
       group: "general",
     }),
     defineField({
+      name: "logo",
+      title: "Logo",
+      type: "image",
+      description: "Logo affiché dans le header et le footer.",
+      group: "general",
+      options: { hotspot: true },
+    }),
+    defineField({
       name: "siteDescription",
       title: "Description courte",
       type: "text",
