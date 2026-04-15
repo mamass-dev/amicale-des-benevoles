@@ -146,34 +146,6 @@ export default async function AProposPage() {
         </div>
       </section>
 
-      <section className="py-16">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <div className="relative aspect-[21/9] rounded-3xl overflow-hidden shadow-2xl group">
-            <Image
-              src={content.teamGroupImage}
-              alt="L'équipe de l'Amicale des Bénévoles"
-              fill
-              className="object-cover transition-transform duration-700 group-hover:scale-105"
-              sizes="(max-width: 1280px) 100vw, 1280px"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-secondary/80 via-secondary/20 to-transparent" />
-            {content.teamPhotoCaption && (
-              <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-10">
-                <div className="flex items-end justify-between gap-4 flex-wrap">
-                  <p className="text-white text-lg sm:text-2xl font-medium max-w-2xl leading-snug">
-                    {content.teamPhotoCaption}
-                  </p>
-                  <div className="hidden sm:flex items-center gap-2 text-white/70 text-sm">
-                    <span className="h-px w-8 bg-white/40" />
-                    {content.teamTitle}
-                  </div>
-                </div>
-              </div>
-            )}
-          </div>
-        </div>
-      </section>
-
       <section className="py-20">
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
           <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-accent/10 via-primary/5 to-accent/10 border border-accent/20">
