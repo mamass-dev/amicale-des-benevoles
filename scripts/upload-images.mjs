@@ -73,7 +73,8 @@ async function patchAbout() {
   console.log("📄 Page À propos...");
   const heroImage = await uploadImage("/images/events/groupe-benevoles.jpg");
   const teamGroupImage = await uploadImage("/images/team/equipe.png");
-  await patchDoc("aboutPage", { heroImage, teamGroupImage });
+  const inclusiveReferentImage = await uploadImage("/images/team/member-1.jpg");
+  await patchDoc("aboutPage", { heroImage, teamGroupImage, inclusiveReferentImage });
   console.log("  ✅ images injectées");
 }
 

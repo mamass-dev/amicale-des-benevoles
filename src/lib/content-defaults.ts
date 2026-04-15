@@ -153,7 +153,13 @@ export const aboutDefaults = {
   teamBoardTitle: "Comité directeur",
   inclusiveTitle: "Un espace sûr pour toutes et tous",
   inclusiveText:
-    "L'Amicale est engagée pour un bénévolat inclusif et respectueux. Maëlle Dufresnes est notre référente LGBTQIA+ et anti-discrimination : elle accompagne et écoute tout bénévole qui en ressentirait le besoin, en toute confidentialité.",
+    "L'Amicale est engagée pour un bénévolat inclusif et respectueux. Notre référente LGBTQIA+ et anti-discrimination accompagne et écoute tout bénévole qui en ressentirait le besoin, en toute confidentialité.",
+  inclusiveReferentImage: "/images/team/member-1.jpg",
+  inclusiveReferentName: "Maëlle Dufresnes",
+  inclusiveReferentRole: "Référente LGBTQIA+ & anti-discrimination",
+  inclusiveContactLabel: "Échanger en confidentialité",
+  inclusiveContactEmail: "maelle@amicaledesbenevoles.org",
+  teamPhotoCaption: "L'équipe de l'Amicale, réunie pour préparer la saison 2026.",
   ambassadorsTitle: "Les ambassadeurs",
   ambassadorsText:
     "Nos ambassadeurs représentent l'association et sont garants de ses valeurs. Ils guident et orientent les nouveaux bénévoles, apportent leurs retours d'expériences, leurs idées novatrices et leurs compétences personnelles.",

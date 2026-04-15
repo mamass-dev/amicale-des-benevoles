@@ -93,6 +93,19 @@ export default defineType({
 
     defineField({ name: "inclusiveTitle", title: "Titre engagement inclusif", type: "string", group: "inclusive" }),
     defineField({ name: "inclusiveText", title: "Texte engagement inclusif", type: "text", rows: 4, group: "inclusive" }),
+    defineField({
+      name: "inclusiveReferentImage",
+      title: "Photo de la référente",
+      type: "image",
+      description: "Portrait de la personne référente (recommandé : carré 600x600).",
+      options: { hotspot: true },
+      group: "inclusive",
+    }),
+    defineField({ name: "inclusiveReferentName", title: "Nom de la référente", type: "string", group: "inclusive" }),
+    defineField({ name: "inclusiveReferentRole", title: "Rôle de la référente", type: "string", group: "inclusive" }),
+    defineField({ name: "inclusiveContactLabel", title: "Libellé bouton contact", type: "string", group: "inclusive" }),
+    defineField({ name: "inclusiveContactEmail", title: "Email contact référente", type: "string", group: "inclusive" }),
+    defineField({ name: "teamPhotoCaption", title: "Légende photo de groupe équipe", type: "string", group: "team" }),
 
     defineField({ name: "ambassadorsTitle", title: "Titre ambassadeurs", type: "string", group: "ambassadors" }),
     defineField({ name: "ambassadorsText", title: "Texte ambassadeurs", type: "text", rows: 4, group: "ambassadors" }),
