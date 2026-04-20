@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "eslint",
     "seed:pages": "node scripts/seed-pages.mjs",
-    "seed:images": "node scripts/upload-images.mjs"
+    "seed:images": "node scripts/upload-images.mjs",
+    "publish:drafts": "node scripts/publish-drafts.mjs"
   },
   "dependencies": {
     "@sanity/icons": "^3.7.4",
