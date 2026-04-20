@@ -1,31 +1,21 @@
-import { useEffect, useState } from "react";
 import { useDocumentOperation, DocumentActionComponent, DocumentActionDescription } from "sanity";
+import { PublishIcon } from "@sanity/icons";
 
-// Auto-publie chaque draft dès qu'il est sauvegardé (500ms de debounce).
-// Simplifie l'UX : l'utilisateur n'a plus besoin de cliquer sur "Publish".
-export const AutoPublishAction: DocumentActionComponent = (props) => {
+// Bouton "Publier" custom, rendu bien visible comme action principale.
+// Remplace le Publish par défaut qui peut être masqué par l'UI v5.
+export const PublishButton: DocumentActionComponent = (props) => {
   const { id, type, draft, onComplete } = props;
   const { publish } = useDocumentOperation(id, type);
-  const [isPublishing, setIsPublishing] = useState(false);
-
-  useEffect(() => {
-    if (!draft) return;
-    if (publish.disabled) return;
-    if (isPublishing) return;
-
-    setIsPublishing(true);
-    const timer = setTimeout(() => {
-      publish.execute();
-      setIsPublishing(false);
-      if (onComplete) onComplete();
-    }, 500);
-
-    return () => clearTimeout(timer);
-  }, [draft, publish, isPublishing, onComplete]);
 
   return {
-    label: isPublishing ? "Publication en cours…" : "Publié automatiquement",
-    disabled: true,
+    label: draft ? "Publier les modifications" : "Publié",
+    icon: PublishIcon,
     tone: "positive",
+    disabled: publish.disabled || !draft,
+    onHandle: () => {
+      publish.execute();
+      onComplete();
+    },
+    shortcut: "Ctrl+Alt+P",
   } as DocumentActionDescription;
 };

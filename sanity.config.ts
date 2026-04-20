@@ -4,7 +4,7 @@ import { visionTool } from "@sanity/vision";
 import { schemaTypes } from "./src/sanity/schemas";
 import { projectId, dataset } from "./src/sanity/env";
 import StudioWelcome from "./src/sanity/StudioWelcome";
-import { AutoPublishAction } from "./src/sanity/actions/autoPublish";
+import { PublishButton } from "./src/sanity/actions/autoPublish";
 
 export default defineConfig({
   name: "amicale-des-benevoles",
@@ -195,8 +195,8 @@ export default defineConfig({
       const filtered = singletons.includes(schemaType)
         ? prev.filter((a) => !["duplicate", "delete", "unpublish"].includes(a.action ?? ""))
         : prev;
-      // Remplace l'action Publish par l'auto-publish : chaque modif est publiée automatiquement.
-      return filtered.map((a) => (a.action === "publish" ? AutoPublishAction : a));
+      // Remplace l'action Publish par un bouton custom bien visible.
+      return filtered.map((a) => (a.action === "publish" ? PublishButton : a));
     },
     newDocumentOptions: (prev, { creationContext }) => {
       if (creationContext.type === "global") {
