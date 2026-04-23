@@ -22,7 +22,7 @@ Refonte complète du site [amicaledesbenevoles.org](https://amicaledesbenevoles.
   - 5 pages scrapées : accueil, à propos, organisateurs, événements, espace bénévole
   - Mentions légales, footer, liens sociaux
 
-## Étape 3 — Création des pages (29 routes)
+## Étape 3 — Création des pages
 
 | Page | Route | Description |
 |------|-------|-------------|
@@ -31,32 +31,11 @@ Refonte complète du site [amicaledesbenevoles.org](https://amicaledesbenevoles.
 | Événements | `/evenements` | Liste des 18 événements 2026 (sportifs/culturels) |
 | Événement détail | `/evenements/[slug]` | 16 pages SSG avec image hero, jauge remplissage |
 | Organisateurs | `/organisateurs` | Offre B2B, méthodologie 2 phases, chiffres, témoignages |
-| Covoiturage | `/covoiturage` | Tableau d'annonces autonome, FAQ |
-| Hébergement | `/hebergement` | Tableau d'annonces autonome, FAQ |
 | Espace bénévole | `/espace-benevole` | Lien vers Recrewteer |
 | Mentions légales | `/mentions-legales` | RGPD |
 | Admin CMS | `/admin` | Studio Sanity embarqué |
-| Sitemap | `/sitemap.xml` | 26 URLs dynamiques |
+| Sitemap | `/sitemap.xml` | URLs dynamiques |
 | Robots | `/robots.txt` | Configuration crawlers |
-
-## Étape 4 — Fonctionnalités Covoiturage & Hébergement
-
-### V1 (formulaires avec mise en relation par l'Amicale)
-- Formulaires multi-étapes (wizard 3 steps)
-- Animations Framer Motion entre les étapes
-
-### V2 (100% autonome — demande client)
-- Remplacement par un **tableau d'annonces** self-service
-- Les bénévoles publient leurs annonces (propose/cherche)
-- Stockage localStorage côté client
-- Filtrage par événement et par type (propose/cherche)
-- Modal de publication animée
-- Données de démo pré-remplies (5-6 annonces)
-
-### V3 (fix RGPD — demande client)
-- Coordonnées **masquées par défaut** (composant `RevealContact`)
-- Bouton "Voir les coordonnées" avec action volontaire
-- Message d'avertissement dans les formulaires de publication
 
 ## Étape 5 — Récupération des images du site actuel
 
@@ -72,7 +51,7 @@ Refonte complète du site [amicaledesbenevoles.org](https://amicaledesbenevoles.
 
 ## Étape 6 — Mise en place du CMS Sanity
 
-### Schémas créés (7 types de documents)
+### Schémas créés
 | Type | Champs principaux | Modifiable par l'équipe |
 |------|-------------------|----------------------|
 | `event` | Nom, slug, dates, lieu, type, description, image, places | Oui |
@@ -80,7 +59,6 @@ Refonte complète du site [amicaledesbenevoles.org](https://amicaledesbenevoles.
 | `partner` | Nom, logo, site web | Oui |
 | `testimonial` | Nom, organisation, texte | Oui |
 | `stat` | Label, valeur, suffixe | Oui |
-| `faq` | Question, réponse, catégorie (covoit/hébergement) | Oui |
 | `siteSettings` | Email, téléphones, adresse, RS, URL inscription | Oui |
 
 ### Architecture CMS
@@ -91,7 +69,7 @@ Refonte complète du site [amicaledesbenevoles.org](https://amicaledesbenevoles.
 
 ### Peuplement des données
 - Token API créé et données seedées via `scripts/seed-sanity.mjs`
-- 16 événements, 10 membres, 2 témoignages, 5 stats, 8 FAQ, paramètres du site
+- 16 événements, 10 membres, 2 témoignages, 5 stats, paramètres du site
 
 ## Étape 7 — Studio CMS visuel (demande client)
 
@@ -100,7 +78,7 @@ Refonte complète du site [amicaledesbenevoles.org](https://amicaledesbenevoles.
 - Champs conditionnels (ex : email/téléphone uniquement pour le staff)
 - Onglets dans les formulaires (Infos/Bénévoles pour les événements, Contact/RS/Général pour les paramètres)
 - Radio buttons visuels avec emojis (🏃 Sportif / 🎭 Culturel)
-- Structure de navigation organisée avec sous-menus (Équipe → Staff/Comité, FAQ → Covoiturage/Hébergement)
+- Structure de navigation organisée avec sous-menus (Équipe → Staff/Comité)
 - Page d'accueil personnalisée avec guide d'utilisation en 4 étapes
 
 ## Étape 8 — Refonte palette de couleurs (demande client)
@@ -162,8 +140,6 @@ amicale-des-benevoles/
 │   │   ├── a-propos/           # Page À propos
 │   │   ├── evenements/         # Liste + [slug] détail
 │   │   ├── organisateurs/      # Page B2B
-│   │   ├── covoiturage/        # Board annonces covoit
-│   │   ├── hebergement/        # Board annonces hébergement
 │   │   ├── espace-benevole/    # Lien Recrewteer
 │   │   ├── mentions-legales/   # RGPD
 │   │   ├── admin/[[...tool]]/  # Studio Sanity
@@ -174,9 +150,7 @@ amicale-des-benevoles/
 │   │   ├── Footer.tsx          # Footer + RS
 │   │   ├── EventCard.tsx       # Carte événement avec image
 │   │   ├── StatsSection.tsx    # Chiffres animés
-│   │   ├── Marquee.tsx         # Bandeau défilant
-│   │   ├── FaqAccordion.tsx    # FAQ animée
-│   │   └── RevealContact.tsx   # Contact RGPD
+│   │   └── Marquee.tsx         # Bandeau défilant
 │   ├── lib/
 │   │   └── data.ts             # Données statiques (fallback)
 │   └── sanity/
