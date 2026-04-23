@@ -350,8 +350,6 @@ export const siteDefaults = {
     { label: "À propos", href: "/a-propos" },
     { label: "Événements", href: "/evenements" },
     { label: "Organisateurs", href: "/organisateurs" },
-    { label: "Covoiturage", href: "/covoiturage" },
-    { label: "Hébergement", href: "/hebergement" },
     { label: "Espace bénévole", href: "/espace-benevole" },
   ],
   navCtaLabel: "Rejoindre l'Amicale",

@@ -22,8 +22,6 @@ const defaultNavLinks: NavLink[] = [
   { href: "/a-propos", label: "À propos" },
   { href: "/evenements", label: "Événements" },
   { href: "/organisateurs", label: "Organisateurs" },
-  { href: "/covoiturage", label: "Covoiturage" },
-  { href: "/hebergement", label: "Hébergement" },
   { href: "/espace-benevole", label: "Espace bénévole" },
 ];
 

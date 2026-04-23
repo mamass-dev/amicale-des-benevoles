@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, Heart, Car, BedDouble, Star, ChevronRight } from "lucide-react";
+import { ArrowRight, Heart, Star } from "lucide-react";
 import Marquee from "@/components/Marquee";
 import StatsSection from "@/components/StatsSection";
 import EventCard from "@/components/EventCard";
@@ -168,42 +168,6 @@ export default async function HomePage() {
             {upcomingEvents.map((event) => (
               <EventCard key={event.slug} event={event} />
             ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="py-20 bg-gradient-to-br from-orange-50 to-amber-50">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <span className="inline-block px-4 py-1.5 rounded-full bg-accent/10 text-accent text-sm font-semibold mb-4">
-              {content.servicesBadge}
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-bold mb-4">{content.servicesTitle}</h2>
-            <p className="text-lg text-muted max-w-2xl mx-auto">{content.servicesDescription}</p>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-8">
-            <Link href="/covoiturage" className="group p-8 rounded-2xl bg-card border border-border hover:shadow-xl hover:border-secondary/50 transition-all">
-              <div className="inline-flex p-4 rounded-xl bg-secondary/10 text-secondary mb-4 group-hover:scale-110 transition-transform">
-                <Car className="h-8 w-8" />
-              </div>
-              <h3 className="text-2xl font-bold mb-3">{content.carpoolTitle}</h3>
-              <p className="text-muted leading-relaxed mb-4">{content.carpoolDescription}</p>
-              <span className="inline-flex items-center gap-1 text-secondary font-semibold group-hover:gap-2 transition-all">
-                {content.servicesCtaLabel} <ChevronRight className="h-5 w-5" />
-              </span>
-            </Link>
-
-            <Link href="/hebergement" className="group p-8 rounded-2xl bg-card border border-border hover:shadow-xl hover:border-primary/50 transition-all">
-              <div className="inline-flex p-4 rounded-xl bg-primary/10 text-primary mb-4 group-hover:scale-110 transition-transform">
-                <BedDouble className="h-8 w-8" />
-              </div>
-              <h3 className="text-2xl font-bold mb-3">{content.housingTitle}</h3>
-              <p className="text-muted leading-relaxed mb-4">{content.housingDescription}</p>
-              <span className="inline-flex items-center gap-1 text-primary font-semibold group-hover:gap-2 transition-all">
-                {content.servicesCtaLabel} <ChevronRight className="h-5 w-5" />
-              </span>
-            </Link>
           </div>
         </div>
       </section>
