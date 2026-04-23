@@ -59,12 +59,6 @@ export const statsQuery = groq`
   }
 `;
 
-export const faqQuery = groq`
-  *[_type == "faq" && category == $category] | order(order asc) {
-    question, answer
-  }
-`;
-
 export const siteSettingsQuery = groq`
   *[_type == "siteSettings"][0] {
     siteName, siteDescription, email, phone1, phone2,
@@ -91,8 +85,6 @@ export const aboutPageQuery = groq`*[_type == "aboutPage"][0]{
   "heroImage": heroImage.asset->url,
   "teamGroupImage": teamGroupImage.asset->url
 }`;
-export const carpoolPageQuery = groq`*[_type == "carpoolPage"][0]`;
-export const housingPageQuery = groq`*[_type == "housingPage"][0]`;
 export const eventsPageQuery = groq`*[_type == "eventsPage"][0]`;
 export const organizersPageQuery = groq`*[_type == "organizersPage"][0]`;
 export const volunteerPageQuery = groq`*[_type == "volunteerPage"][0]`;

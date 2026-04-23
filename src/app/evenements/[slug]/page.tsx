@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import { MapPin, Calendar, ArrowLeft, ArrowRight, Car, BedDouble } from "lucide-react";
+import { MapPin, Calendar, ArrowLeft, ArrowRight } from "lucide-react";
 import { getEvents, getEventBySlug } from "@/sanity/lib/fetch";
 
 type Props = {
@@ -78,7 +78,7 @@ export default async function EventPage({ params }: Props) {
           <p className="text-lg text-muted leading-relaxed mb-8">{event.description}</p>
 
           {/* CTA inscription */}
-          <div className="flex flex-wrap gap-4 mb-12">
+          <div className="flex flex-wrap gap-4">
             <a
               href="https://event.recrewteer.com/v2/organization/121/form/7034"
               target="_blank"
@@ -87,33 +87,6 @@ export default async function EventPage({ params }: Props) {
             >
               S&apos;inscrire comme bénévole <ArrowRight className="h-5 w-5" />
             </a>
-          </div>
-
-          {/* Services */}
-          <div className="grid sm:grid-cols-2 gap-6">
-            <Link href="/covoiturage" className="group p-6 rounded-2xl bg-card border border-border hover:shadow-lg hover:border-secondary/50 transition-all">
-              <div className="flex items-center gap-3 mb-3">
-                <div className="p-2 rounded-lg bg-secondary/10 text-secondary">
-                  <Car className="h-5 w-5" />
-                </div>
-                <h3 className="font-bold">Besoin d&apos;un covoiturage ?</h3>
-              </div>
-              <p className="text-sm text-muted">
-                Propose ou trouve un trajet pour te rendre sur l&apos;événement. Économique et convivial.
-              </p>
-            </Link>
-
-            <Link href="/hebergement" className="group p-6 rounded-2xl bg-card border border-border hover:shadow-lg hover:border-primary/50 transition-all">
-              <div className="flex items-center gap-3 mb-3">
-                <div className="p-2 rounded-lg bg-primary/10 text-primary">
-                  <BedDouble className="h-5 w-5" />
-                </div>
-                <h3 className="font-bold">Besoin d&apos;un hébergement ?</h3>
-              </div>
-              <p className="text-sm text-muted">
-                Trouve un lit chez un bénévole local ou propose le tien à ceux qui viennent de loin.
-              </p>
-            </Link>
           </div>
         </div>
       </section>

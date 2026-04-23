@@ -16,7 +16,7 @@ export default function StudioWelcome() {
           { emoji: "⭐", title: "Partenaires", desc: "Ajouter ou retirer des logos de partenaires sur la page d'accueil." },
           { emoji: "💬", title: "Témoignages", desc: "Ajouter des avis d'organisateurs pour la page d'accueil." },
           { emoji: "📊", title: "Chiffres clés", desc: "Mettre à jour les stats animées : satisfaction, bénévoles, fidélisation..." },
-          { emoji: "❓", title: "FAQ", desc: "Gérer les questions/réponses des pages Covoiturage et Hébergement." },
+          { emoji: "📝", title: "Textes des pages", desc: "Modifier les titres, descriptions et CTA de chaque page du site." },
         ].map((item) => (
           <div key={item.title} style={{ padding: 20, borderRadius: 12, border: "1px solid #e7e5e4", backgroundColor: "#fff" }}>
             <div style={{ fontSize: 24, marginBottom: 8 }}>{item.emoji}</div>

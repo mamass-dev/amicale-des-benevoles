@@ -45,12 +45,6 @@ export default defineConfig({
                     S.listItem().title("🤝 Organisateurs").child(
                       S.document().schemaType("organizersPage").documentId("organizersPage").title("Organisateurs")
                     ),
-                    S.listItem().title("🚗 Covoiturage").child(
-                      S.document().schemaType("carpoolPage").documentId("carpoolPage").title("Covoiturage")
-                    ),
-                    S.listItem().title("🛏️ Hébergement").child(
-                      S.document().schemaType("housingPage").documentId("housingPage").title("Hébergement")
-                    ),
                     S.listItem().title("👤 Espace bénévole").child(
                       S.document().schemaType("volunteerPage").documentId("volunteerPage").title("Espace bénévole")
                     ),
@@ -127,40 +121,6 @@ export default defineConfig({
                   .defaultOrdering([{ field: "order", direction: "asc" }])
               ),
 
-            // FAQ
-            S.listItem()
-              .title("❓ FAQ")
-              .child(
-                S.list()
-                  .title("Questions fréquentes")
-                  .items([
-                    S.listItem()
-                      .title("🚗 FAQ Covoiturage")
-                      .child(
-                        S.documentList()
-                          .title("FAQ Covoiturage")
-                          .filter('_type == "faq" && category == "covoiturage"')
-                          .defaultOrdering([{ field: "order", direction: "asc" }])
-                      ),
-                    S.listItem()
-                      .title("🛏️ FAQ Hébergement")
-                      .child(
-                        S.documentList()
-                          .title("FAQ Hébergement")
-                          .filter('_type == "faq" && category == "hebergement"')
-                          .defaultOrdering([{ field: "order", direction: "asc" }])
-                      ),
-                    S.listItem()
-                      .title("📋 FAQ Général")
-                      .child(
-                        S.documentList()
-                          .title("FAQ Général")
-                          .filter('_type == "faq" && category == "general"')
-                          .defaultOrdering([{ field: "order", direction: "asc" }])
-                      ),
-                  ])
-              ),
-
             S.divider(),
 
             // Paramètres
@@ -185,8 +145,6 @@ export default defineConfig({
         "siteSettings",
         "homePage",
         "aboutPage",
-        "carpoolPage",
-        "housingPage",
         "eventsPage",
         "organizersPage",
         "volunteerPage",
@@ -204,8 +162,6 @@ export default defineConfig({
           "siteSettings",
           "homePage",
           "aboutPage",
-          "carpoolPage",
-          "housingPage",
           "eventsPage",
           "organizersPage",
           "volunteerPage",

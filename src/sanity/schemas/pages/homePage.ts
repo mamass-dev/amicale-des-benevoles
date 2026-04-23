@@ -12,7 +12,6 @@ export default defineType({
     { name: "pillars", title: "3 piliers" },
     { name: "banner", title: "Bandeau photo" },
     { name: "events", title: "Section événements" },
-    { name: "services", title: "Covoit / Hébergement" },
     { name: "gallery", title: "Galerie" },
     { name: "testimonials", title: "Témoignages" },
     { name: "partners", title: "Partenaires" },
@@ -103,16 +102,6 @@ export default defineType({
     defineField({ name: "eventsTitle", title: "Titre événements", type: "string", group: "events" }),
     defineField({ name: "eventsSubtitle", title: "Sous-titre événements", type: "string", group: "events" }),
     defineField({ name: "eventsLinkLabel", title: "Lien 'tous les événements'", type: "string", group: "events" }),
-
-    // Services
-    defineField({ name: "servicesBadge", title: "Badge services", type: "string", group: "services" }),
-    defineField({ name: "servicesTitle", title: "Titre services", type: "string", group: "services" }),
-    defineField({ name: "servicesDescription", title: "Description services", type: "text", rows: 3, group: "services" }),
-    defineField({ name: "carpoolTitle", title: "Carte covoiturage - titre", type: "string", group: "services" }),
-    defineField({ name: "carpoolDescription", title: "Carte covoiturage - description", type: "text", rows: 3, group: "services" }),
-    defineField({ name: "housingTitle", title: "Carte hébergement - titre", type: "string", group: "services" }),
-    defineField({ name: "housingDescription", title: "Carte hébergement - description", type: "text", rows: 3, group: "services" }),
-    defineField({ name: "servicesCtaLabel", title: "CTA 'Découvrir'", type: "string", group: "services" }),
 
     // Galerie
     defineField({ name: "galleryTitle", title: "Titre galerie", type: "string", group: "gallery" }),

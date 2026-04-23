@@ -44,14 +44,6 @@ const homeDefaults = {
   eventsTitle: "Prochains événements",
   eventsSubtitle: "Qu'importe tes raisons, ton acte citoyen est précieux !",
   eventsLinkLabel: "Tous les événements",
-  servicesBadge: "Nouveau",
-  servicesTitle: "Facilite ta venue, partage ton trajet",
-  servicesDescription: "On estime que 10% des bénévoles ne peuvent pas venir à cause du coût et de la logistique. Ces deux services sont là pour changer ça.",
-  carpoolTitle: "Covoiturage",
-  carpoolDescription: "Propose ou trouve un trajet pour te rendre sur les événements. Économise sur les frais, réduis ton impact carbone et rencontre d'autres bénévoles avant même d'arriver !",
-  housingTitle: "Hébergement solidaire",
-  housingDescription: "Tu as un lit, un canapé ou une chambre d'amis ? Mets-le à disposition des bénévoles qui viennent de loin. Un geste simple qui fait toute la différence.",
-  servicesCtaLabel: "Découvrir",
   galleryTitle: "L'Amicale en images",
   gallerySubtitle: "Des moments partagés par nos bénévoles sur le terrain.",
   testimonialsTitle: "Ils nous font confiance",
@@ -73,7 +65,7 @@ const aboutDefaults = {
     { year: "2013", title: "Les racines lyonnaises", description: "Championnats du Monde de para-athlétisme IPC à Lyon. Les fondateurs découvrent la puissance du bénévolat événementiel.", color: "primary" },
     { year: "2015", title: "L'expérience se confirme", description: "Championnats du Monde d'athlétisme Masters à Lyon. Le noyau de bénévoles se fidélise et l'idée d'une structure dédiée germe.", color: "primary" },
     { year: "2019", title: "Création de l'Amicale", description: "L'Amicale des Bénévoles voit le jour à Lyon. Une association loi 1901 dédiée à la promotion du bénévolat événementiel sportif et culturel.", color: "primary" },
-    { year: "2026", title: "Aujourd'hui", description: "Plus de 3 000 bénévoles mobilisés, 18 événements, 62% de fidélisation record, et de nouveaux services : covoiturage et hébergement solidaire.", color: "accent" },
+    { year: "2026", title: "Aujourd'hui", description: "Plus de 3 000 bénévoles mobilisés, 18 événements et 62% de fidélisation record.", color: "accent" },
   ],
   valuesTitle: "Nos valeurs",
   values: [
@@ -97,86 +89,12 @@ const aboutDefaults = {
   ambassadorsCta: "Devenir ambassadeur",
 };
 
-const carpoolDefaults = {
-  heroBadge: "100% autonome entre bénévoles",
-  heroTitle1: "Partage ton trajet,",
-  heroTitle2: "multiplie l'impact",
-  heroDescription: "10% des bénévoles ne peuvent pas venir à cause du transport. Publie une annonce ou consulte celles des autres bénévoles et organisez-vous directement entre vous.",
-  heroStats: [
-    { value: "38", label: "trajets proposés" },
-    { value: "124", label: "bénévoles connectés" },
-    { value: "12t", label: "de CO2 évités" },
-  ],
-  heroCtaPrimary: "Voir les annonces",
-  heroCtaSecondary: "Publier une annonce",
-  trustItems: [
-    { title: "Frais partagés", description: "Jusqu'à 80% d'économies vs seul", icon: "Euro" },
-    { title: "Éco-responsable", description: "-67 kg CO2 par trajet partagé", icon: "Leaf" },
-    { title: "Entre bénévoles", description: "Communauté de confiance", icon: "Shield" },
-    { title: "Contact direct", description: "Organisez-vous entre vous", icon: "Clock" },
-  ],
-  howBadge: "Simple et autonome",
-  howTitle: "3 étapes, zéro intermédiaire",
-  howSteps: [
-    { step: "01", title: "Publie ton annonce", description: "Tu proposes des places ou tu cherches un trajet ? Publie une annonce en 1 minute avec tes coordonnées.", icon: "Car" },
-    { step: "02", title: "Consulte les annonces", description: "Parcours les annonces des autres bénévoles, filtre par événement et trouve le trajet qui te correspond.", icon: "Calendar" },
-    { step: "03", title: "Contactez-vous directement", description: "Les coordonnées sont sur chaque annonce. Appelez-vous, envoyez un message et organisez le trajet ensemble.", icon: "Users" },
-  ],
-  testimonialText: "J'ai trouvé un covoiturage pour la SaintéLyon en 10 minutes sur le tableau d'annonces. J'ai appelé le conducteur, on s'est organisés et on est partis à 4. C'est simple, direct et ça crée du lien avant même d'arriver.",
-  testimonialAuthor: "Sarah L.",
-  testimonialRole: "Bénévole depuis 2024",
-  faqTitle: "Questions fréquentes",
-  faqSubtitle: "Tout ce que tu dois savoir sur le covoiturage entre bénévoles.",
-  ctaTitle: "Pas encore inscrit à l'Amicale ?",
-  ctaDescription: "Le covoiturage est réservé aux bénévoles de l'Amicale. Rejoins-nous pour publier et consulter les annonces.",
-  ctaButton: "Rejoindre l'Amicale",
-  ctaCrossLinkTitle: "Besoin d'un hébergement aussi ?",
-  ctaCrossLinkText: "Consulte les annonces d'hébergement solidaire",
-};
-
-const housingDefaults = {
-  heroBadge: "100% autonome entre bénévoles",
-  heroTitle1: "Un toit, un lit,",
-  heroTitle2: "une expérience partagée",
-  heroDescription: "Publie une annonce d'hébergement ou consulte celles des autres bénévoles. Contactez-vous directement et organisez le séjour entre vous. Simple, gratuit, humain.",
-  heroStats: [
-    { value: "26", label: "lits disponibles" },
-    { value: "48", label: "bénévoles hébergés" },
-    { value: "100%", label: "gratuit & solidaire" },
-  ],
-  heroCtaPrimary: "Voir les annonces",
-  heroCtaSecondary: "Publier une annonce",
-  trustItems: [
-    { title: "100% gratuit", description: "Hébergement solidaire, pas commercial", icon: "Heart" },
-    { title: "Entre bénévoles", description: "Tous inscrits à l'Amicale", icon: "Shield" },
-    { title: "Contact direct", description: "Organisez-vous entre vous", icon: "Clock" },
-    { title: "Autonome", description: "Publiez, consultez, contactez", icon: "Star" },
-  ],
-  howBadge: "Simple et autonome",
-  howTitle: "3 étapes, zéro intermédiaire",
-  howSteps: [
-    { step: "01", title: "Publie ton annonce", description: "Tu proposes un lit ou tu en cherches un ? Publie une annonce avec tes coordonnées en 1 minute.", icon: "Home" },
-    { step: "02", title: "Consulte les annonces", description: "Parcours les annonces des autres bénévoles. Filtre par événement pour trouver ce qui te correspond.", icon: "Calendar" },
-    { step: "03", title: "Contactez-vous directement", description: "Email ou téléphone affiché sur chaque annonce. Appelez-vous et organisez le séjour ensemble.", icon: "Users" },
-  ],
-  testimonialText: "J'ai publié une annonce pour proposer ma chambre d'amis pendant le Festival de Danse. En deux jours, deux bénévoles m'ont contacté directement. On s'est appelés, on a organisé le séjour et on est devenus amis. Simple, humain et sans prise de tête.",
-  testimonialAuthor: "Pierre D.",
-  testimonialRole: "Hôte depuis 2024",
-  faqTitle: "Questions fréquentes",
-  faqSubtitle: "Tout ce que tu dois savoir sur l'hébergement solidaire.",
-  ctaTitle: "Rejoins la communauté",
-  ctaDescription: "L'hébergement solidaire est réservé aux bénévoles de l'Amicale. Inscris-toi pour publier et consulter les annonces.",
-  ctaButton: "Rejoindre l'Amicale",
-  ctaCrossLinkTitle: "Besoin d'un trajet aussi ?",
-  ctaCrossLinkText: "Consulte les annonces de covoiturage",
-};
-
 const eventsPageDefaults = {
   heroTitle1: "Nos",
   heroTitle2: "événements",
   heroDescription: "{count} événements sportifs et culturels dans le quart Sud-Est de la France. Qu'importe les raisons qui t'amènent à t'engager, ton acte citoyen est précieux !",
   ctaTitle: "Un événement te plaît ?",
-  ctaDescription: "Inscris-toi à l'Amicale pour accéder aux inscriptions, au covoiturage et à l'hébergement solidaire.",
+  ctaDescription: "Inscris-toi à l'Amicale pour accéder aux inscriptions et vivre de belles aventures bénévoles.",
   ctaButton: "Rejoindre l'Amicale",
 };
 
@@ -231,7 +149,7 @@ const volunteerDefaults = {
   ctaAccess: "Accéder à ton espace bénévole",
   ctaAccessNote: "Tu seras redirigé vers la plateforme Recrewteer.",
   registerTitle: "Pas encore inscrit ?",
-  registerDescription: "Rejoins l'Amicale des Bénévoles pour accéder à ton espace personnel, découvrir les événements et profiter du covoiturage et de l'hébergement solidaire.",
+  registerDescription: "Rejoins l'Amicale des Bénévoles pour accéder à ton espace personnel et découvrir tous nos événements.",
   registerButton: "Rejoindre l'Amicale",
 };
 
@@ -253,8 +171,6 @@ const siteDefaults = {
     { label: "À propos", href: "/a-propos" },
     { label: "Événements", href: "/evenements" },
     { label: "Organisateurs", href: "/organisateurs" },
-    { label: "Covoiturage", href: "/covoiturage" },
-    { label: "Hébergement", href: "/hebergement" },
     { label: "Espace bénévole", href: "/espace-benevole" },
   ],
   navCtaLabel: "Rejoindre l'Amicale",
@@ -270,8 +186,6 @@ const siteDefaults = {
 const docs = [
   { _id: "homePage", _type: "homePage", ...homeDefaults },
   { _id: "aboutPage", _type: "aboutPage", ...aboutDefaults },
-  { _id: "carpoolPage", _type: "carpoolPage", ...carpoolDefaults },
-  { _id: "housingPage", _type: "housingPage", ...housingDefaults },
   { _id: "eventsPage", _type: "eventsPage", ...eventsPageDefaults },
   { _id: "organizersPage", _type: "organizersPage", ...organizersDefaults },
   { _id: "volunteerPage", _type: "volunteerPage", ...volunteerDefaults },

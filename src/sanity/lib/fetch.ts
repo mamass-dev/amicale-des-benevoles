@@ -6,18 +6,15 @@ import {
   partnersQuery,
   testimonialsQuery,
   statsQuery,
-  faqQuery,
   siteSettingsQuery,
   homePageQuery,
   aboutPageQuery,
-  carpoolPageQuery,
-  housingPageQuery,
   eventsPageQuery,
   organizersPageQuery,
   volunteerPageQuery,
   legalPageQuery,
 } from "./queries";
-import type { SanityEvent, TeamMembers, Partner, Testimonial, Stat, FaqItem } from "./types";
+import type { SanityEvent, TeamMembers, Partner, Testimonial, Stat } from "./types";
 import {
   events as staticEvents,
   teamMembers as staticTeam,
@@ -28,8 +25,6 @@ import {
 import {
   homeDefaults,
   aboutDefaults,
-  carpoolDefaults,
-  housingDefaults,
   eventsPageDefaults,
   organizersDefaults,
   volunteerDefaults,
@@ -37,8 +32,6 @@ import {
   siteDefaults,
   type HomeContent,
   type AboutContent,
-  type CarpoolContent,
-  type HousingContent,
   type EventsPageContent,
   type OrganizersContent,
   type VolunteerContent,
@@ -46,12 +39,19 @@ import {
   type SiteContent,
 } from "@/lib/content-defaults";
 
-async function query<T>(groq: string, params?: Record<string, string>): Promise<T | null> {
+async function query<T>(
+  groq: string,
+  params?: Record<string, string>,
+  options?: { revalidate?: number; tags?: string[] }
+): Promise<T | null> {
   if (!sanityEnabled || !client) return null;
   try {
     return await client.fetch<T>(groq, params ?? {}, {
-      // Revalidation toutes les 30s en prod, pas de cache en dev.
-      next: { revalidate: process.env.NODE_ENV === "development" ? 0 : 30 },
+      next: {
+        revalidate:
+          options?.revalidate ?? (process.env.NODE_ENV === "development" ? 0 : 30),
+        ...(options?.tags ? { tags: options.tags } : {}),
+      },
     });
   } catch {
     return null;
@@ -95,10 +95,6 @@ export async function getStats(): Promise<Stat[]> {
   return (await query<Stat[]>(statsQuery)) ?? staticStats;
 }
 
-export async function getFaqs(category: string): Promise<FaqItem[]> {
-  return (await query<FaqItem[]>(faqQuery, { category })) ?? [];
-}
-
 export type SiteSettings = SiteContent & {
   siteName?: string;
   siteDescription?: string;
@@ -125,14 +121,6 @@ export async function getHomeContent(): Promise<HomeContent> {
 
 export async function getAboutContent(): Promise<AboutContent> {
   return mergeDefaults(aboutDefaults, await query<Partial<AboutContent>>(aboutPageQuery));
-}
-
-export async function getCarpoolContent(): Promise<CarpoolContent> {
-  return mergeDefaults(carpoolDefaults, await query<Partial<CarpoolContent>>(carpoolPageQuery));
-}
-
-export async function getHousingContent(): Promise<HousingContent> {
-  return mergeDefaults(housingDefaults, await query<Partial<HousingContent>>(housingPageQuery));
 }
 
 export async function getEventsPageContent(): Promise<EventsPageContent> {

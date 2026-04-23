@@ -50,8 +50,3 @@ export type Stat = {
   value: number;
   suffix: string;
 };
-
-export type FaqItem = {
-  question: string;
-  answer: string;
-};

@@ -39,8 +39,6 @@ function extractKeys(blockName) {
 const pairs = [
   ["homePage", "homeDefaults"],
   ["aboutPage", "aboutDefaults"],
-  ["carpoolPage", "carpoolDefaults"],
-  ["housingPage", "housingDefaults"],
   ["eventsPage", "eventsPageDefaults"],
   ["organizersPage", "organizersDefaults"],
   ["volunteerPage", "volunteerDefaults"],

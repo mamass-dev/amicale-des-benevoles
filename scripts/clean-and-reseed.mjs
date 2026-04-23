@@ -72,17 +72,6 @@ const stats = [
   { value: "1", label: "Association loi 1901", order: 5 },
 ];
 
-const faqs = [
-  { category: "general", question: "Qui peut devenir bénévole ?", answer: "Toute personne majeure (ou mineure avec autorisation parentale) motivée par l'engagement événementiel.", order: 1 },
-  { category: "general", question: "Faut-il une expérience particulière ?", answer: "Non, aucune expérience n'est requise. Chaque mission est briefée et encadrée.", order: 2 },
-  { category: "general", question: "Combien de temps dure une mission ?", answer: "De 1 à 10 jours selon l'événement. Tu choisis ton engagement.", order: 3 },
-  { category: "carpool", question: "Comment fonctionne le covoiturage ?", answer: "Les bénévoles s'organisent entre eux via le tableau d'annonces. L'Amicale ne gère pas le matching.", order: 1 },
-  { category: "carpool", question: "Est-ce gratuit ?", answer: "Oui, c'est un service autonome entre bénévoles. Le partage des frais se décide entre vous.", order: 2 },
-  { category: "housing", question: "Qui peut héberger ?", answer: "Tout bénévole qui a une chambre, un lit ou un canapé à proposer pour un autre bénévole.", order: 1 },
-  { category: "housing", question: "Est-ce sécurisé ?", answer: "Les coordonnées ne sont révélées qu'après accord mutuel. L'Amicale rappelle les bonnes pratiques.", order: 2 },
-  { category: "housing", question: "C'est gratuit ?", answer: "Oui, c'est un geste solidaire entre bénévoles.", order: 3 },
-];
-
 async function deleteAll(type) {
   const ids = await client.fetch(`*[_type == "${type}"]._id`);
   if (!ids.length) return;
@@ -94,7 +83,7 @@ async function deleteAll(type) {
 
 async function run() {
   console.log("Nettoyage des doublons...");
-  for (const t of ["event", "teamMember", "testimonial", "stat", "faq", "partner"]) {
+  for (const t of ["event", "teamMember", "testimonial", "stat", "partner"]) {
     await deleteAll(t);
   }
 
@@ -117,10 +106,6 @@ async function run() {
   }
   for (let i = 0; i < stats.length; i++) {
     tx.createOrReplace({ _id: `stat-${i + 1}`, _type: "stat", ...stats[i] });
-  }
-  for (let i = 0; i < faqs.length; i++) {
-    const f = faqs[i];
-    tx.createOrReplace({ _id: `faq-${f.category}-${i + 1}`, _type: "faq", ...f });
   }
   const partners = [
     "Avoriaz", "OSL", "Colnago GF Series", "Saint-François-Longchamp",

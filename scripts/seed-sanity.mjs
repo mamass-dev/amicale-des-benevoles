@@ -56,17 +56,6 @@ const stats = [
   { label: "De fidélisation", value: 62, suffix: "%", order: 5 },
 ];
 
-const faqs = [
-  { question: "Qui peut utiliser le covoiturage ?", answer: "Le service est ouvert à tous les bénévoles de l'Amicale. Conducteurs et passagers sont tous des membres inscrits.", category: "covoiturage", order: 1 },
-  { question: "Comment sont partagés les frais ?", answer: "C'est entre vous ! On recommande un partage équitable des frais d'essence et de péage. Ce n'est pas commercial, c'est solidaire.", category: "covoiturage", order: 2 },
-  { question: "Comment je contacte un conducteur ou un passager ?", answer: "Chaque annonce affiche les coordonnées de la personne après un clic volontaire. Tu la contactes directement. L'Amicale n'intervient pas.", category: "covoiturage", order: 3 },
-  { question: "Le covoiturage est-il assuré ?", answer: "Chaque conducteur est couvert par sa propre assurance auto. Vérifiez que votre contrat couvre le covoiturage.", category: "covoiturage", order: 4 },
-  { question: "L'hébergement est-il gratuit ?", answer: "Oui, c'est un hébergement solidaire. L'hôte ne demande aucune rémunération. Un petit geste d'attention est toujours apprécié !", category: "hebergement", order: 1 },
-  { question: "Comment je contacte un hôte ou un voyageur ?", answer: "Chaque annonce affiche les coordonnées après un clic. Tu contactes la personne directement. L'Amicale n'intervient pas.", category: "hebergement", order: 2 },
-  { question: "Quels types de logement sont acceptés ?", answer: "Tout est bienvenu : chambre privée, canapé-lit, matelas d'appoint, studio... L'important c'est d'avoir un toit.", category: "hebergement", order: 3 },
-  { question: "Combien de temps à l'avance faut-il s'y prendre ?", answer: "Idéalement 2 à 3 semaines avant l'événement. Pour les gros événements, les hébergements partent vite.", category: "hebergement", order: 4 },
-];
-
 const siteSettings = {
   _id: "siteSettings",
   _type: "siteSettings",
@@ -106,11 +95,6 @@ async function seed() {
   console.log("Seeding stats...");
   for (const s of stats) {
     await client.create({ _type: "stat", ...s });
-  }
-
-  console.log("Seeding FAQs...");
-  for (const f of faqs) {
-    await client.create({ _type: "faq", ...f });
   }
 
   console.log("Done! All data seeded.");
