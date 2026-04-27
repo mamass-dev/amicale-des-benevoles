@@ -1,21 +1,32 @@
-import { useDocumentOperation, DocumentActionComponent, DocumentActionDescription } from "sanity";
+import {
+  useDocumentOperation,
+  type DocumentActionComponent,
+  type DocumentActionDescription,
+} from "sanity";
 import { PublishIcon } from "@sanity/icons";
 
-// Bouton "Publier" custom, rendu bien visible comme action principale.
-// Remplace le Publish par défaut qui peut être masqué par l'UI v5.
+// Bouton "Publier" custom, toujours visible et au premier plan.
+// Sanity v5 cache le publish par défaut dans le menu "..." — on le ramène en avant.
 export const PublishButton: DocumentActionComponent = (props) => {
-  const { id, type, draft, onComplete } = props;
+  const { id, type, draft, published, onComplete } = props;
   const { publish } = useDocumentOperation(id, type);
 
+  const hasDraft = !!draft;
+  const isPublished = !!published;
+
   return {
-    label: draft ? "Publier les modifications" : "Publié",
+    label: hasDraft
+      ? "Publier les modifications"
+      : isPublished
+      ? "Publié ✓"
+      : "Publier",
     icon: PublishIcon,
     tone: "positive",
-    disabled: publish.disabled || !draft,
+    disabled: !!publish.disabled,
     onHandle: () => {
       publish.execute();
       onComplete();
     },
     shortcut: "Ctrl+Alt+P",
-  } as DocumentActionDescription;
+  } satisfies DocumentActionDescription;
 };

@@ -4,6 +4,7 @@ import { visionTool } from "@sanity/vision";
 import { schemaTypes } from "./src/sanity/schemas";
 import { projectId, dataset } from "./src/sanity/env";
 import StudioWelcome from "./src/sanity/StudioWelcome";
+import { PublishButton } from "./src/sanity/actions/autoPublish";
 
 const SINGLETONS = [
   "siteSettings",
@@ -158,13 +159,18 @@ export default defineConfig({
     types: schemaTypes,
   },
   document: {
-    // Pour les pages uniques (singletons), on cache duplicate/delete/unpublish
-    // mais on garde le bouton Publish standard de Sanity Studio.
+    // Pour les pages uniques (singletons), on cache duplicate/delete/unpublish.
+    // Et on remplace le publish natif (caché dans le menu "...") par un bouton
+    // "Publier les modifications" toujours visible en premier plan.
     actions: (prev, { schemaType }) => {
-      if (SINGLETONS.includes(schemaType)) {
-        return prev.filter((a) => !["duplicate", "delete", "unpublish"].includes(a.action ?? ""));
-      }
-      return prev;
+      const filtered = SINGLETONS.includes(schemaType)
+        ? prev.filter((a) => !["duplicate", "delete", "unpublish"].includes(a.action ?? ""))
+        : prev;
+      // Remplace l'action publish natif par notre PublishButton custom (positif/vert).
+      const replaced = filtered.map((a) => (a.action === "publish" ? PublishButton : a));
+      // Si pour une raison X l'action publish n'était pas dans prev, on l'ajoute en tête.
+      const hasPublish = replaced.some((a) => a === PublishButton);
+      return hasPublish ? replaced : [PublishButton, ...replaced];
     },
     newDocumentOptions: (prev, { creationContext }) => {
       if (creationContext.type === "global") {
