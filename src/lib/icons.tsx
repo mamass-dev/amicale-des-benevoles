@@ -8,6 +8,7 @@ import {
   Target,
   Car,
   Calendar,
+  CalendarCheck,
   Home,
   MapPin,
   Euro,
@@ -19,6 +20,9 @@ import {
   Bell,
   BookOpen,
   User,
+  UserPlus,
+  Sparkles,
+  CheckCircle,
   type LucideIcon,
 } from "lucide-react";
 
@@ -32,6 +36,7 @@ const iconMap: Record<string, LucideIcon> = {
   Target,
   Car,
   Calendar,
+  CalendarCheck,
   Home,
   MapPin,
   Euro,
@@ -43,6 +48,9 @@ const iconMap: Record<string, LucideIcon> = {
   Bell,
   BookOpen,
   User,
+  UserPlus,
+  Sparkles,
+  CheckCircle,
 };
 
 export function getIcon(name: string | undefined, fallback: LucideIcon = Heart): LucideIcon {

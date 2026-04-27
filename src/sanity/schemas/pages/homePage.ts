@@ -8,6 +8,7 @@ export default defineType({
   icon: HomeIcon,
   groups: [
     { name: "hero", title: "Hero", default: true },
+    { name: "howItWorks", title: "Comment ça marche" },
     { name: "mission", title: "Mission" },
     { name: "pillars", title: "3 piliers" },
     { name: "banner", title: "Bandeau photo" },
@@ -36,6 +37,85 @@ export default defineType({
     defineField({ name: "heroDescription", title: "Description hero", type: "text", rows: 3, group: "hero" }),
     defineField({ name: "heroCtaPrimary", title: "CTA principal", type: "string", group: "hero" }),
     defineField({ name: "heroCtaSecondary", title: "CTA secondaire", type: "string", group: "hero" }),
+
+    // Comment ça marche
+    defineField({
+      name: "howItWorksKicker",
+      title: "Surtitre (au-dessus du titre)",
+      type: "string",
+      description: "Petit texte orange en majuscules. Ex : « Comment ça marche »",
+      group: "howItWorks",
+    }),
+    defineField({
+      name: "howItWorksTitle",
+      title: "Titre de la section",
+      type: "string",
+      group: "howItWorks",
+    }),
+    defineField({
+      name: "howItWorksDescription",
+      title: "Description courte",
+      type: "string",
+      group: "howItWorks",
+    }),
+    defineField({
+      name: "howItWorksSteps",
+      title: "Étapes",
+      type: "array",
+      group: "howItWorks",
+      description: "3 étapes recommandées (max 4). Chaque étape a un numéro, un titre et une description.",
+      validation: (r) => r.min(2).max(4),
+      of: [
+        {
+          type: "object",
+          name: "step",
+          fields: [
+            defineField({
+              name: "step",
+              title: "Numéro affiché",
+              type: "string",
+              description: "Ex : « 01 », « 02 », « 03 »",
+              validation: (r) => r.required(),
+            }),
+            defineField({
+              name: "title",
+              title: "Titre",
+              type: "string",
+              validation: (r) => r.required(),
+            }),
+            defineField({
+              name: "description",
+              title: "Description",
+              type: "text",
+              rows: 3,
+              validation: (r) => r.required(),
+            }),
+            defineField({
+              name: "icon",
+              title: "Icône",
+              type: "string",
+              options: {
+                list: [
+                  { value: "UserPlus", title: "👤 Inscription" },
+                  { value: "CalendarCheck", title: "📅 Calendrier" },
+                  { value: "Sparkles", title: "✨ Étincelles" },
+                  { value: "Heart", title: "❤️ Cœur" },
+                  { value: "Users", title: "👥 Groupe" },
+                  { value: "Star", title: "⭐ Étoile" },
+                  { value: "CheckCircle", title: "✅ Validé" },
+                ],
+              },
+            }),
+          ],
+          preview: {
+            select: { step: "step", title: "title" },
+            prepare: ({ step, title }) => ({
+              title: `${step ?? "??"} — ${title ?? "(sans titre)"}`,
+            }),
+          },
+        },
+      ],
+    }),
 
     // Mission
     defineField({
@@ -108,19 +188,12 @@ export default defineType({
     defineField({ name: "gallerySubtitle", title: "Sous-titre galerie", type: "string", group: "gallery" }),
     defineField({
       name: "mosaicImages",
-      title: "Mosaïque (4 photos)",
-      description: "4 grandes photos en haut de la galerie.",
+      title: "Mosaïque de 4 photos",
+      description:
+        "Exactement 4 photos affichées en grille. Format paysage recommandé (4:3). Choisis des photos qui montrent des bénévoles en action.",
       type: "array",
       of: [{ type: "image", options: { hotspot: true } }],
-      validation: (Rule) => Rule.max(4),
-      group: "gallery",
-    }),
-    defineField({
-      name: "galleryImages",
-      title: "Galerie défilante",
-      description: "Photos du carrousel horizontal.",
-      type: "array",
-      of: [{ type: "image", options: { hotspot: true } }],
+      validation: (Rule) => Rule.length(4).warning("Il en faut idéalement 4 pour une mosaïque équilibrée."),
       group: "gallery",
     }),
 

@@ -14,44 +14,6 @@ export const metadata: Metadata = {
   openGraph: { url: "/espace-benevole" },
 };
 
-const guideSteps = [
-  {
-    step: "01",
-    title: "Connecte-toi à Recrewteer",
-    description: "Identifie-toi avec ton email et ton mot de passe. Si tu as oublié ton mot de passe, utilise le lien « Mot de passe oublié » sur la page de connexion.",
-  },
-  {
-    step: "02",
-    title: "Choisis tes événements",
-    description: "Dans l'onglet Événements, parcours les missions ouvertes. Clique sur un événement pour voir le planning et les missions disponibles.",
-  },
-  {
-    step: "03",
-    title: "Renseigne tes disponibilités",
-    description: "Coche les créneaux où tu peux être présent·e. Tu peux aussi indiquer tes préférences de mission (accueil, ravitaillement, sécurité…).",
-  },
-  {
-    step: "04",
-    title: "Reçois ta confirmation",
-    description: "Une fois validée, tu reçois un email de confirmation avec toutes les infos pratiques : lieu, horaires, contact du chef de mission, repas, hébergement.",
-  },
-];
-
-const quickFaq = [
-  {
-    q: "J'ai oublié mon mot de passe Recrewteer, comment faire ?",
-    a: "Sur la page de connexion, clique sur « Mot de passe oublié ». Tu reçois un email pour le réinitialiser. Si tu ne reçois rien, vérifie tes spams ou contacte-nous.",
-  },
-  {
-    q: "Mon inscription est-elle confirmée ?",
-    a: "Tu reçois toujours un email de confirmation après inscription à un événement. Si tu ne le reçois pas sous 48h, contacte le chef de mission de l'événement ou écris à contact@amicaledesbenevoles.org.",
-  },
-  {
-    q: "Comment annuler ma participation ?",
-    a: "Connecte-toi à Recrewteer, va sur l'événement concerné et utilise le bouton de désinscription. Ou écris-nous directement, on s'occupe du reste.",
-  },
-];
-
 export default async function EspaceBenevolePage() {
   const [content, settings] = await Promise.all([getVolunteerContent(), getSiteSettings()]);
   const joinUrl = settings.inscriptionUrl || "https://event.recrewteer.com/v2/organization/121/form/7034";
@@ -112,16 +74,14 @@ export default async function EspaceBenevolePage() {
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <p className="text-sm font-semibold uppercase tracking-wider text-secondary mb-3">
-              Guide de démarrage
+              {content.guideKicker}
             </p>
-            <h2 className="text-3xl font-bold mb-3">Première utilisation de Recrewteer ?</h2>
-            <p className="text-muted max-w-xl mx-auto">
-              Voici comment t&apos;inscrire à un événement en 4 étapes.
-            </p>
+            <h2 className="text-3xl font-bold mb-3">{content.guideTitle}</h2>
+            <p className="text-muted max-w-xl mx-auto">{content.guideDescription}</p>
           </div>
 
           <ol className="grid md:grid-cols-2 gap-5">
-            {guideSteps.map(({ step, title, description }) => (
+            {content.guideSteps.map(({ step, title, description }) => (
               <li
                 key={step}
                 className="flex gap-4 p-6 rounded-2xl bg-card border border-border hover:border-secondary/30 transition-colors"
@@ -145,11 +105,11 @@ export default async function EspaceBenevolePage() {
             <div className="inline-flex p-2.5 rounded-xl bg-primary/10 text-primary">
               <LifeBuoy className="h-5 w-5" />
             </div>
-            <h2 className="text-2xl sm:text-3xl font-bold">Besoin d&apos;aide ?</h2>
+            <h2 className="text-2xl sm:text-3xl font-bold">{content.supportTitle}</h2>
           </div>
 
           <div className="space-y-3 mb-8">
-            {quickFaq.map((item) => (
+            {content.supportItems.map((item) => (
               <details
                 key={item.q}
                 className="group rounded-2xl bg-card border border-border overflow-hidden hover:border-primary/30 transition-colors"
@@ -176,14 +136,14 @@ export default async function EspaceBenevolePage() {
               href="/faq"
               className="inline-flex items-center justify-center gap-2 rounded-full border border-border px-6 py-3 text-sm font-semibold hover:bg-card hover:border-primary/30 transition-colors"
             >
-              Toutes les questions <ArrowRight className="h-4 w-4" />
+              {content.supportLinkLabel} <ArrowRight className="h-4 w-4" />
             </Link>
             <a
               href={`mailto:${supportEmail}`}
               className="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-white hover:bg-primary-dark transition-colors shadow-md"
             >
               <Mail className="h-4 w-4" />
-              Nous écrire
+              {content.supportContactLabel}
             </a>
           </div>
         </div>

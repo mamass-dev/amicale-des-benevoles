@@ -6,9 +6,12 @@ export default defineType({
   title: "Événement",
   type: "document",
   icon: CalendarIcon,
-  description: "Les événements sportifs et culturels sur lesquels l'Amicale mobilise des bénévoles.",
+  description:
+    "Les événements sportifs et culturels sur lesquels l'Amicale mobilise des bénévoles.",
   groups: [
     { name: "infos", title: "Informations", icon: CalendarIcon, default: true },
+    { name: "details", title: "Détails page" },
+    { name: "geo", title: "Géolocalisation" },
     { name: "benevoles", title: "Bénévoles" },
   ],
   fields: [
@@ -24,16 +27,26 @@ export default defineType({
       name: "slug",
       title: "URL de la page",
       type: "slug",
-      description: "Se génère automatiquement à partir du nom. Cliquez sur « Generate ».",
-      options: { source: "name", slugify: (input) => input.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)+/g, "") },
+      description:
+        "Se génère automatiquement à partir du nom. Clique sur « Generate ».",
+      options: {
+        source: "name",
+        slugify: (input) =>
+          input
+            .toLowerCase()
+            .normalize("NFD")
+            .replace(/[̀-ͯ]/g, "")
+            .replace(/[^a-z0-9]+/g, "-")
+            .replace(/(^-|-$)+/g, ""),
+      },
       group: "infos",
-      validation: (r) => r.required().error("L'URL est obligatoire — cliquez sur Generate"),
+      validation: (r) => r.required().error("L'URL est obligatoire — clique sur Generate"),
     }),
     defineField({
       name: "type",
       title: "Type d'événement",
       type: "string",
-      description: "Sportif ou culturel ? Cela change la couleur du badge.",
+      description: "Sportif ou culturel ? Cela change la couleur du badge et du marqueur sur la carte.",
       options: {
         list: [
           { title: "🏃 Sportif", value: "sportif" },
@@ -65,7 +78,7 @@ export default defineType({
       name: "dateStart",
       title: "Date de début",
       type: "date",
-      description: "Pour le tri chronologique.",
+      description: "Pour le tri et le filtre par mois.",
       group: "infos",
     }),
     defineField({
@@ -86,10 +99,39 @@ export default defineType({
       name: "image",
       title: "Photo de l'événement",
       type: "image",
-      description: "Format paysage recommandé (16:9). Elle apparaît sur les cartes et la page de l'événement.",
+      description: "Format paysage recommandé (16:9). Apparaît sur les cartes et la page de l'événement.",
       options: { hotspot: true },
       group: "infos",
     }),
+
+    defineField({
+      name: "missions",
+      title: "Missions possibles",
+      type: "array",
+      of: [{ type: "string" }],
+      description:
+        "Liste les missions concrètes pour cet événement (ex : Accueil, Ravitaillement, Logistique...). Si vide, une liste générique s'affiche.",
+      group: "details",
+    }),
+    defineField({
+      name: "practicalInfo",
+      title: "Bon à savoir",
+      type: "array",
+      of: [{ type: "string" }],
+      description:
+        "4-6 points pratiques (encadrement, repas, hébergement, t-shirt fourni...). Si vide, des infos par défaut s'affichent.",
+      group: "details",
+    }),
+
+    defineField({
+      name: "coordinates",
+      title: "Coordonnées GPS",
+      type: "geopoint",
+      description:
+        "Position précise pour la carte sur /evenements. Clique sur la carte pour placer le marqueur.",
+      group: "geo",
+    }),
+
     defineField({
       name: "spots",
       title: "Nombre total de places bénévoles",
@@ -102,7 +144,8 @@ export default defineType({
       name: "spotsFilled",
       title: "Places déjà remplies",
       type: "number",
-      description: "Mettez à jour ce chiffre au fur et à mesure des inscriptions. La barre de progression se calcule automatiquement.",
+      description:
+        "Mets à jour ce chiffre au fur et à mesure des inscriptions.",
       group: "benevoles",
       validation: (r) => r.min(0),
     }),
@@ -112,11 +155,22 @@ export default defineType({
     { title: "Nom A→Z", name: "nameAsc", by: [{ field: "name", direction: "asc" }] },
   ],
   preview: {
-    select: { title: "name", subtitle: "dates", media: "image", type: "type", spots: "spots", spotsFilled: "spotsFilled" },
+    select: {
+      title: "name",
+      subtitle: "dates",
+      media: "image",
+      type: "type",
+      spots: "spots",
+      spotsFilled: "spotsFilled",
+    },
     prepare({ title, subtitle, media, type, spots, spotsFilled }) {
       const emoji = type === "sportif" ? "🏃" : "🎭";
       const fill = spots ? `${spotsFilled || 0}/${spots} bénévoles` : "";
-      return { title: `${emoji} ${title}`, subtitle: `${subtitle || ""} — ${fill}`, media };
+      return {
+        title: `${emoji} ${title}`,
+        subtitle: `${subtitle || ""} — ${fill}`,
+        media,
+      };
     },
   },
 });

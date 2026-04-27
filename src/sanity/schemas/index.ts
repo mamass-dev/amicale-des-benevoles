@@ -10,6 +10,8 @@ import eventsPage from "./pages/eventsPage";
 import organizersPage from "./pages/organizersPage";
 import volunteerPage from "./pages/volunteerPage";
 import legalPage from "./pages/legalPage";
+import faqPage from "./pages/faqPage";
+import contactPage from "./pages/contactPage";
 
 export const schemaTypes = [
   event,
@@ -24,4 +26,6 @@ export const schemaTypes = [
   organizersPage,
   volunteerPage,
   legalPage,
+  faqPage,
+  contactPage,
 ];

@@ -106,13 +106,24 @@ export default async function EventPage({ params }: Props) {
     },
   };
 
-  const missions = [
-    "Accueil et orientation des participants",
-    "Ravitaillement (course / festival)",
-    "Logistique et installation",
-    "Sécurité et signalétique",
-    "Animation et ambiance",
-  ];
+  const missions = event.missions?.length
+    ? event.missions
+    : [
+        "Accueil et orientation des participants",
+        "Ravitaillement (course / festival)",
+        "Logistique et installation",
+        "Sécurité et signalétique",
+        "Animation et ambiance",
+      ];
+
+  const practicalInfo = event.practicalInfo?.length
+    ? event.practicalInfo
+    : [
+        "Encadrement par les chefs de mission de l'Amicale",
+        "Repas et boissons offerts pendant la mission",
+        "T-shirt et accréditation fournis",
+        "Aucune expérience requise — formation sur place",
+      ];
 
   return (
     <>
@@ -206,22 +217,12 @@ export default async function EventPage({ params }: Props) {
                 Bon à savoir
               </h2>
               <ul className="space-y-3 text-sm text-muted">
-                <li className="flex gap-2">
-                  <span className="text-primary mt-0.5">•</span>
-                  <span>Encadrement par les chefs de mission de l&apos;Amicale</span>
-                </li>
-                <li className="flex gap-2">
-                  <span className="text-primary mt-0.5">•</span>
-                  <span>Repas et boissons offerts pendant la mission</span>
-                </li>
-                <li className="flex gap-2">
-                  <span className="text-primary mt-0.5">•</span>
-                  <span>T-shirt et accréditation fournis</span>
-                </li>
-                <li className="flex gap-2">
-                  <span className="text-primary mt-0.5">•</span>
-                  <span>Aucune expérience requise — formation sur place</span>
-                </li>
+                {practicalInfo.map((info) => (
+                  <li key={info} className="flex gap-2">
+                    <span className="text-primary mt-0.5">•</span>
+                    <span>{info}</span>
+                  </li>
+                ))}
               </ul>
             </div>
           </div>

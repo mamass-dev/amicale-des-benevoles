@@ -12,30 +12,6 @@ export const homeDefaults = {
     "/images/events/gf-ventoux.jpg",
     "/images/events/groupe-benevoles.jpg",
   ],
-  galleryImages: [
-    "/images/gallery/0_frame.jpg",
-    "/images/gallery/2_frame.jpg",
-    "/images/gallery/4_frame.jpg",
-    "/images/gallery/6_frame.jpg",
-    "/images/gallery/8_frame.jpg",
-    "/images/gallery/10_frame.jpg",
-    "/images/gallery/12_frame.jpg",
-    "/images/gallery/14_frame.jpg",
-    "/images/gallery/16_frame.jpg",
-    "/images/gallery/18_frame.jpg",
-    "/images/gallery/20_frame.jpg",
-    "/images/gallery/22_frame.jpg",
-    "/images/gallery/24_frame.jpg",
-    "/images/gallery/26_frame.jpg",
-    "/images/gallery/28_frame.jpg",
-    "/images/gallery/30_frame.jpg",
-    "/images/gallery/32_frame.jpg",
-    "/images/gallery/34_frame.jpg",
-    "/images/gallery/36_frame.jpg",
-    "/images/gallery/38_frame.jpg",
-    "/images/gallery/40_frame.jpg",
-    "/images/gallery/43_frame.jpg",
-  ],
   heroBadge: "Association loi 1901 — Depuis 2019",
   heroTitle1: "Créateur d'expériences",
   heroTitle2: "citoyennes",
@@ -44,6 +20,33 @@ export const homeDefaults = {
     "Que tu sois jeune ou moins jeune, il y a forcément un événement fait pour toi. Rejoins plus de 3 000 bénévoles engagés sur des événements sportifs et culturels partout en France.",
   heroCtaPrimary: "Rejoindre l'Amicale",
   heroCtaSecondary: "Voir les événements",
+  howItWorksKicker: "Comment ça marche",
+  howItWorksTitle: "Devenir bénévole, en 3 étapes",
+  howItWorksDescription:
+    "Pas besoin d'expérience. Juste l'envie de vivre un moment fort.",
+  howItWorksSteps: [
+    {
+      step: "01",
+      title: "Inscris-toi en 2 minutes",
+      description:
+        "Crée ton compte gratuit sur Recrewteer. Tu renseignes tes coordonnées et tes disponibilités, c'est tout.",
+      icon: "UserPlus",
+    },
+    {
+      step: "02",
+      title: "Choisis ton événement",
+      description:
+        "Parcours les événements ouverts, sélectionne celui qui te tente et la mission qui te correspond.",
+      icon: "CalendarCheck",
+    },
+    {
+      step: "03",
+      title: "Vis l'expérience",
+      description:
+        "Tu rejoins une équipe encadrée, tu prends ton poste, et tu repars avec des souvenirs et des potes.",
+      icon: "Sparkles",
+    },
+  ],
   missionTitle: "Notre mission",
   missionText1:
     "Concevoir des expériences bénévoles de qualité et donner envie aux bénévoles de poursuivre leur engagement citoyen. Le bénévolat apporte une grande richesse humaine — l'association contribue à entretenir ce lien fraternel.",
@@ -160,6 +163,10 @@ export const eventsPageDefaults = {
   heroTitle2: "événements",
   heroDescription:
     "{count} événements sportifs et culturels dans le quart Sud-Est de la France. Qu'importe les raisons qui t'amènent à t'engager, ton acte citoyen est précieux !",
+  searchPlaceholder: "Rechercher un événement, une ville...",
+  filterAllLabel: "Tous",
+  filterSportLabel: "Sportif",
+  filterCultureLabel: "Culturel",
   ctaTitle: "Un événement te plaît ?",
   ctaDescription:
     "Inscris-toi à l'Amicale pour accéder aux inscriptions et vivre de belles aventures bénévoles.",
@@ -218,10 +225,167 @@ export const volunteerDefaults = {
   ],
   ctaAccess: "Accéder à ton espace bénévole",
   ctaAccessNote: "Tu seras redirigé vers la plateforme Recrewteer.",
+  guideKicker: "Guide de démarrage",
+  guideTitle: "Première utilisation de Recrewteer ?",
+  guideDescription: "Voici comment t'inscrire à un événement en 4 étapes.",
+  guideSteps: [
+    {
+      step: "01",
+      title: "Connecte-toi à Recrewteer",
+      description:
+        "Identifie-toi avec ton email et ton mot de passe. Si tu as oublié ton mot de passe, utilise le lien « Mot de passe oublié » sur la page de connexion.",
+    },
+    {
+      step: "02",
+      title: "Choisis tes événements",
+      description:
+        "Dans l'onglet Événements, parcours les missions ouvertes. Clique sur un événement pour voir le planning et les missions disponibles.",
+    },
+    {
+      step: "03",
+      title: "Renseigne tes disponibilités",
+      description:
+        "Coche les créneaux où tu peux être présent·e. Tu peux aussi indiquer tes préférences de mission (accueil, ravitaillement, sécurité…).",
+    },
+    {
+      step: "04",
+      title: "Reçois ta confirmation",
+      description:
+        "Une fois validée, tu reçois un email de confirmation avec toutes les infos pratiques : lieu, horaires, contact du chef de mission, repas, hébergement.",
+    },
+  ],
+  supportTitle: "Besoin d'aide ?",
+  supportItems: [
+    {
+      q: "J'ai oublié mon mot de passe Recrewteer, comment faire ?",
+      a: "Sur la page de connexion, clique sur « Mot de passe oublié ». Tu reçois un email pour le réinitialiser. Si tu ne reçois rien, vérifie tes spams ou contacte-nous.",
+    },
+    {
+      q: "Mon inscription est-elle confirmée ?",
+      a: "Tu reçois toujours un email de confirmation après inscription à un événement. Si tu ne le reçois pas sous 48h, contacte le chef de mission de l'événement ou écris à contact@amicaledesbenevoles.org.",
+    },
+    {
+      q: "Comment annuler ma participation ?",
+      a: "Connecte-toi à Recrewteer, va sur l'événement concerné et utilise le bouton de désinscription. Ou écris-nous directement, on s'occupe du reste.",
+    },
+  ],
+  supportLinkLabel: "Toutes les questions",
+  supportContactLabel: "Nous écrire",
   registerTitle: "Pas encore inscrit ?",
   registerDescription:
     "Rejoins l'Amicale des Bénévoles pour accéder à ton espace personnel et découvrir tous nos événements.",
   registerButton: "Rejoindre l'Amicale",
+};
+
+export const faqPageDefaults = {
+  heroBadge: "Questions fréquentes",
+  heroTitle1: "Tout ce que tu dois savoir avant de devenir",
+  heroTitle2: "bénévole",
+  heroDescription:
+    "Inscription, missions, défraiements, hébergement, accessibilité… On a regroupé ici les questions qui reviennent le plus. Une question manque ? Écris-nous à contact@amicaledesbenevoles.org.",
+  sections: [
+    {
+      title: "S'inscrire et participer",
+      items: [
+        {
+          question: "Comment devenir bénévole avec l'Amicale ?",
+          answer:
+            "Crée gratuitement ton compte sur Recrewteer en 2 minutes. Tu renseignes tes coordonnées et tes disponibilités, puis tu choisis le ou les événements sur lesquels tu veux t'engager. Aucune cotisation, aucun engagement long terme.",
+        },
+        {
+          question: "Faut-il avoir de l'expérience ou des compétences spécifiques ?",
+          answer:
+            "Non, aucune expérience n'est requise. Les missions sont expliquées sur place par les chefs de mission. Si une mission demande une compétence particulière (secourisme, conduite de véhicule…), c'est précisé dans la fiche de l'événement.",
+        },
+        {
+          question: "À partir de quel âge peut-on être bénévole ?",
+          answer:
+            "L'âge minimum est 16 ans avec autorisation parentale. Certains événements exigent 18 ans selon les missions (sécurité, accès tardif). C'est précisé sur chaque événement.",
+        },
+        {
+          question: "Combien de temps dois-je m'engager ?",
+          answer:
+            "Les missions vont de quelques heures à plusieurs jours selon l'événement. Tu choisis tes créneaux à l'inscription, en fonction de tes disponibilités. Aucune obligation au-delà de ce que tu acceptes.",
+        },
+      ],
+    },
+    {
+      title: "Sur place",
+      items: [
+        {
+          question: "Suis-je défrayé pour ma participation ?",
+          answer:
+            "Le bénévolat est par définition non rémunéré. Cependant, pour chaque mission tu bénéficies de repas et boissons offerts, d'un t-shirt ou tenue spécifique, d'une accréditation, et parfois d'avantages partenaires (réductions, cadeaux, lots).",
+        },
+        {
+          question: "L'hébergement est-il fourni ?",
+          answer:
+            "Selon les événements et les distances, certains organisateurs proposent un hébergement collectif (camping, gymnase, dortoir). C'est précisé sur chaque événement. Pour les événements proches de chez toi, l'hébergement n'est généralement pas nécessaire.",
+        },
+        {
+          question: "Que faire si je dois annuler ?",
+          answer:
+            "Préviens le plus tôt possible via ton espace bénévole Recrewteer ou par mail à contact@amicaledesbenevoles.org. Cela permet à l'Amicale de mobiliser un ou une autre bénévole à ta place.",
+        },
+        {
+          question: "Suis-je assuré pendant ma mission ?",
+          answer:
+            "Oui, l'Amicale des Bénévoles a une assurance responsabilité civile qui couvre tous les bénévoles inscrits sur ses missions. Les organisateurs disposent également d'assurances spécifiques à leur événement.",
+        },
+      ],
+    },
+    {
+      title: "Accessibilité et inclusion",
+      items: [
+        {
+          question: "Le bénévolat est-il accessible aux personnes en situation de handicap ?",
+          answer:
+            "Oui. L'Amicale a une référente inclusive qui adapte les missions aux besoins de chaque bénévole. Contacte-la via la page À propos pour échanger sur tes besoins avant l'inscription.",
+        },
+        {
+          question: "Puis-je venir avec un proche ou en groupe ?",
+          answer:
+            "Bien sûr. Beaucoup de bénévoles s'inscrivent en duo ou en groupe d'amis. Indique-le dans ton inscription Recrewteer pour qu'on essaie de vous placer sur les mêmes missions.",
+        },
+      ],
+    },
+    {
+      title: "Pour les organisateurs",
+      items: [
+        {
+          question: "Comment l'Amicale aide les organisateurs à mobiliser leurs bénévoles ?",
+          answer:
+            "L'Amicale prend en charge tout le processus : recrutement, inscription, planning, encadrement sur place, fidélisation post-événement. Notre objectif : 95% de satisfaction côté bénévoles, 62% qui reviennent l'année suivante.",
+        },
+        {
+          question: "Comment vous contacter pour un partenariat ?",
+          answer:
+            "Rendez-vous sur la page Organisateurs ou écrivez à quentin@amicaledesbenevoles.org. On revient vers vous sous 48h ouvrées.",
+        },
+      ],
+    },
+  ],
+  ctaTitle: "Prêt·e à te lancer ?",
+  ctaDescription: "Crée ton compte sur Recrewteer et choisis ton premier événement.",
+  ctaPrimary: "Rejoindre l'Amicale",
+  ctaSecondary: "Voir les événements",
+};
+
+export const contactPageDefaults = {
+  heroTitle1: "Une question ?",
+  heroTitle2: "On t'écoute.",
+  heroDescription:
+    "Bénévole, organisateur, partenaire, journaliste… Quel que soit ton sujet, on revient vers toi sous 48h ouvrées.",
+  formTitle: "Nous écrire",
+  formIntro: "Remplis ce formulaire, on te répond rapidement.",
+  formNote:
+    "Le formulaire ouvrira ton client mail avec un message pré-rempli. Si tu préfères, écris-nous directement à l'adresse ci-dessous.",
+  sidebarTitle: "Coordonnées directes",
+  sidebarReplyLabel: "Sous 48h ouvrées (lun-ven)",
+  sidebarBoxTitle: "Tu es organisateur d'événement ?",
+  sidebarBoxText:
+    "Découvre comment l'Amicale peut mobiliser, encadrer et fidéliser tes bénévoles.",
+  sidebarBoxLink: "Notre offre organisateurs →",
 };
 
 export const legalDefaults = {
@@ -279,3 +443,5 @@ export type OrganizersContent = typeof organizersDefaults;
 export type VolunteerContent = typeof volunteerDefaults;
 export type LegalContent = typeof legalDefaults;
 export type SiteContent = typeof siteDefaults;
+export type FaqContent = typeof faqPageDefaults;
+export type ContactContent = typeof contactPageDefaults;

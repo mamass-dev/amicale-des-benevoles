@@ -44,7 +44,13 @@ export default function EventsMap({ events }: { events: SanityEvent[] }) {
   const mappable: EventWithCoords[] = useMemo(
     () =>
       events
-        .map((e) => ({ ...e, coords: eventCoords[e.slug] }))
+        .map((e) => {
+          const sanityCoords = e.coordinates && typeof e.coordinates === "object"
+            ? ([e.coordinates.lat, e.coordinates.lng] as [number, number])
+            : undefined;
+          const coords = sanityCoords ?? eventCoords[e.slug];
+          return { ...e, coords };
+        })
         .filter((e): e is EventWithCoords => Array.isArray(e.coords)),
     [events]
   );

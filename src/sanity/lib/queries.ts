@@ -13,6 +13,9 @@ export const eventsQuery = groq`
     "image": image.asset->url,
     spots,
     spotsFilled,
+    missions,
+    practicalInfo,
+    coordinates,
     _updatedAt
   }
 `;
@@ -30,6 +33,9 @@ export const eventBySlugQuery = groq`
     "image": image.asset->url,
     spots,
     spotsFilled,
+    missions,
+    practicalInfo,
+    coordinates,
     _updatedAt
   }
 `;
@@ -79,8 +85,7 @@ export const homePageQuery = groq`*[_type == "homePage"][0]{
   "missionImage": missionImage.asset->url,
   "bannerImage": bannerImage.asset->url,
   "ctaImage": ctaImage.asset->url,
-  "mosaicImages": mosaicImages[].asset->url,
-  "galleryImages": galleryImages[].asset->url
+  "mosaicImages": mosaicImages[].asset->url
 }`;
 export const aboutPageQuery = groq`*[_type == "aboutPage"][0]{
   ...,
@@ -91,3 +96,5 @@ export const eventsPageQuery = groq`*[_type == "eventsPage"][0]`;
 export const organizersPageQuery = groq`*[_type == "organizersPage"][0]`;
 export const volunteerPageQuery = groq`*[_type == "volunteerPage"][0]`;
 export const legalPageQuery = groq`*[_type == "legalPage"][0]`;
+export const faqPageQuery = groq`*[_type == "faqPage"][0]`;
+export const contactPageQuery = groq`*[_type == "contactPage"][0]`;

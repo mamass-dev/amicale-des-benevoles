@@ -13,6 +13,8 @@ import {
   organizersPageQuery,
   volunteerPageQuery,
   legalPageQuery,
+  faqPageQuery,
+  contactPageQuery,
 } from "./queries";
 import type { SanityEvent, TeamMembers, Partner, Testimonial, Stat } from "./types";
 import {
@@ -30,6 +32,8 @@ import {
   volunteerDefaults,
   legalDefaults,
   siteDefaults,
+  faqPageDefaults,
+  contactPageDefaults,
   type HomeContent,
   type AboutContent,
   type EventsPageContent,
@@ -37,6 +41,8 @@ import {
   type VolunteerContent,
   type LegalContent,
   type SiteContent,
+  type FaqContent,
+  type ContactContent,
 } from "@/lib/content-defaults";
 
 async function query<T>(
@@ -137,4 +143,12 @@ export async function getVolunteerContent(): Promise<VolunteerContent> {
 
 export async function getLegalContent(): Promise<LegalContent> {
   return mergeDefaults(legalDefaults, await query<Partial<LegalContent>>(legalPageQuery));
+}
+
+export async function getFaqContent(): Promise<FaqContent> {
+  return mergeDefaults(faqPageDefaults, await query<Partial<FaqContent>>(faqPageQuery));
+}
+
+export async function getContactContent(): Promise<ContactContent> {
+  return mergeDefaults(contactPageDefaults, await query<Partial<ContactContent>>(contactPageQuery));
 }

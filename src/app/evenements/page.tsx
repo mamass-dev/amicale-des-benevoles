@@ -48,7 +48,15 @@ export default async function EvenementsPage() {
 
       <section className="py-12 sm:py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <EventsExplorer events={events} />
+          <EventsExplorer
+            events={events}
+            labels={{
+              search: content.searchPlaceholder,
+              all: content.filterAllLabel,
+              sport: content.filterSportLabel,
+              culture: content.filterCultureLabel,
+            }}
+          />
         </div>
       </section>
 

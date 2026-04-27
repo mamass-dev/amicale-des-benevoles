@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, Heart, Star, UserPlus, CalendarCheck, Sparkles } from "lucide-react";
+import { ArrowRight, Heart, Star, Sparkles } from "lucide-react";
 import Marquee from "@/components/Marquee";
 import StatsSection from "@/components/StatsSection";
 import EventCard from "@/components/EventCard";
@@ -82,53 +82,33 @@ export default async function HomePage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-14">
             <p className="text-sm font-semibold uppercase tracking-wider text-primary mb-3">
-              Comment ça marche
+              {content.howItWorksKicker}
             </p>
-            <h2 className="text-3xl sm:text-4xl font-bold mb-4">
-              Devenir bénévole, en 3 étapes
-            </h2>
-            <p className="text-muted text-lg">
-              Pas besoin d&apos;expérience. Juste l&apos;envie de vivre un moment fort.
-            </p>
+            <h2 className="text-3xl sm:text-4xl font-bold mb-4">{content.howItWorksTitle}</h2>
+            <p className="text-muted text-lg">{content.howItWorksDescription}</p>
           </div>
 
           <ol className="grid md:grid-cols-3 gap-6 lg:gap-8 relative">
-            {[
-              {
-                step: "01",
-                Icon: UserPlus,
-                title: "Inscris-toi en 2 minutes",
-                description: "Crée ton compte gratuit sur Recrewteer. Tu renseignes tes coordonnées et tes disponibilités, c'est tout.",
-              },
-              {
-                step: "02",
-                Icon: CalendarCheck,
-                title: "Choisis ton événement",
-                description: "Parcours les événements ouverts, sélectionne celui qui te tente et la mission qui te correspond.",
-              },
-              {
-                step: "03",
-                Icon: Sparkles,
-                title: "Vis l'expérience",
-                description: "Tu rejoins une équipe encadrée, tu prends ton poste, et tu repars avec des souvenirs et des potes.",
-              },
-            ].map(({ step, Icon, title, description }) => (
-              <li
-                key={step}
-                className="relative p-7 sm:p-8 rounded-2xl bg-card border border-border hover:border-primary/30 hover:shadow-lg transition-all"
-              >
-                <div className="flex items-center justify-between mb-5">
-                  <span className="text-5xl font-extrabold text-primary/15 leading-none tabular-nums">
-                    {step}
-                  </span>
-                  <div className="inline-flex p-3 rounded-xl bg-primary/10 text-primary">
-                    <Icon className="h-6 w-6" />
+            {content.howItWorksSteps.map(({ step, title, description, icon }) => {
+              const Icon = getIcon(icon, Sparkles);
+              return (
+                <li
+                  key={step}
+                  className="relative p-7 sm:p-8 rounded-2xl bg-card border border-border hover:border-primary/30 hover:shadow-lg transition-all"
+                >
+                  <div className="flex items-center justify-between mb-5">
+                    <span className="text-5xl font-extrabold text-primary/15 leading-none tabular-nums">
+                      {step}
+                    </span>
+                    <div className="inline-flex p-3 rounded-xl bg-primary/10 text-primary">
+                      <Icon className="h-6 w-6" />
+                    </div>
                   </div>
-                </div>
-                <h3 className="text-xl font-bold mb-3">{title}</h3>
-                <p className="text-muted leading-relaxed">{description}</p>
-              </li>
-            ))}
+                  <h3 className="text-xl font-bold mb-3">{title}</h3>
+                  <p className="text-muted leading-relaxed">{description}</p>
+                </li>
+              );
+            })}
           </ol>
         </div>
       </section>

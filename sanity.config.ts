@@ -6,6 +6,18 @@ import { projectId, dataset } from "./src/sanity/env";
 import StudioWelcome from "./src/sanity/StudioWelcome";
 import { PublishButton } from "./src/sanity/actions/autoPublish";
 
+const SINGLETONS = [
+  "siteSettings",
+  "homePage",
+  "aboutPage",
+  "eventsPage",
+  "organizersPage",
+  "volunteerPage",
+  "faqPage",
+  "contactPage",
+  "legalPage",
+];
+
 export default defineConfig({
   name: "amicale-des-benevoles",
   title: "Amicale des Bénévoles",
@@ -18,29 +30,29 @@ export default defineConfig({
         S.list()
           .title("Contenu du site")
           .items([
-            // Page d'accueil custom
+            // Page d'accueil custom du studio
             S.listItem()
-              .title("🏠 Bienvenue")
+              .title("👋 Bienvenue")
               .child(
-                S.component(StudioWelcome).title("Bienvenue")
+                S.component(StudioWelcome).title("Bienvenue sur ton CMS")
               ),
             S.divider(),
 
-            // Textes des pages (singletons)
+            // Toutes les pages (singletons) — les plus modifiées en premier
             S.listItem()
-              .title("📝 Textes des pages")
+              .title("📝 Pages du site")
               .child(
                 S.list()
-                  .title("Textes des pages")
+                  .title("Pages du site")
                   .items([
                     S.listItem().title("🏠 Accueil").child(
                       S.document().schemaType("homePage").documentId("homePage").title("Accueil")
                     ),
+                    S.listItem().title("📅 Page Événements").child(
+                      S.document().schemaType("eventsPage").documentId("eventsPage").title("Page Événements")
+                    ),
                     S.listItem().title("ℹ️ À propos").child(
                       S.document().schemaType("aboutPage").documentId("aboutPage").title("À propos")
-                    ),
-                    S.listItem().title("📅 Événements (page)").child(
-                      S.document().schemaType("eventsPage").documentId("eventsPage").title("Page Événements")
                     ),
                     S.listItem().title("🤝 Organisateurs").child(
                       S.document().schemaType("organizersPage").documentId("organizersPage").title("Organisateurs")
@@ -48,6 +60,13 @@ export default defineConfig({
                     S.listItem().title("👤 Espace bénévole").child(
                       S.document().schemaType("volunteerPage").documentId("volunteerPage").title("Espace bénévole")
                     ),
+                    S.listItem().title("❓ FAQ").child(
+                      S.document().schemaType("faqPage").documentId("faqPage").title("FAQ")
+                    ),
+                    S.listItem().title("📬 Contact").child(
+                      S.document().schemaType("contactPage").documentId("contactPage").title("Contact")
+                    ),
+                    S.divider(),
                     S.listItem().title("⚖️ Mentions légales").child(
                       S.document().schemaType("legalPage").documentId("legalPage").title("Mentions légales")
                     ),
@@ -55,7 +74,7 @@ export default defineConfig({
               ),
             S.divider(),
 
-            // Événements
+            // Événements (le contenu le plus mis à jour)
             S.listItem()
               .title("📅 Événements")
               .schemaType("event")
@@ -91,16 +110,6 @@ export default defineConfig({
                   ])
               ),
 
-            // Partenaires
-            S.listItem()
-              .title("⭐ Partenaires")
-              .schemaType("partner")
-              .child(
-                S.documentTypeList("partner")
-                  .title("Partenaires & logos")
-                  .defaultOrdering([{ field: "order", direction: "asc" }])
-              ),
-
             // Témoignages
             S.listItem()
               .title("💬 Témoignages")
@@ -118,6 +127,16 @@ export default defineConfig({
               .child(
                 S.documentTypeList("stat")
                   .title("Chiffres clés")
+                  .defaultOrdering([{ field: "order", direction: "asc" }])
+              ),
+
+            // Partenaires
+            S.listItem()
+              .title("⭐ Partenaires & logos")
+              .schemaType("partner")
+              .child(
+                S.documentTypeList("partner")
+                  .title("Partenaires & logos")
                   .defaultOrdering([{ field: "order", direction: "asc" }])
               ),
 
@@ -141,33 +160,14 @@ export default defineConfig({
   },
   document: {
     actions: (prev, { schemaType }) => {
-      const singletons = [
-        "siteSettings",
-        "homePage",
-        "aboutPage",
-        "eventsPage",
-        "organizersPage",
-        "volunteerPage",
-        "legalPage",
-      ];
-      const filtered = singletons.includes(schemaType)
+      const filtered = SINGLETONS.includes(schemaType)
         ? prev.filter((a) => !["duplicate", "delete", "unpublish"].includes(a.action ?? ""))
         : prev;
-      // Remplace l'action Publish par un bouton custom bien visible.
       return filtered.map((a) => (a.action === "publish" ? PublishButton : a));
     },
     newDocumentOptions: (prev, { creationContext }) => {
       if (creationContext.type === "global") {
-        const singletons = [
-          "siteSettings",
-          "homePage",
-          "aboutPage",
-          "eventsPage",
-          "organizersPage",
-          "volunteerPage",
-          "legalPage",
-        ];
-        return prev.filter((t) => !singletons.includes(t.templateId ?? ""));
+        return prev.filter((t) => !SINGLETONS.includes(t.templateId ?? ""));
       }
       return prev;
     },

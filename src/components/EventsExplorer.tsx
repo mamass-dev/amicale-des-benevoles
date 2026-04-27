@@ -25,7 +25,26 @@ const EventsMap = dynamic(() => import("./EventsMap"), {
   ),
 });
 
-export default function EventsExplorer({ events }: { events: SanityEvent[] }) {
+type Labels = {
+  search?: string;
+  all?: string;
+  sport?: string;
+  culture?: string;
+};
+
+export default function EventsExplorer({
+  events,
+  labels = {},
+}: {
+  events: SanityEvent[];
+  labels?: Labels;
+}) {
+  const lbl = {
+    search: labels.search || "Rechercher un événement, une ville...",
+    all: labels.all || "Tous",
+    sport: labels.sport || "Sportif",
+    culture: labels.culture || "Culturel",
+  };
   const [type, setType] = useState<FilterType>("all");
   const [month, setMonth] = useState<string>("all");
   const [search, setSearch] = useState("");
@@ -75,7 +94,7 @@ export default function EventsExplorer({ events }: { events: SanityEvent[] }) {
             type="search"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            placeholder="Rechercher un événement, une ville..."
+            placeholder={lbl.search}
             aria-label="Rechercher un événement"
             className="w-full pl-11 pr-4 py-3 rounded-full bg-card border border-border focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition"
           />
@@ -84,9 +103,9 @@ export default function EventsExplorer({ events }: { events: SanityEvent[] }) {
         <div className="flex flex-wrap items-center gap-2">
           <div role="tablist" aria-label="Filtre par type" className="inline-flex rounded-full bg-card border border-border p-1">
             {([
-              { v: "all", label: "Tous" },
-              { v: "sportif", label: "Sportif" },
-              { v: "culturel", label: "Culturel" },
+              { v: "all", label: lbl.all },
+              { v: "sportif", label: lbl.sport },
+              { v: "culturel", label: lbl.culture },
             ] as const).map((opt) => (
               <button
                 key={opt.v}

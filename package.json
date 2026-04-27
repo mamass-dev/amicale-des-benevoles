@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "eslint",
     "seed:pages": "node scripts/seed-pages.mjs",
+    "seed:new": "node scripts/seed-new-content.mjs",
     "seed:images": "node scripts/upload-images.mjs",
     "publish:drafts": "node scripts/publish-drafts.mjs"
   },

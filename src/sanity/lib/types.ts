@@ -10,6 +10,9 @@ export type SanityEvent = {
   image: string;
   spots: number;
   spotsFilled: number;
+  missions?: string[];
+  practicalInfo?: string[];
+  coordinates?: { lat: number; lng: number };
   _updatedAt?: string;
 };
 

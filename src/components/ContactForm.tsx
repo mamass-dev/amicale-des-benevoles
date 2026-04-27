@@ -11,7 +11,7 @@ const subjects = [
   { value: "autre", label: "Autre demande" },
 ];
 
-export default function ContactForm({ recipient }: { recipient: string }) {
+export default function ContactForm({ recipient, note }: { recipient: string; note?: string }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [subject, setSubject] = useState(subjects[0].value);
@@ -109,7 +109,7 @@ export default function ContactForm({ recipient }: { recipient: string }) {
       </button>
 
       <p className="text-xs text-muted">
-        Le formulaire ouvrira ton client mail avec un message pré-rempli. Si tu préfères, écris-nous directement à{" "}
+        {note ?? "Le formulaire ouvrira ton client mail avec un message pré-rempli. Si tu préfères, écris-nous directement à"}{" "}
         <a href={`mailto:${recipient}`} className="underline hover:text-primary">
           {recipient}
         </a>

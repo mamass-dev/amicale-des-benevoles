@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Mail, Phone, MapPin, Clock } from "lucide-react";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import ContactForm from "@/components/ContactForm";
-import { getSiteSettings } from "@/sanity/lib/fetch";
+import { getSiteSettings, getContactContent } from "@/sanity/lib/fetch";
 
 export const metadata: Metadata = {
   title: "Contact — Nous écrire",
@@ -25,7 +26,7 @@ export const metadata: Metadata = {
 const baseUrl = "https://amicaledesbenevoles.org";
 
 export default async function ContactPage() {
-  const settings = await getSiteSettings();
+  const [content, settings] = await Promise.all([getContactContent(), getSiteSettings()]);
   const email = settings.email || "contact@amicaledesbenevoles.org";
   const phone1 = settings.phone1 || "Quentin : 06 88 65 19 60";
   const phone2 = settings.phone2;
@@ -68,12 +69,9 @@ export default async function ContactPage() {
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
             <h1 className="text-4xl sm:text-5xl font-bold tracking-tight leading-tight">
-              Une question ? <span className="text-primary">On t&apos;écoute.</span>
+              {content.heroTitle1} <span className="text-primary">{content.heroTitle2}</span>
             </h1>
-            <p className="mt-4 text-lg text-muted leading-relaxed">
-              Bénévole, organisateur, partenaire, journaliste… Quel que soit ton sujet, on revient vers toi
-              sous 48h ouvrées.
-            </p>
+            <p className="mt-4 text-lg text-muted leading-relaxed">{content.heroDescription}</p>
           </div>
         </div>
       </section>
@@ -82,16 +80,14 @@ export default async function ContactPage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-[1fr_minmax(0,420px)] gap-10 lg:gap-16">
             <div>
-              <h2 className="text-2xl font-bold mb-2">Nous écrire</h2>
-              <p className="text-muted mb-8">
-                Remplis ce formulaire, on te répond rapidement.
-              </p>
-              <ContactForm recipient={email} />
+              <h2 className="text-2xl font-bold mb-2">{content.formTitle}</h2>
+              <p className="text-muted mb-8">{content.formIntro}</p>
+              <ContactForm recipient={email} note={content.formNote} />
             </div>
 
             <aside className="space-y-6">
               <div className="p-6 rounded-2xl bg-card border border-border">
-                <h2 className="font-bold text-lg mb-4">Coordonnées directes</h2>
+                <h2 className="font-bold text-lg mb-4">{content.sidebarTitle}</h2>
                 <ul className="space-y-4 text-sm">
                   <li className="flex gap-3">
                     <Mail className="h-5 w-5 text-primary shrink-0 mt-0.5" />
@@ -121,23 +117,21 @@ export default async function ContactPage() {
                     <Clock className="h-5 w-5 text-primary shrink-0 mt-0.5" />
                     <div>
                       <div className="font-medium mb-0.5">Réponse</div>
-                      <div className="text-muted">Sous 48h ouvrées (lun-ven)</div>
+                      <div className="text-muted">{content.sidebarReplyLabel}</div>
                     </div>
                   </li>
                 </ul>
               </div>
 
               <div className="p-6 rounded-2xl bg-primary/5 border border-primary/20">
-                <h3 className="font-bold mb-2">Tu es organisateur d&apos;événement ?</h3>
-                <p className="text-sm text-muted mb-4">
-                  Découvre comment l&apos;Amicale peut mobiliser, encadrer et fidéliser tes bénévoles.
-                </p>
-                <a
+                <h3 className="font-bold mb-2">{content.sidebarBoxTitle}</h3>
+                <p className="text-sm text-muted mb-4">{content.sidebarBoxText}</p>
+                <Link
                   href="/organisateurs"
                   className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:gap-3 transition-all"
                 >
-                  Notre offre organisateurs →
-                </a>
+                  {content.sidebarBoxLink}
+                </Link>
               </div>
             </aside>
           </div>
