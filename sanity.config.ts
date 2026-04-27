@@ -4,7 +4,6 @@ import { visionTool } from "@sanity/vision";
 import { schemaTypes } from "./src/sanity/schemas";
 import { projectId, dataset } from "./src/sanity/env";
 import StudioWelcome from "./src/sanity/StudioWelcome";
-import { PublishButton } from "./src/sanity/actions/autoPublish";
 
 const SINGLETONS = [
   "siteSettings",
@@ -159,11 +158,13 @@ export default defineConfig({
     types: schemaTypes,
   },
   document: {
+    // Pour les pages uniques (singletons), on cache duplicate/delete/unpublish
+    // mais on garde le bouton Publish standard de Sanity Studio.
     actions: (prev, { schemaType }) => {
-      const filtered = SINGLETONS.includes(schemaType)
-        ? prev.filter((a) => !["duplicate", "delete", "unpublish"].includes(a.action ?? ""))
-        : prev;
-      return filtered.map((a) => (a.action === "publish" ? PublishButton : a));
+      if (SINGLETONS.includes(schemaType)) {
+        return prev.filter((a) => !["duplicate", "delete", "unpublish"].includes(a.action ?? ""));
+      }
+      return prev;
     },
     newDocumentOptions: (prev, { creationContext }) => {
       if (creationContext.type === "global") {
