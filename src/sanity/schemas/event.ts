@@ -12,7 +12,6 @@ export default defineType({
     { name: "infos", title: "Informations", icon: CalendarIcon, default: true },
     { name: "details", title: "Détails page" },
     { name: "geo", title: "Géolocalisation" },
-    { name: "benevoles", title: "Bénévoles" },
   ],
   fields: [
     defineField({
@@ -132,23 +131,6 @@ export default defineType({
       group: "geo",
     }),
 
-    defineField({
-      name: "spots",
-      title: "Nombre total de places bénévoles",
-      type: "number",
-      description: "Combien de bénévoles sont nécessaires au total ?",
-      group: "benevoles",
-      validation: (r) => r.min(1).error("Au moins 1 place"),
-    }),
-    defineField({
-      name: "spotsFilled",
-      title: "Places déjà remplies",
-      type: "number",
-      description:
-        "Mets à jour ce chiffre au fur et à mesure des inscriptions.",
-      group: "benevoles",
-      validation: (r) => r.min(0),
-    }),
   ],
   orderings: [
     { title: "Date (prochain d'abord)", name: "dateAsc", by: [{ field: "dateStart", direction: "asc" }] },
@@ -160,15 +142,13 @@ export default defineType({
       subtitle: "dates",
       media: "image",
       type: "type",
-      spots: "spots",
-      spotsFilled: "spotsFilled",
+      location: "location",
     },
-    prepare({ title, subtitle, media, type, spots, spotsFilled }) {
+    prepare({ title, subtitle, media, type, location }) {
       const emoji = type === "sportif" ? "🏃" : "🎭";
-      const fill = spots ? `${spotsFilled || 0}/${spots} bénévoles` : "";
       return {
         title: `${emoji} ${title}`,
-        subtitle: `${subtitle || ""} — ${fill}`,
+        subtitle: `${subtitle || ""}${location ? ` — ${location}` : ""}`,
         media,
       };
     },

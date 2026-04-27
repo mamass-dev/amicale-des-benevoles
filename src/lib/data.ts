@@ -9,8 +9,6 @@ export const events = [
     type: "sportif",
     description: "Plonge au cœur des Gorges du Verdon pour une aventure swimrun inoubliable. Aide à l'organisation de cette course unique mêlant nage et course en pleine nature.",
     image: "/images/events/srman-calanques.webp",
-    spots: 40,
-    spotsFilled: 12,
   },
   {
     slug: "openlakes",
@@ -22,8 +20,6 @@ export const events = [
     type: "sportif",
     description: "Festival de nage en eau libre au Grand Parc de Miribel-Jonage. Un événement convivial aux portes de Lyon.",
     image: "/images/events/benevoles-openlakes.webp",
-    spots: 30,
-    spotsFilled: 8,
   },
   {
     slug: "colnago-gf-mont-ventoux",
@@ -35,8 +31,6 @@ export const events = [
     type: "sportif",
     description: "La mythique Gran Fondo cycliste sur les pentes du Mont Ventoux. 4 jours d'événement, des milliers de passionnés.",
     image: "/images/events/gf-ventoux.jpg",
-    spots: 80,
-    spotsFilled: 35,
   },
   {
     slug: "lyon-street-food-festival",
@@ -48,8 +42,6 @@ export const events = [
     type: "culturel",
     description: "Le plus grand festival de street food de France ! Rejoins l'équipe bénévole pour 4 jours de gastronomie et de fête à Lyon.",
     image: "/images/events/lyon-street-food.jpg",
-    spots: 120,
-    spotsFilled: 67,
   },
   {
     slug: "swimrunman-lac-vassiviere",
@@ -61,8 +53,6 @@ export const events = [
     type: "sportif",
     description: "Swimrun au cœur du Limousin sur le magnifique Lac de Vassivière.",
     image: "/images/events/swimrunman-vassiviere.jpg",
-    spots: 35,
-    spotsFilled: 10,
   },
   {
     slug: "marathon-du-vercors",
@@ -74,8 +64,6 @@ export const events = [
     type: "sportif",
     description: "Course mythique sur le plateau du Vercors. Un week-end sportif dans un cadre naturel exceptionnel.",
     image: "/images/events/vercors.jpg",
-    spots: 50,
-    spotsFilled: 22,
   },
   {
     slug: "arcteryx-alpine-academy",
@@ -87,8 +75,6 @@ export const events = [
     type: "sportif",
     description: "Semaine de formation et d'aventure en montagne à Chamonix. Alpinisme, escalade et trail au pied du Mont-Blanc.",
     image: "/images/events/arcteryx.png",
-    spots: 60,
-    spotsFilled: 28,
   },
   {
     slug: "yotta",
@@ -100,8 +86,6 @@ export const events = [
     type: "sportif",
     description: "Événement multisport à Vichy. Une expérience bénévole riche au cœur de l'Allier.",
     image: "/images/events/event-sport.jpg",
-    spots: 45,
-    spotsFilled: 15,
   },
   {
     slug: "triathlon-de-la-madeleine",
@@ -113,8 +97,6 @@ export const events = [
     type: "sportif",
     description: "Triathlon au pied du Col de la Madeleine en Savoie. Un défi sportif dans un cadre alpin grandiose.",
     image: "/images/events/hero-benevoles.jpg",
-    spots: 30,
-    spotsFilled: 9,
   },
   {
     slug: "festival-danse-avoriaz",
@@ -126,8 +108,6 @@ export const events = [
     type: "culturel",
     description: "Une semaine de danse en altitude ! Spectacles, ateliers et rencontres dans le cadre unique d'Avoriaz.",
     image: "/images/events/event-outdoor.jpg",
-    spots: 50,
-    spotsFilled: 48,
   },
   {
     slug: "triathlon-t100",
@@ -139,8 +119,6 @@ export const events = [
     type: "sportif",
     description: "Compétition internationale de triathlon sur la Côte d'Azur.",
     image: "/images/events/visuel-site.jpg",
-    spots: 70,
-    spotsFilled: 30,
   },
   {
     slug: "ventouxman",
@@ -152,8 +130,6 @@ export const events = [
     type: "sportif",
     description: "Triathlon longue distance au pied du Géant de Provence. Un événement mythique.",
     image: "/images/events/ventouxman-benevole.png",
-    spots: 40,
-    spotsFilled: 18,
   },
   {
     slug: "ultra-trail-grand-colombier",
@@ -165,8 +141,6 @@ export const events = [
     type: "sportif",
     description: "Ultra-trail dans le massif du Grand Colombier, aux confins du Bugey. Sentiers, forêts et panoramas.",
     image: "/images/events/utgc.png",
-    spots: 55,
-    spotsFilled: 20,
   },
   {
     slug: "high-five-festival",
@@ -178,8 +152,6 @@ export const events = [
     type: "culturel",
     description: "Festival international du film de montagne et d'aventure à Annecy. Projections, rencontres et passion.",
     image: "/images/events/lafffr.png",
-    spots: 40,
-    spotsFilled: 25,
   },
   {
     slug: "la-saintelyon",
@@ -191,8 +163,6 @@ export const events = [
     type: "sportif",
     description: "La course nocturne mythique de Saint-Étienne à Lyon. 20 000 participants, une aventure humaine incroyable.",
     image: "/images/events/benevoles-saintelyon.jpg",
-    spots: 150,
-    spotsFilled: 95,
   },
   {
     slug: "rock-on-snow",
@@ -204,8 +174,6 @@ export const events = [
     type: "culturel",
     description: "Festival de musique sur neige à Avoriaz. Rock, électro et bonne humeur en altitude.",
     image: "/images/events/groupe-benevoles.jpg",
-    spots: 45,
-    spotsFilled: 20,
   },
 ];
 

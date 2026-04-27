@@ -8,8 +8,6 @@ export type SanityEvent = {
   dateEnd: string;
   description: string;
   image: string;
-  spots: number;
-  spotsFilled: number;
   missions?: string[];
   practicalInfo?: string[];
   coordinates?: { lat: number; lng: number };

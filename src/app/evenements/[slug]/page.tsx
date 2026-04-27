@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import { MapPin, Calendar, ArrowLeft, ArrowRight, Users, Clock, CheckCircle2 } from "lucide-react";
+import { MapPin, Calendar, ArrowLeft, ArrowRight, Clock, CheckCircle2 } from "lucide-react";
 import { getEvents, getEventBySlug, getSiteSettings } from "@/sanity/lib/fetch";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import EventCard from "@/components/EventCard";
@@ -181,14 +181,6 @@ export default async function EventPage({ params }: Props) {
               <MapPin className="h-5 w-5 text-primary shrink-0" />
               <span className="text-base sm:text-lg">{event.location}</span>
             </div>
-            {event.spots ? (
-              <div className="flex items-center gap-2 text-muted">
-                <Users className="h-5 w-5 text-primary shrink-0" />
-                <span className="text-base sm:text-lg">
-                  {event.spots} places bénévoles
-                </span>
-              </div>
-            ) : null}
           </div>
 
           <p className="text-base sm:text-lg text-muted leading-relaxed mb-10">
