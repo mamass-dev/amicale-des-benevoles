@@ -3,6 +3,7 @@ import Image from "next/image";
 import { Heart, Quote, ArrowRight } from "lucide-react";
 import { getTeamMembers, getAboutContent, getSiteSettings } from "@/sanity/lib/fetch";
 import { getIcon } from "@/lib/icons";
+import Breadcrumbs from "@/components/Breadcrumbs";
 
 export const metadata: Metadata = {
   title: "À propos | Notre histoire, notre équipe, nos valeurs",
@@ -14,9 +15,11 @@ export const metadata: Metadata = {
     "bénévolat événementiel",
     "équipe amicale bénévoles",
   ],
+  alternates: { canonical: "/a-propos" },
   openGraph: {
     title: "À propos de l'Amicale des Bénévoles",
     description: "Association loi 1901 créée en 2019 à Lyon. +3000 bénévoles engagés en France.",
+    url: "/a-propos",
   },
 };
 
@@ -30,7 +33,8 @@ export default async function AProposPage() {
 
   return (
     <>
-      <section className="relative py-20 overflow-hidden">
+      <Breadcrumbs items={[{ label: "À propos" }]} />
+      <section className="relative py-12 sm:py-16 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5" />
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">

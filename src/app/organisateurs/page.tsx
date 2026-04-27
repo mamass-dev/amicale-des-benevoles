@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Star, CheckCircle, Mail, Phone, Quote, Heart } from "lucide-react";
 import { getTestimonials, getOrganizersContent, getSiteSettings } from "@/sanity/lib/fetch";
 import { getIcon } from "@/lib/icons";
+import Breadcrumbs from "@/components/Breadcrumbs";
 
 export const metadata: Metadata = {
   title: "Organisateurs | Mobilisez vos bénévoles avec l'Amicale",
@@ -14,9 +15,11 @@ export const metadata: Metadata = {
     "programme bénévole événement",
     "mobilisation bénévoles",
   ],
+  alternates: { canonical: "/organisateurs" },
   openGraph: {
     title: "Offre Organisateurs | Amicale des Bénévoles",
     description: "Mobilisez, encadrez et fidélisez vos bénévoles. 95% de satisfaction, 62% de fidélisation.",
+    url: "/organisateurs",
   },
 };
 
@@ -33,7 +36,8 @@ export default async function OrganisateursPage() {
 
   return (
     <>
-      <section className="relative py-20 overflow-hidden">
+      <Breadcrumbs items={[{ label: "Organisateurs" }]} />
+      <section className="relative py-12 sm:py-16 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-accent/5 via-transparent to-primary/5" />
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">

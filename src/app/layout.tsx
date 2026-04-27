@@ -18,7 +18,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://amicaledesbenevoles.org"),
   title: {
-    default: "Amicale des Bénévoles | Créateur d'Expériences Citoyennes 100% Événementiel",
+    default: "Amicale des Bénévoles — Bénévolat événementiel sportif & culturel",
     template: "%s | Amicale des Bénévoles",
   },
   description:
@@ -41,10 +41,9 @@ export const metadata: Metadata = {
     locale: "fr_FR",
     url: "https://amicaledesbenevoles.org",
     siteName: "Amicale des Bénévoles",
-    title: "Amicale des Bénévoles | Créateur d'Expériences Citoyennes",
+    title: "Amicale des Bénévoles — Créateur d'expériences citoyennes",
     description:
       "Rejoignez +3000 bénévoles engagés sur des événements sportifs et culturels partout en France.",
-    images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "Amicale des Bénévoles" }],
   },
   twitter: {
     card: "summary_large_image",
@@ -104,8 +103,13 @@ export default async function RootLayout({
         />
       </head>
       <body className="min-h-full flex flex-col">
+        <a href="#main-content" className="skip-link">
+          Aller au contenu principal
+        </a>
         <Header settings={settings} />
-        <main className="flex-1 pt-16">{children}</main>
+        <main id="main-content" className="flex-1 pt-16">
+          {children}
+        </main>
         <Footer settings={settings} />
       </body>
     </html>

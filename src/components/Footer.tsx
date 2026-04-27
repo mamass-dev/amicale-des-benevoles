@@ -58,6 +58,8 @@ const defaultNavLinks: NavLink[] = [
   { href: "/evenements", label: "Événements" },
   { href: "/organisateurs", label: "Organisateurs" },
   { href: "/espace-benevole", label: "Espace bénévole" },
+  { href: "/faq", label: "FAQ" },
+  { href: "/contact", label: "Contact" },
 ];
 
 export default function Footer({ settings }: FooterProps) {

@@ -12,7 +12,8 @@ export const eventsQuery = groq`
     description,
     "image": image.asset->url,
     spots,
-    spotsFilled
+    spotsFilled,
+    _updatedAt
   }
 `;
 
@@ -28,7 +29,8 @@ export const eventBySlugQuery = groq`
     description,
     "image": image.asset->url,
     spots,
-    spotsFilled
+    spotsFilled,
+    _updatedAt
   }
 `;
 

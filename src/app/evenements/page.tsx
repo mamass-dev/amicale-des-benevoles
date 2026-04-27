@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
-import EventCard from "@/components/EventCard";
 import { ArrowRight } from "lucide-react";
 import { getEvents, getEventsPageContent, getSiteSettings } from "@/sanity/lib/fetch";
+import Breadcrumbs from "@/components/Breadcrumbs";
+import EventsExplorer from "@/components/EventsExplorer";
 
 export const metadata: Metadata = {
   title: "Événements bénévoles 2026 | Sportifs & Culturels en France",
@@ -15,9 +16,11 @@ export const metadata: Metadata = {
     "SaintéLyon bénévole",
     "High Five Festival bénévole",
   ],
+  alternates: { canonical: "/evenements" },
   openGraph: {
     title: "Événements bénévoles 2026 | Amicale des Bénévoles",
     description: "18 événements sportifs et culturels en France. Trouve ta mission bénévole idéale.",
+    url: "/evenements",
   },
 };
 
@@ -32,7 +35,8 @@ export default async function EvenementsPage() {
 
   return (
     <>
-      <section className="relative py-20 overflow-hidden">
+      <Breadcrumbs items={[{ label: "Événements" }]} />
+      <section className="relative py-12 sm:py-16 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5" />
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <h1 className="text-4xl sm:text-5xl font-bold tracking-tight">
@@ -42,13 +46,9 @@ export default async function EvenementsPage() {
         </div>
       </section>
 
-      <section className="py-16">
+      <section className="py-12 sm:py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {events.map((event) => (
-              <EventCard key={event.slug} event={event} />
-            ))}
-          </div>
+          <EventsExplorer events={events} />
         </div>
       </section>
 

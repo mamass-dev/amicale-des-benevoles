@@ -10,6 +10,7 @@ export type SanityEvent = {
   image: string;
   spots: number;
   spotsFilled: number;
+  _updatedAt?: string;
 };
 
 export type StaffMember = {

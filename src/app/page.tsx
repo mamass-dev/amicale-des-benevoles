@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, Heart, Star } from "lucide-react";
+import { ArrowRight, Heart, Star, UserPlus, CalendarCheck, Sparkles } from "lucide-react";
 import Marquee from "@/components/Marquee";
 import StatsSection from "@/components/StatsSection";
 import EventCard from "@/components/EventCard";
@@ -28,7 +28,7 @@ export default async function HomePage() {
 
   return (
     <>
-      <section className="relative min-h-[70vh] sm:min-h-[92vh] flex items-center overflow-hidden">
+      <section className="relative -mt-16 min-h-[600px] sm:min-h-[80vh] lg:min-h-[88vh] flex items-center overflow-hidden">
         <Image
           src={content.heroImage}
           alt="Bénévoles de l'Amicale en action"
@@ -39,20 +39,20 @@ export default async function HomePage() {
         />
         <div className="absolute inset-0 bg-gradient-to-r from-secondary/85 via-secondary/60 to-secondary/30" />
 
-        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20">
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-32 pb-16 sm:pt-36 sm:pb-20">
           <div className="max-w-2xl">
             <div className="inline-flex items-center gap-2 rounded-full bg-white/15 backdrop-blur-sm border border-white/20 px-4 py-1.5 text-sm font-medium text-white mb-6">
               <Heart className="h-4 w-4" fill="currentColor" />
               {content.heroBadge}
             </div>
-            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1] text-white">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.05] text-white">
               {content.heroTitle1}{" "}
               <span className="text-primary-light">{content.heroTitle2}</span>
             </h1>
-            <p className="mt-3 text-2xl sm:text-3xl font-light text-white/70">
+            <p className="mt-3 text-xl sm:text-2xl md:text-3xl font-light text-white/70">
               {content.heroSubtitle}
             </p>
-            <p className="mt-6 text-lg text-white/80 max-w-xl leading-relaxed">
+            <p className="mt-6 text-base sm:text-lg text-white/80 max-w-xl leading-relaxed">
               {content.heroDescription}
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
@@ -77,6 +77,61 @@ export default async function HomePage() {
       </section>
 
       <Marquee />
+
+      <section className="py-20 sm:py-24 bg-secondary/[0.02]">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-2xl mx-auto mb-14">
+            <p className="text-sm font-semibold uppercase tracking-wider text-primary mb-3">
+              Comment ça marche
+            </p>
+            <h2 className="text-3xl sm:text-4xl font-bold mb-4">
+              Devenir bénévole, en 3 étapes
+            </h2>
+            <p className="text-muted text-lg">
+              Pas besoin d&apos;expérience. Juste l&apos;envie de vivre un moment fort.
+            </p>
+          </div>
+
+          <ol className="grid md:grid-cols-3 gap-6 lg:gap-8 relative">
+            {[
+              {
+                step: "01",
+                Icon: UserPlus,
+                title: "Inscris-toi en 2 minutes",
+                description: "Crée ton compte gratuit sur Recrewteer. Tu renseignes tes coordonnées et tes disponibilités, c'est tout.",
+              },
+              {
+                step: "02",
+                Icon: CalendarCheck,
+                title: "Choisis ton événement",
+                description: "Parcours les événements ouverts, sélectionne celui qui te tente et la mission qui te correspond.",
+              },
+              {
+                step: "03",
+                Icon: Sparkles,
+                title: "Vis l'expérience",
+                description: "Tu rejoins une équipe encadrée, tu prends ton poste, et tu repars avec des souvenirs et des potes.",
+              },
+            ].map(({ step, Icon, title, description }) => (
+              <li
+                key={step}
+                className="relative p-7 sm:p-8 rounded-2xl bg-card border border-border hover:border-primary/30 hover:shadow-lg transition-all"
+              >
+                <div className="flex items-center justify-between mb-5">
+                  <span className="text-5xl font-extrabold text-primary/15 leading-none tabular-nums">
+                    {step}
+                  </span>
+                  <div className="inline-flex p-3 rounded-xl bg-primary/10 text-primary">
+                    <Icon className="h-6 w-6" />
+                  </div>
+                </div>
+                <h3 className="text-xl font-bold mb-3">{title}</h3>
+                <p className="text-muted leading-relaxed">{description}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
 
       <section className="py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -179,25 +234,20 @@ export default async function HomePage() {
           <h2 className="text-3xl sm:text-4xl font-bold text-center mb-2">{content.galleryTitle}</h2>
           <p className="text-muted text-center">{content.gallerySubtitle}</p>
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-2 px-2 mb-2">
-          {content.mosaicImages.map((src, i) => (
-            <div key={i} className="relative aspect-[4/3] rounded-xl overflow-hidden">
-              <Image src={src} alt={`Bénévoles en action ${i + 1}`} fill className="object-cover hover:scale-105 transition-transform duration-500" sizes="(max-width: 768px) 50vw, 25vw" />
-            </div>
-          ))}
-        </div>
-        <div className="flex gap-2 overflow-x-auto pb-4 px-2 snap-x snap-mandatory">
-          {content.galleryImages.map((src, i) => (
-            <div key={i} className="shrink-0 w-40 h-40 sm:w-48 sm:h-48 rounded-xl overflow-hidden relative snap-center">
-              <Image
-                src={src}
-                alt={`Moment bénévole ${i + 1}`}
-                fill
-                className="object-cover hover:scale-110 transition-transform duration-500"
-                sizes="192px"
-              />
-            </div>
-          ))}
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+            {content.mosaicImages.map((src, i) => (
+              <div key={i} className="relative aspect-[4/3] rounded-xl overflow-hidden group">
+                <Image
+                  src={src}
+                  alt={`Bénévoles en action ${i + 1}`}
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  sizes="(max-width: 768px) 50vw, 25vw"
+                />
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 

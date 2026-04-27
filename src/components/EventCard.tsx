@@ -64,6 +64,7 @@ export default function EventCard({ event }: { event: Event }) {
             href="https://event.recrewteer.com/v2/organization/121/form/7034"
             target="_blank"
             rel="noopener noreferrer"
+            aria-label={`S'inscrire comme bénévole pour ${event.name}`}
             className="flex-1 text-center rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-white hover:bg-primary-dark transition-colors"
           >
             S&apos;inscrire

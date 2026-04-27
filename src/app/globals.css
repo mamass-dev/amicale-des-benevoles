@@ -44,6 +44,10 @@ html {
   scroll-behavior: smooth;
 }
 
+#main-content {
+  scroll-margin-top: 4rem;
+}
+
 @keyframes marquee {
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }
@@ -53,6 +57,10 @@ html {
   animation: marquee 30s linear infinite;
 }
 
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
 @keyframes count-up {
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
@@ -60,4 +68,74 @@ html {
 
 .animate-count-up {
   animation: count-up 0.6s ease-out forwards;
+}
+
+.skip-link {
+  position: absolute;
+  top: -64px;
+  left: 1rem;
+  z-index: 100;
+  padding: 0.75rem 1.25rem;
+  background: var(--primary);
+  color: white;
+  font-weight: 600;
+  border-radius: 9999px;
+  box-shadow: 0 10px 25px -5px rgba(233, 122, 43, 0.4);
+  transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+  top: 1rem;
+  outline: 2px solid white;
+  outline-offset: 2px;
+}
+
+.amb-marker {
+  position: relative;
+  background: transparent;
+  border: 0;
+}
+
+.amb-marker__pin {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 24px;
+  height: 24px;
+  border-radius: 50% 50% 50% 0;
+  transform: translateX(-50%) rotate(-45deg);
+  background: var(--primary);
+  border: 2px solid white;
+  box-shadow: 0 4px 10px rgba(15, 23, 42, 0.25);
+}
+
+.amb-marker--sportif .amb-marker__pin {
+  background: var(--secondary);
+}
+
+.amb-marker--culturel .amb-marker__pin {
+  background: var(--accent);
+}
+
+.leaflet-popup-content-wrapper {
+  border-radius: 14px;
+}
+
+.leaflet-popup-content {
+  margin: 12px 14px;
+  font-family: var(--font-sans);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .animate-marquee {
+    animation: none !important;
+  }
 }

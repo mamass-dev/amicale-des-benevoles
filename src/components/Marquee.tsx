@@ -10,8 +10,8 @@ export default function Marquee() {
   const text = items.join("  ✦  ");
 
   return (
-    <div className="bg-primary text-white py-3 overflow-hidden">
-      <div className="animate-marquee whitespace-nowrap flex">
+    <div className="bg-primary text-white py-3 overflow-hidden" role="presentation">
+      <div className="animate-marquee whitespace-nowrap flex" aria-hidden="true">
         <span className="text-sm font-medium mx-4">{text}  ✦  {text}</span>
       </div>
     </div>
