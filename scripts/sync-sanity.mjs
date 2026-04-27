@@ -210,6 +210,23 @@ async function createIfNotExists(doc, label) {
   }
 }
 
+async function cleanupDrafts() {
+  const drafts = await client.fetch('*[_id in path("drafts.**")]{_id, _updatedAt}');
+  if (drafts.length === 0) {
+    console.log("✓ Aucun draft à nettoyer");
+    return;
+  }
+  console.log(`Trouvé ${drafts.length} draft(s) :`);
+  for (const d of drafts) {
+    try {
+      await client.delete(d._id);
+      console.log(`✓ Supprimé : ${d._id} (du ${d._updatedAt.split("T")[0]})`);
+    } catch (err) {
+      console.error(`✗ ${d._id} : ${err.message}`);
+    }
+  }
+}
+
 (async () => {
   console.log("🧹 1) Nettoyage des champs orphelins...\n");
   for (const [docId, fields] of Object.entries(orphanFields)) {
@@ -226,6 +243,10 @@ async function createIfNotExists(doc, label) {
   await createIfNotExists(faqPageDoc, "faqPage");
   await createIfNotExists(contactPageDoc, "contactPage");
 
+  console.log("\n🗑  4) Suppression des drafts obsolètes (force le studio à montrer le published clean)...\n");
+  await cleanupDrafts();
+
   console.log("\n✅ Synchronisation terminée.");
-  console.log("   Va dans le studio (/admin) pour voir le résultat et publier si besoin.");
+  console.log("   1. Hard-refresh le studio (Cmd+Shift+R) pour recharger les schémas.");
+  console.log("   2. Vérifie chaque page, modifie si besoin, puis Publish.");
 })();
