@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { User, ExternalLink, ArrowRight, Calendar, LifeBuoy, Mail } from "lucide-react";
-import { getVolunteerContent, getSiteSettings } from "@/sanity/lib/fetch";
+import { getVolunteerContent, getSiteSettings } from "@/lib/content";
 import { getIcon } from "@/lib/icons";
 import Breadcrumbs from "@/components/Breadcrumbs";
 

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, HelpCircle } from "lucide-react";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import { getSiteSettings, getFaqContent } from "@/sanity/lib/fetch";
+import { getSiteSettings, getFaqContent } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "FAQ — Questions fréquentes sur le bénévolat événementiel",

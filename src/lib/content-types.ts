@@ -1,4 +1,7 @@
-export type SanityEvent = {
+// Types contenu — utilisés par les pages et composants.
+// L'implémentation derrière (lib/content.ts) variera : statique → Payload.
+
+export type Event = {
   slug: string;
   name: string;
   type: string;

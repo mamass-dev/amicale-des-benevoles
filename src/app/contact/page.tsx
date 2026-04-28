@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Mail, Phone, MapPin, Clock } from "lucide-react";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import ContactForm from "@/components/ContactForm";
-import { getSiteSettings, getContactContent } from "@/sanity/lib/fetch";
+import { getSiteSettings, getContactContent } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Contact — Nous écrire",

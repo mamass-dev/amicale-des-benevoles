@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { Heart, Quote, ArrowRight } from "lucide-react";
-import { getTeamMembers, getAboutContent, getSiteSettings } from "@/sanity/lib/fetch";
+import { getTeamMembers, getAboutContent, getSiteSettings } from "@/lib/content";
 import { getIcon } from "@/lib/icons";
 import Breadcrumbs from "@/components/Breadcrumbs";
 

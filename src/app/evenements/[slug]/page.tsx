@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { MapPin, Calendar, ArrowLeft, ArrowRight, Clock, CheckCircle2 } from "lucide-react";
-import { getEvents, getEventBySlug, getSiteSettings } from "@/sanity/lib/fetch";
+import { getEvents, getEventBySlug, getSiteSettings } from "@/lib/content";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import EventCard from "@/components/EventCard";
 

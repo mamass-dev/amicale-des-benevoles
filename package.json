@@ -7,27 +7,17 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "seed:pages": "node scripts/seed-pages.mjs",
-    "seed:new": "node scripts/seed-new-content.mjs",
-    "seed:images": "node scripts/upload-images.mjs",
-    "sync:sanity": "node scripts/sync-sanity.mjs",
-    "audit:sanity": "node scripts/audit-sanity.mjs",
-    "publish:drafts": "node scripts/publish-drafts.mjs"
+    "backup:sanity": "node scripts/backup-sanity.mjs",
+    "download:assets": "node scripts/download-sanity-assets.mjs"
   },
   "dependencies": {
-    "@sanity/icons": "^3.7.4",
-    "@sanity/image-url": "^2.0.3",
-    "@sanity/ui": "^3.1.14",
-    "@sanity/vision": "^5.18.0",
     "framer-motion": "^12.38.0",
     "leaflet": "^1.9.4",
     "lucide-react": "^1.7.0",
     "next": "16.2.1",
-    "next-sanity": "^12.1.6",
     "react": "19.2.4",
     "react-dom": "19.2.4",
-    "react-leaflet": "^5.0.0",
-    "sanity": "^5.18.0"
+    "react-leaflet": "^5.0.0"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",

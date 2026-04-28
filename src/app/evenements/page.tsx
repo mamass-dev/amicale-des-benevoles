@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { ArrowRight } from "lucide-react";
-import { getEvents, getEventsPageContent, getSiteSettings } from "@/sanity/lib/fetch";
+import { getEvents, getEventsPageContent, getSiteSettings } from "@/lib/content";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import EventsExplorer from "@/components/EventsExplorer";
 

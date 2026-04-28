@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Star, CheckCircle, Mail, Phone, Quote, Heart } from "lucide-react";
-import { getTestimonials, getOrganizersContent, getSiteSettings } from "@/sanity/lib/fetch";
+import { getTestimonials, getOrganizersContent, getSiteSettings } from "@/lib/content";
 import { getIcon } from "@/lib/icons";
 import Breadcrumbs from "@/components/Breadcrumbs";
 

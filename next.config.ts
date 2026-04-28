@@ -4,12 +4,6 @@ const nextConfig: NextConfig = {
   reactCompiler: true,
   images: {
     formats: ["image/webp", "image/avif"],
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "cdn.sanity.io",
-      },
-    ],
   },
 };
 

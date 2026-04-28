@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { getEvents } from "@/sanity/lib/fetch";
+import { getEvents } from "@/lib/content";
 
 const baseUrl = "https://amicaledesbenevoles.org";
 

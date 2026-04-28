@@ -11,7 +11,7 @@ import {
   getStats,
   getHomeContent,
   getSiteSettings,
-} from "@/sanity/lib/fetch";
+} from "@/lib/content";
 import { getIcon } from "@/lib/icons";
 
 export default async function HomePage() {

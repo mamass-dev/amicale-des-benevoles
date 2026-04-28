@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { getLegalContent } from "@/sanity/lib/fetch";
+import { getLegalContent } from "@/lib/content";
 import Breadcrumbs from "@/components/Breadcrumbs";
 
 export const metadata: Metadata = {
