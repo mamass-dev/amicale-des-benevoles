@@ -1,15 +1,16 @@
 import type { NextConfig } from "next";
-import { withPayload } from "@payloadcms/next/withPayload";
 
 const nextConfig: NextConfig = {
-  // reactCompiler désactivé : incompatible avec les server components Payload v3
-  // qui causait des erreurs React #418 (hydration mismatch) en prod.
+  reactCompiler: true,
   images: {
     formats: ["image/webp", "image/avif"],
     remotePatterns: [
-      { protocol: "https", hostname: "*.public.blob.vercel-storage.com" },
+      {
+        protocol: "https",
+        hostname: "cdn.sanity.io",
+      },
     ],
   },
 };
 
-export default withPayload(nextConfig);
+export default nextConfig;

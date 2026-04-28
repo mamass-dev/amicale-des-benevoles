@@ -1,0 +1,497 @@
+[
+  {
+    "_createdAt": "2026-04-20T08:55:03Z",
+    "_id": "drafts.event-colnago-gf-mont-ventoux",
+    "_rev": "vHMWURdet2PJitEig9DxJb",
+    "_system": {
+      "base": {
+        "id": "event-colnago-gf-mont-ventoux",
+        "rev": "RBJqoLyFv6Iw6U7PeXdg7P"
+      }
+    },
+    "_type": "event",
+    "_updatedAt": "2026-04-27T13:34:51Z",
+    "dateEnd": "2026-06-07",
+    "dateStart": "2026-06-04",
+    "dates": "04-07 juin 2026",
+    "description": "La mythique Gran Fondo cycliste sur les pentes du Mont Ventoux.",
+    "image": {
+      "_type": "image",
+      "asset": {
+        "_ref": "image-f0be4908453861bbc64850529dfea65bd785f517-1200x800-jpg",
+        "_type": "reference"
+      }
+    },
+    "location": "Vaison-la-Romaine (84)",
+    "name": "Colnago GF Mont Ventoux",
+    "slug": {
+      "_type": "slug",
+      "current": "colnago-gf-mont-ventoux"
+    },
+    "type": "sportif"
+  },
+  {
+    "_createdAt": "2026-04-15T13:25:24Z",
+    "_id": "drafts.eventsPage",
+    "_rev": "e29c2492-2382-4742-9315-0ced86719ab8",
+    "_system": {
+      "base": {
+        "id": "eventsPage",
+        "rev": "JarLstVcRzJ90n7wE6bXi7"
+      }
+    },
+    "_type": "eventsPage",
+    "_updatedAt": "2026-04-28T08:06:43Z",
+    "ctaButton": "Rejoindre l'Amicale",
+    "ctaDescription": "Inscris-toi à l'Amicale pour accéder aux inscriptions, au covoiturage et à l'hébergement solidaire.",
+    "ctaTitle": "Un événement te plaît ?",
+    "filterAllLabel": "Tous",
+    "filterCultureLabel": "Culturel",
+    "filterSportLabel": "Sportif",
+    "heroDescription": "{count} événements sportifs et culturels dans le quart Sud-Est de la France. Qu'importe les raisons qui t'amènent à t'engager, ton acte citoyen est précieux !",
+    "heroTitle1": "Nos",
+    "heroTitle2": "événements",
+    "searchPlaceholder": "Rechercher un événement, une ville..."
+  },
+  {
+    "_createdAt": "2026-04-15T13:25:20Z",
+    "_id": "drafts.homePage",
+    "_rev": "dcbbe10d-dfb7-4d3e-9858-e1c109d18652",
+    "_system": {
+      "base": {
+        "id": "homePage",
+        "rev": "7BhvkXk9W5ax6C5GuH1MCs"
+      }
+    },
+    "_type": "homePage",
+    "_updatedAt": "2026-04-27T13:53:39Z",
+    "bannerImage": {
+      "_type": "image",
+      "asset": {
+        "_ref": "image-d1a1a4cec1b16ee2c3b6caa2a7130d0268a1e5aa-1766x736-webp",
+        "_type": "reference"
+      }
+    },
+    "bannerSubtext": "C'est ça, l'Amicale.",
+    "bannerText": "Plus de 3 000 bénévoles mobilisés, 62% qui reviennent.",
+    "ctaDescription": "Rejoins l'Amicale des Bénévoles et découvre des événements extraordinaires. Chaque raison de s'engager est la bonne, puisque c'est la tienne.",
+    "ctaImage": {
+      "_type": "image",
+      "asset": {
+        "_ref": "image-648b7cc35923af92ff97fe57856f7c932e1b4246-2560x1920-jpg",
+        "_type": "reference"
+      }
+    },
+    "ctaPrimary": "Rejoindre l'Amicale",
+    "ctaSecondary": "Voir les événements",
+    "ctaTitle": "Prêt à vivre une expérience unique ?",
+    "eventsLinkLabel": "Tous les événements",
+    "eventsSubtitle": "Qu'importe tes raisons, ton acte citoyen est précieux !",
+    "eventsTitle": "Prochains événements",
+    "gallerySubtitle": "Des moments partagés par nos bénévoles sur le terrain.",
+    "galleryTitle": "L'Amicale en images",
+    "heroBadge": "Association loi 1901 — Depuis 2019",
+    "heroCtaPrimary": "Rejoindre l'Amicale",
+    "heroCtaSecondary": "Voir les événements",
+    "heroDescription": "Que tu sois jeune ou moins jeune, il y a forcément un événement fait pour toi. Rejoins plus de 3 000 bénévoles engagés sur des événements sportifs et culturels partout en France.",
+    "heroImage": {
+      "_type": "image",
+      "asset": {
+        "_ref": "image-ae6b3be889ecc0aa3f386174fc07019d8c7b3244-2560x1703-jpg",
+        "_type": "reference"
+      }
+    },
+    "heroSubtitle": "100% événementielles",
+    "heroTitle1": "Créateur d'expériences",
+    "heroTitle2": "citoyennes",
+    "howItWorksDescription": "Pas besoin d'expérience. Juste l'envie de vivre un moment fort.",
+    "howItWorksKicker": "Comment ça marche",
+    "howItWorksSteps": [
+      {
+        "_key": "step01",
+        "description": "Crée ton compte gratuit sur Recrewteer. Tu renseignes tes coordonnées et tes disponibilités, c'est tout.",
+        "icon": "UserPlus",
+        "step": "01",
+        "title": "Inscris-toi en 2 minutes"
+      },
+      {
+        "_key": "step02",
+        "description": "Parcours les événements ouverts, sélectionne celui qui te tente et la mission qui te correspond.",
+        "icon": "CalendarCheck",
+        "step": "02",
+        "title": "Choisis ton événement"
+      },
+      {
+        "_key": "step03",
+        "description": "Tu rejoins une équipe encadrée, tu prends ton poste, et tu repars avec des souvenirs et des potes.",
+        "icon": "Sparkles",
+        "step": "03",
+        "title": "Vis l'expérience"
+      }
+    ],
+    "howItWorksTitle": "Devenir bénévole, en 3 étapes",
+    "missionImage": {
+      "_type": "image",
+      "asset": {
+        "_ref": "image-8c2b23133dff9a95625107870fb6385da8f7a243-2560x1288-jpg",
+        "_type": "reference"
+      }
+    },
+    "missionTags": [
+      "1 à 10 jours",
+      "Sportif & culturel",
+      "Partout en France"
+    ],
+    "missionText1": "Concevoir des expériences bénévoles de qualité et donner envie aux bénévoles de poursuivre leur engagement citoyen. Le bénévolat apporte une grande richesse humaine — l'association contribue à entretenir ce lien fraternel.",
+    "missionText2": "Les missions proposées par l'Amicale sont établies avec l'organisateur. Elles garantissent la qualité de l'expérience et la bonne relation organisateur/bénévole. Tu t'engages dans les meilleures conditions d'accueil, de respect et de considération.",
+    "missionTitle": "Notre mission",
+    "mosaicImages": [
+      {
+        "_key": "image-648b7c",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-648b7cc35923af92ff97fe57856f7c932e1b4246-2560x1920-jpg",
+          "_type": "reference"
+        }
+      },
+      {
+        "_key": "image-5ae674",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-5ae674b13c46b38a22de390d050eb8b57e982672-2048x946-jpg",
+          "_type": "reference"
+        }
+      },
+      {
+        "_key": "image-f0be49",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-f0be4908453861bbc64850529dfea65bd785f517-1200x800-jpg",
+          "_type": "reference"
+        }
+      },
+      {
+        "_key": "image-91653f",
+        "_type": "image",
+        "asset": {
+          "_ref": "image-91653f276cefab2ff6b437fbfc506b3879886cb2-1505x870-jpg",
+          "_type": "reference"
+        }
+      }
+    ],
+    "partnersLabel": "Nos événements et partenaires",
+    "pillars": [
+      {
+        "_key": "7BhvkXk9W5ax6C5GuIIe7q",
+        "color": "primary",
+        "description": "S'engager pour une cause qui te semble juste et authentique. Chaque événement porte des valeurs qui donnent du sens à ton engagement.",
+        "icon": "Heart",
+        "title": "La cause"
+      },
+      {
+        "_key": "7BhvkXk9W5ax6C5GuIIeA8",
+        "color": "secondary",
+        "description": "Sans bénévole, il n'y a pas d'événement. Ta présence compte et fait concrètement vivre l'événement — c'est une fierté partagée.",
+        "icon": "Users",
+        "title": "Le sentiment d'utilité"
+      },
+      {
+        "_key": "7BhvkXk9W5ax6C5GuIIeCQ",
+        "color": "accent",
+        "description": "Le bénévolat tout seul n'a pas de sens. Rencontre d'autres personnes engagées, crée des liens et vis des moments forts.",
+        "icon": "Handshake",
+        "title": "Le lien social"
+      }
+    ],
+    "testimonialsTitle": "Ils nous font confiance"
+  },
+  {
+    "_createdAt": "2026-04-15T13:25:25Z",
+    "_id": "drafts.organizersPage",
+    "_rev": "63ce28cc-f771-4cf0-b01e-fe3fa16142ed",
+    "_system": {
+      "base": {
+        "id": "organizersPage",
+        "rev": "ZWpAcH0Qj054xiZ14o9Y9w"
+      }
+    },
+    "_type": "organizersPage",
+    "_updatedAt": "2026-04-20T10:25:56Z",
+    "contactDescription": "Contactez Quentin Willems, notre directeur, pour discuter de votre programme bénévole.",
+    "contactTitle": "Parlons de votre événement",
+    "heroDescription": "Nous mobilisons, encadrons et fidélisons les bénévoles sur vos événements sportifs et culturels. Notre métier : concevoir des programmes bénévoles utiles et durables.",
+    "heroTags": [
+      "De 10 à 2 000 bénévoles",
+      "De 1 à 15 jours",
+      "Sportif & culturel",
+      "Quart Sud-Est France"
+    ],
+    "heroTitle1": "Ami organisateur,",
+    "heroTitle2": "bienvenue !",
+    "keyStats": [
+      {
+        "_key": "vHMWURdet2PJitEigpvF4X",
+        "label": "Taux de couverture 2025",
+        "value": "90%"
+      },
+      {
+        "_key": "vHMWURdet2PJitEigpvF8p",
+        "label": "Satisfaction bénévoles",
+        "value": "95%"
+      },
+      {
+        "_key": "vHMWURdet2PJitEigpvFD7",
+        "label": "Fidélisation des bénévoles",
+        "value": "50-80%"
+      }
+    ],
+    "methodTitle": "Notre méthodologie",
+    "missionPillars": [
+      {
+        "_key": "vHMWURdet2PJitEigpvFHP",
+        "color": "primary",
+        "description": "Stratégie d'acquisition et de recrutement sur-mesure pour chaque événement.",
+        "icon": "Target",
+        "title": "Mobiliser"
+      },
+      {
+        "_key": "vHMWURdet2PJitEigpvFLh",
+        "color": "secondary",
+        "description": "Animation sur site, espace bénévoles, suivi opérationnel et accompagnement.",
+        "icon": "Users",
+        "title": "Encadrer"
+      },
+      {
+        "_key": "vHMWURdet2PJitEigpvFPz",
+        "color": "accent",
+        "description": "62% de fidélisation record. On crée du lien pour que les bénévoles reviennent.",
+        "icon": "Handshake",
+        "title": "Fidéliser"
+      }
+    ],
+    "missionSubtitle": "Mobiliser, encadrer & fidéliser les bénévoles",
+    "missionTagline": "lors des manifestations sportives, culturelles & caritatives",
+    "missionTitle": "Notre mission",
+    "phase1Items": [
+      "Sécuriser et structurer le programme bénévoles (cadrage juridique, documents, masterplan)",
+      "Donner du sens et rendre le programme attractif (cause, message d'engagement, communication)",
+      "Préparer le déploiement opérationnel (logiciel, inscriptions, stratégie de mobilisation)"
+    ],
+    "phase1Title": "Phase 1 — Construire les conditions de réussite",
+    "phase2Items": [
+      "Animer la mobilisation bénévole (suivi inscriptions, reporting, relances)",
+      "Affecter, sécuriser et accompagner les bénévoles (analyse candidatures, affectations)",
+      "Encadrer pendant l'événement (animation sur site, espace bénévoles)",
+      "Évaluer et fidéliser la communauté (bilan, satisfaction, attestations)"
+    ],
+    "phase2Title": "Phase 2 — Animer, encadrer, fidéliser",
+    "testimonialsTitle": "Ce que disent les organisateurs"
+  },
+  {
+    "_createdAt": "2026-03-25T22:47:57Z",
+    "_id": "drafts.siteSettings",
+    "_rev": "dcd1eccb-81a2-44a0-95d6-13cb2f4a9305",
+    "_system": {
+      "base": {
+        "id": "siteSettings",
+        "rev": "Oe1ZqxyLEpr60i16RCAFDd"
+      }
+    },
+    "_type": "siteSettings",
+    "_updatedAt": "2026-04-27T13:40:47Z",
+    "address": "107 rue Bechevelin, 69007 Lyon",
+    "ctaJoinLabel": "Rejoindre l'Amicale",
+    "email": "contact@amicaledesbenevoles.org",
+    "facebookUrl": "https://www.facebook.com/amicaledesbenevoles",
+    "footerContactTitle": "Contact",
+    "footerCopyright": "© {year} Amicale des Bénévoles. Tous droits réservés.",
+    "footerLegalLabel": "Mentions légales",
+    "footerNavTitle": "Navigation",
+    "footerSocialTitle": "Suivez-nous",
+    "footerTagline": "Association loi 1901 pour la promotion et le développement du bénévolat dans le milieu événementiel sportif et culturel.",
+    "inscriptionUrl": "https://event.recrewteer.com/v2/organization/121/form/7034",
+    "instagramUrl": "https://www.instagram.com/amicale_des_benevoles/",
+    "linkedinUrl": "https://www.linkedin.com/company/amicaledesbenevoles",
+    "logo": {
+      "_type": "image",
+      "asset": {
+        "_ref": "image-1713545bac9e5d021c66ab858189ae882ee75af3-270x270-png",
+        "_type": "reference"
+      }
+    },
+    "navCtaLabel": "Rejoindre l'Amicale",
+    "navLinks": [
+      {
+        "_key": "JarLstVcRzJ90n7wE97qep",
+        "href": "/",
+        "label": "Accueil"
+      },
+      {
+        "_key": "JarLstVcRzJ90n7wE97qj9",
+        "href": "/a-propos",
+        "label": "À propos"
+      },
+      {
+        "_key": "JarLstVcRzJ90n7wE97qnT",
+        "href": "/evenements",
+        "label": "Événements"
+      },
+      {
+        "_key": "JarLstVcRzJ90n7wE97qrn",
+        "href": "/organisateurs",
+        "label": "Organisateurs"
+      },
+      {
+        "_key": "JarLstVcRzJ90n7wE97qw7",
+        "href": "/espace-benevole",
+        "label": "Espace bénévole"
+      }
+    ],
+    "phone1": "Quentin : 06 88 65 19 60",
+    "phone2": "Jordan : 06 20 33 10 09",
+    "rna": "W691100560",
+    "siteDescription": "Association loi 1901 pour la promotion du bénévolat événementiel sportif et culturel.",
+    "siteName": "Amicale des Bénévoles",
+    "whatsappUrl": "https://www.whatsapp.com/channel/0029Vb6untf7j6g4FzAq3o0Q"
+  },
+  {
+    "_createdAt": "2026-04-20T08:55:03Z",
+    "_id": "drafts.team-maelle-dufresnes",
+    "_rev": "b2ba8fc8-69eb-4da7-beda-91314b19dce0",
+    "_system": {
+      "base": {
+        "id": "team-maelle-dufresnes",
+        "rev": "ZWpAcH0Qj054xiZ14o9nvV"
+      }
+    },
+    "_type": "teamMember",
+    "_updatedAt": "2026-04-27T13:40:10Z",
+    "category": "board",
+    "focus": "Animation & Mobilisation de communauté",
+    "image": {
+      "_type": "image",
+      "asset": {
+        "_ref": "image-ff4153b0ce43cb09e0deece7ff447f8dd04b0adc-850x947-png",
+        "_type": "reference"
+      }
+    },
+    "name": "Maëlle Dufresnes",
+    "order": 3,
+    "role": "Cheffe de projet"
+  },
+  {
+    "_createdAt": "2026-04-20T08:55:03Z",
+    "_id": "drafts.testimonial-sophie-1",
+    "_rev": "da3bb28d-4dc6-4a95-8321-755970ed150c",
+    "_system": {
+      "base": {
+        "id": "testimonial-sophie-1",
+        "rev": "pKbrartnUDZr25d3dPBSAh"
+      }
+    },
+    "_type": "testimonial",
+    "_updatedAt": "2026-04-28T07:48:58Z",
+    "name": "Sophie",
+    "order": 1,
+    "org": "test",
+    "quote": "L'Amicale m'a permis de vivre des expériences inoubliables et de rencontrer des personnes formidables.",
+    "role": "Bénévole depuis 2020"
+  },
+  {
+    "_createdAt": "2026-04-15T13:25:26Z",
+    "_id": "drafts.volunteerPage",
+    "_rev": "3a9a91c3-02ea-45f7-a0a2-b0cf931f6e34",
+    "_system": {
+      "base": {
+        "id": "volunteerPage",
+        "rev": "vHMWURdet2PJitEig6rgGV"
+      }
+    },
+    "_type": "volunteerPage",
+    "_updatedAt": "2026-04-27T12:20:34Z",
+    "ctaAccess": "Accéder à ton espace bénévole",
+    "ctaAccessNote": "Tu seras redirigé vers la plateforme Recrewteer.",
+    "features": [
+      {
+        "_key": "vHMWURdet2PJitEigpvLmh",
+        "description": "Retrouve les événements auxquels tu es inscrit et tes missions.",
+        "icon": "Calendar",
+        "title": "Tes événements"
+      },
+      {
+        "_key": "vHMWURdet2PJitEigpvLqz",
+        "description": "Gère tes disponibilités et tes préférences de missions.",
+        "icon": "Settings",
+        "title": "Tes disponibilités"
+      },
+      {
+        "_key": "vHMWURdet2PJitEigpvLvH",
+        "description": "Accède à toutes les newsletters et infos de la communauté.",
+        "icon": "Bell",
+        "title": "Newsletters"
+      },
+      {
+        "_key": "vHMWURdet2PJitEigpvLzZ",
+        "description": "Mets à jour ton profil, tes coordonnées et tes compétences.",
+        "icon": "BookOpen",
+        "title": "Infos personnelles"
+      }
+    ],
+    "guideDescription": "Voici comment t'inscrire à un événement en 4 étapes.",
+    "guideKicker": "Guide de démarrage",
+    "guideSteps": [
+      {
+        "_key": "g01",
+        "description": "Identifie-toi avec ton email et ton mot de passe. Si tu as oublié ton mot de passe, utilise le lien « Mot de passe oublié » sur la page de connexion.",
+        "step": "01",
+        "title": "Connecte-toi à Recrewteer"
+      },
+      {
+        "_key": "g02",
+        "description": "Dans l'onglet Événements, parcours les missions ouvertes. Clique sur un événement pour voir le planning et les missions disponibles.",
+        "step": "02",
+        "title": "Choisis tes événements"
+      },
+      {
+        "_key": "g03",
+        "description": "Coche les créneaux où tu peux être présent·e. Tu peux aussi indiquer tes préférences de mission (accueil, ravitaillement, sécurité…).",
+        "step": "03",
+        "title": "Renseigne tes disponibilités"
+      },
+      {
+        "_key": "g04",
+        "description": "Une fois validée, tu reçois un email de confirmation avec toutes les infos pratiques : lieu, horaires, contact du chef de mission, repas, hébergement.",
+        "step": "04",
+        "title": "Reçois ta confirmation"
+      }
+    ],
+    "guideTitle": "Première utilisation de Recrewteer ?",
+    "heroBadge": "Accès réservé",
+    "heroDescription": "Bienvenue dans ton espace dédié ! Retrouve toutes tes informations, tes disponibilités, tes événements et les newsletters.",
+    "heroTitle1": "Ton espace",
+    "heroTitle2": "bénévole",
+    "registerButton": "Rejoindre l'Amicale",
+    "registerDescription": "Rejoins l'Amicale des Bénévoles pour accéder à ton espace personnel, découvrir les événements et profiter du covoiturage et de l'hébergement solidaire.",
+    "registerTitle": "Pas encore inscrit ?",
+    "supportContactLabel": "Nous écrire",
+    "supportItems": [
+      {
+        "_key": "sup1",
+        "a": "Sur la page de connexion, clique sur « Mot de passe oublié ». Tu reçois un email pour le réinitialiser. Si tu ne reçois rien, vérifie tes spams ou contacte-nous.",
+        "q": "J'ai oublié mon mot de passe Recrewteer, comment faire ?"
+      },
+      {
+        "_key": "sup2",
+        "a": "Tu reçois toujours un email de confirmation après inscription à un événement. Si tu ne le reçois pas sous 48h, contacte le chef de mission de l'événement ou écris à contact@amicaledesbenevoles.org.",
+        "q": "Mon inscription est-elle confirmée ?"
+      },
+      {
+        "_key": "sup3",
+        "a": "Connecte-toi à Recrewteer, va sur l'événement concerné et utilise le bouton de désinscription. Ou écris-nous directement, on s'occupe du reste.",
+        "q": "Comment annuler ma participation ?"
+      }
+    ],
+    "supportLinkLabel": "Toutes les questions",
+    "supportTitle": "Besoin d'aide ?"
+  }
+]

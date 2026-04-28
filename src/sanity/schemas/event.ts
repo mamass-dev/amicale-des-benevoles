@@ -1,0 +1,156 @@
+import { defineField, defineType } from "sanity";
+import { CalendarIcon } from "@sanity/icons";
+
+export default defineType({
+  name: "event",
+  title: "Événement",
+  type: "document",
+  icon: CalendarIcon,
+  description:
+    "Les événements sportifs et culturels sur lesquels l'Amicale mobilise des bénévoles.",
+  groups: [
+    { name: "infos", title: "Informations", icon: CalendarIcon, default: true },
+    { name: "details", title: "Détails page" },
+    { name: "geo", title: "Géolocalisation" },
+  ],
+  fields: [
+    defineField({
+      name: "name",
+      title: "Nom de l'événement",
+      type: "string",
+      description: "Ex : La SaintéLyon, High Five Festival...",
+      group: "infos",
+      validation: (r) => r.required().error("Le nom est obligatoire"),
+    }),
+    defineField({
+      name: "slug",
+      title: "URL de la page",
+      type: "slug",
+      description:
+        "Se génère automatiquement à partir du nom. Clique sur « Generate ».",
+      options: {
+        source: "name",
+        slugify: (input) =>
+          input
+            .toLowerCase()
+            .normalize("NFD")
+            .replace(/[̀-ͯ]/g, "")
+            .replace(/[^a-z0-9]+/g, "-")
+            .replace(/(^-|-$)+/g, ""),
+      },
+      group: "infos",
+      validation: (r) => r.required().error("L'URL est obligatoire — clique sur Generate"),
+    }),
+    defineField({
+      name: "type",
+      title: "Type d'événement",
+      type: "string",
+      description: "Sportif ou culturel ? Cela change la couleur du badge et du marqueur sur la carte.",
+      options: {
+        list: [
+          { title: "🏃 Sportif", value: "sportif" },
+          { title: "🎭 Culturel", value: "culturel" },
+        ],
+        layout: "radio",
+        direction: "horizontal",
+      },
+      group: "infos",
+      validation: (r) => r.required(),
+    }),
+    defineField({
+      name: "location",
+      title: "Lieu",
+      type: "string",
+      description: "Ville + département. Ex : Chamonix (74), Lyon (69)",
+      group: "infos",
+      validation: (r) => r.required(),
+    }),
+    defineField({
+      name: "dates",
+      title: "Dates (texte affiché sur le site)",
+      type: "string",
+      description: "Le texte tel qu'il apparaît. Ex : 27-28 novembre 2026",
+      group: "infos",
+      validation: (r) => r.required(),
+    }),
+    defineField({
+      name: "dateStart",
+      title: "Date de début",
+      type: "date",
+      description: "Pour le tri et le filtre par mois.",
+      group: "infos",
+    }),
+    defineField({
+      name: "dateEnd",
+      title: "Date de fin",
+      type: "date",
+      group: "infos",
+    }),
+    defineField({
+      name: "description",
+      title: "Description",
+      type: "text",
+      rows: 3,
+      description: "2-3 phrases pour donner envie aux bénévoles de s'inscrire.",
+      group: "infos",
+    }),
+    defineField({
+      name: "image",
+      title: "Photo de l'événement",
+      type: "image",
+      description: "Format paysage recommandé (16:9). Apparaît sur les cartes et la page de l'événement.",
+      options: { hotspot: true },
+      group: "infos",
+    }),
+
+    defineField({
+      name: "missions",
+      title: "Missions possibles",
+      type: "array",
+      of: [{ type: "string" }],
+      description:
+        "Liste les missions concrètes pour cet événement (ex : Accueil, Ravitaillement, Logistique...). Si vide, une liste générique s'affiche.",
+      group: "details",
+    }),
+    defineField({
+      name: "practicalInfo",
+      title: "Bon à savoir",
+      type: "array",
+      of: [{ type: "string" }],
+      description:
+        "4-6 points pratiques (encadrement, repas, hébergement, t-shirt fourni...). Si vide, des infos par défaut s'affichent.",
+      group: "details",
+    }),
+
+    defineField({
+      name: "coordinates",
+      title: "Coordonnées GPS",
+      type: "geopoint",
+      description:
+        "Position précise pour la carte sur /evenements. Clique sur la carte pour placer le marqueur.",
+      group: "geo",
+    }),
+
+  ],
+  orderings: [
+    { title: "Date (prochain d'abord)", name: "dateAsc", by: [{ field: "dateStart", direction: "asc" }] },
+    { title: "Nom A→Z", name: "nameAsc", by: [{ field: "name", direction: "asc" }] },
+  ],
+  preview: {
+    select: {
+      title: "name",
+      subtitle: "dates",
+      media: "image",
+      type: "type",
+      location: "location",
+    },
+    prepare({ title, subtitle, media, type, location }) {
+      const emoji = type === "sportif" ? "🏃" : "🎭";
+      return {
+        title: `${emoji} ${title}`,
+        subtitle: `${subtitle || ""}${location ? ` — ${location}` : ""}`,
+        media,
+      };
+    },
+  },
+});

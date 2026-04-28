@@ -4,7 +4,7 @@ import { useMemo, useState } from "react";
 import dynamic from "next/dynamic";
 import { Search, Calendar, X, LayoutGrid, MapPin } from "lucide-react";
 import EventCard from "@/components/EventCard";
-import type { Event } from "@/lib/content-types";
+import type { SanityEvent } from "@/sanity/lib/types";
 
 type FilterType = "all" | "sportif" | "culturel";
 type View = "list" | "map";
@@ -36,7 +36,7 @@ export default function EventsExplorer({
   events,
   labels = {},
 }: {
-  events: Event[];
+  events: SanityEvent[];
   labels?: Labels;
 }) {
   const lbl = {

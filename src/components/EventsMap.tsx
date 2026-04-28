@@ -5,7 +5,7 @@ import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
 import L from "leaflet";
 import Link from "next/link";
 import "leaflet/dist/leaflet.css";
-import type { Event } from "@/lib/content-types";
+import type { SanityEvent } from "@/sanity/lib/types";
 import { eventCoords } from "@/lib/event-coords";
 
 const sportifIcon = L.divIcon({
@@ -38,9 +38,9 @@ function FitBounds({ points }: { points: [number, number][] }) {
   return null;
 }
 
-type EventWithCoords = Event & { coords: [number, number] };
+type EventWithCoords = SanityEvent & { coords: [number, number] };
 
-export default function EventsMap({ events }: { events: Event[] }) {
+export default function EventsMap({ events }: { events: SanityEvent[] }) {
   const mappable: EventWithCoords[] = useMemo(
     () =>
       events
