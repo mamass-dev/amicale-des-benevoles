@@ -264,6 +264,55 @@ async function getGlobal<T extends Record<string, unknown>>(slug: string, fallba
   }
 }
 
+// Payload renvoie les arrays de strings (heroTags, phase1Items...) sous la forme
+// [{id, label}]. Le code des pages attend string[]. On flatten ici.
+// De même pour les arrays d'objets contenant {image} → on flatten l'image.
+function normalizePayloadValue(value: unknown): unknown {
+  if (!Array.isArray(value)) return value;
+  if (value.length === 0) return value;
+
+  // [{label}] ou [{id, label}] → ["label1", "label2"]
+  const allHaveOnlyLabel = value.every(
+    (item) =>
+      item &&
+      typeof item === "object" &&
+      "label" in item &&
+      Object.keys(item).filter((k) => k !== "id" && k !== "_key").length === 1
+  );
+  if (allHaveOnlyLabel) {
+    return value.map((item) => (item as { label: string }).label);
+  }
+
+  // [{image, id}] → ["url1", "url2"] (pour mosaicImages)
+  const allHaveOnlyImage = value.every(
+    (item) =>
+      item &&
+      typeof item === "object" &&
+      "image" in item &&
+      Object.keys(item).filter((k) => k !== "id" && k !== "_key").length === 1
+  );
+  if (allHaveOnlyImage) {
+    return value.map((item) => mediaUrl((item as { image: MediaLike }).image));
+  }
+
+  // Sinon : normaliser récursivement les objets dans le tableau
+  return value.map((item) => {
+    if (item && typeof item === "object" && !Array.isArray(item)) {
+      return normalizeObject(item as Record<string, unknown>);
+    }
+    return item;
+  });
+}
+
+function normalizeObject(obj: Record<string, unknown>): Record<string, unknown> {
+  const out: Record<string, unknown> = {};
+  for (const [k, v] of Object.entries(obj)) {
+    if (k === "id" || k === "_key") continue;
+    out[k] = normalizePayloadValue(v);
+  }
+  return out;
+}
+
 function mergeWithFallback<T extends Record<string, unknown>>(
   fallback: T,
   data: Partial<T> | null | undefined
@@ -271,8 +320,9 @@ function mergeWithFallback<T extends Record<string, unknown>>(
   if (!data) return fallback;
   const result: Record<string, unknown> = { ...fallback };
   for (const key of Object.keys(fallback)) {
-    const incoming = (data as Record<string, unknown>)[key];
+    let incoming = (data as Record<string, unknown>)[key];
     if (incoming === undefined || incoming === null) continue;
+    incoming = normalizePayloadValue(incoming);
     if (Array.isArray(incoming) && incoming.length === 0) continue;
     if (typeof incoming === "string" && incoming.trim() === "") continue;
     result[key] = incoming;
