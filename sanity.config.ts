@@ -4,6 +4,8 @@ import { visionTool } from "@sanity/vision";
 import { schemaTypes } from "./src/sanity/schemas";
 import { projectId, dataset } from "./src/sanity/env";
 import StudioWelcome from "./src/sanity/StudioWelcome";
+import { PublishAction } from "./src/sanity/actions/publishAction";
+import { DocumentLayout } from "./src/sanity/components/DocumentLayout";
 
 const SINGLETONS = [
   "siteSettings",
@@ -158,14 +160,17 @@ export default defineConfig({
     types: schemaTypes,
   },
   document: {
-    // Pour les pages uniques (singletons), on cache duplicate/delete/unpublish.
-    // Le bouton Publish natif de Sanity Studio reste accessible via le menu "..."
-    // à côté du badge Draft (raccourci : Ctrl+Alt+P).
+    // Bannière jaune impossible à manquer en haut de chaque doc + bouton vert
+    // dans la barre d'actions. Double sécurité contre l'UX confuse de Sanity 5.18.
+    components: {
+      unstable_layout: DocumentLayout,
+    },
     actions: (prev, { schemaType }) => {
-      if (SINGLETONS.includes(schemaType)) {
-        return prev.filter((a) => !["duplicate", "delete", "unpublish"].includes(a.action ?? ""));
-      }
-      return prev;
+      const filtered = SINGLETONS.includes(schemaType)
+        ? prev.filter((a) => !["duplicate", "delete", "unpublish"].includes(a.action ?? ""))
+        : prev;
+      // Remplace l'action publish par notre version "tone positive" toujours visible.
+      return filtered.map((a) => (a.action === "publish" ? PublishAction : a));
     },
     newDocumentOptions: (prev, { creationContext }) => {
       if (creationContext.type === "global") {
