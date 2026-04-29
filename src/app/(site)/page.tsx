@@ -28,7 +28,7 @@ export default async function HomePage() {
 
   return (
     <>
-      <section className="relative -mt-16 min-h-[600px] sm:min-h-[80vh] lg:min-h-[88vh] flex items-center overflow-hidden">
+      <section className="relative -mt-16 min-h-[600px] sm:min-h-[640px] md:min-h-[700px] lg:min-h-[760px] flex items-center overflow-hidden">
         <Image
           src={content.heroImage}
           alt="Bénévoles de l'Amicale en action"
@@ -215,18 +215,28 @@ export default async function HomePage() {
           <p className="text-muted text-center">{content.gallerySubtitle}</p>
         </div>
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-            {content.mosaicImages.map((src, i) => (
-              <div key={i} className="relative aspect-[4/3] rounded-xl overflow-hidden group">
-                <Image
-                  src={src}
-                  alt={`Bénévoles en action ${i + 1}`}
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-500"
-                  sizes="(max-width: 768px) 50vw, 25vw"
-                />
-              </div>
-            ))}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 auto-rows-[180px] sm:auto-rows-[200px] lg:auto-rows-[220px]">
+            {[
+              ...content.mosaicImages.map((src, i) => ({ src, alt: `Bénévoles en action ${i + 1}` })),
+              ...events.slice(0, 4).map((e) => ({ src: e.image, alt: `${e.name} — ${e.location}` })),
+            ]
+              .slice(0, 8)
+              .map(({ src, alt }, i) => (
+                <div
+                  key={i}
+                  className={`relative rounded-xl overflow-hidden group ${
+                    i === 0 ? "row-span-2 col-span-2 md:col-span-2" : ""
+                  }`}
+                >
+                  <Image
+                    src={src}
+                    alt={alt}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    sizes="(max-width: 768px) 50vw, 25vw"
+                  />
+                </div>
+              ))}
           </div>
         </div>
       </section>
