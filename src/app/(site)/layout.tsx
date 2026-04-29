@@ -5,6 +5,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import StickyMobileCTA from "@/components/StickyMobileCTA";
 import { getSiteSettings } from "@/sanity/lib/fetch";
 import { siteUrl } from "@/lib/site";
 
@@ -119,6 +120,10 @@ export default async function RootLayout({
           {children}
         </main>
         <Footer settings={settings} />
+        <StickyMobileCTA
+          href={settings.inscriptionUrl || "https://event.recrewteer.com/v2/organization/121/form/7034"}
+          label={settings.navCtaLabel || "Rejoindre l'Amicale"}
+        />
         <Analytics />
         <SpeedInsights />
       </body>
