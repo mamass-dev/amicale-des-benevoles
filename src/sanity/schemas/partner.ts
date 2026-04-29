@@ -5,6 +5,7 @@ export default defineType({
   name: "partner",
   title: "Partenaire",
   type: "document",
+  liveEdit: true,
   icon: StarIcon,
   description: "Les logos des partenaires et événements affichés en bas de la page d'accueil.",
   fields: [

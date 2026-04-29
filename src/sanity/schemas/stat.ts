@@ -5,6 +5,7 @@ export default defineType({
   name: "stat",
   title: "Chiffre clé",
   type: "document",
+  liveEdit: true,
   icon: TrendUpwardIcon,
   description: "Les chiffres animés affichés sur la page d'accueil (section sombre).",
   fields: [

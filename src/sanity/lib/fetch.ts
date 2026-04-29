@@ -51,10 +51,11 @@ async function query<T>(
 ): Promise<T | null> {
   if (!sanityEnabled || !client) return null;
   try {
-    // Pas de cache : chaque request va lire Sanity directement.
-    // Combiné à `dynamic = "force-dynamic"` au layout, les changements
-    // dans le studio apparaissent immédiatement après publication.
-    return await client.fetch<T>(groq, params ?? {}, { cache: "no-store" });
+    // Cache long avec tag "sanity" pour permettre revalidation ciblée
+    // via le webhook /api/revalidate quand un doc est publié.
+    return await client.fetch<T>(groq, params ?? {}, {
+      next: { revalidate: 86400, tags: ["sanity"] },
+    });
   } catch {
     return null;
   }

@@ -5,10 +5,12 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { getSiteSettings } from "@/sanity/lib/fetch";
 
-// Rendu dynamique : chaque visite va chercher les données fraîches dans Sanity.
-// Quand tu cliques Publier dans le studio, le changement apparaît immédiatement
-// au prochain chargement de page — pas de webhook ni délai à attendre.
-export const dynamic = "force-dynamic";
+// Pages statiques (rapide à charger) avec ISR long (1 jour).
+// Avec liveEdit activé sur les schemas Sanity, toute modif est publiée
+// immédiatement côté DB. Le webhook /api/revalidate (configuré dans
+// Sanity Manage) invalide le cache instantanément après publication.
+// Sans webhook : les changements apparaissent au max après 1 jour.
+export const revalidate = 86400;
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

@@ -5,6 +5,7 @@ export default defineType({
   name: "teamMember",
   title: "Membre de l'équipe",
   type: "document",
+  liveEdit: true,
   icon: UsersIcon,
   description: "Les membres du staff et du comité directeur affichés sur la page À propos.",
   fields: [

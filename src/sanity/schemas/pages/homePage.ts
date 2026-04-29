@@ -5,6 +5,7 @@ export default defineType({
   name: "homePage",
   title: "🏠 Page Accueil",
   type: "document",
+  liveEdit: true,
   icon: HomeIcon,
   groups: [
     { name: "hero", title: "Hero", default: true },

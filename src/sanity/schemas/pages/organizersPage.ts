@@ -5,6 +5,7 @@ export default defineType({
   name: "organizersPage",
   title: "🤝 Page Organisateurs",
   type: "document",
+  liveEdit: true,
   icon: CaseIcon,
   description:
     "Page /organisateurs : pitch commercial pour les organisateurs d'événements. Email et téléphone affichés automatiquement depuis Paramètres du site.",

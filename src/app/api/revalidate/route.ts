@@ -1,4 +1,4 @@
-import { revalidatePath } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 import { type NextRequest, NextResponse } from "next/server";
 
 // Webhook appelé par Sanity à chaque publication.
@@ -56,8 +56,11 @@ export async function POST(req: NextRequest) {
   const slugRaw = body?.slug;
   const slug = typeof slugRaw === "string" ? slugRaw : slugRaw?.current;
 
+  // Invalide tout le cache des fetch Sanity (toutes les pages
+  // utilisent le tag "sanity" via lib/fetch.ts).
+  revalidateTag("sanity", "max");
+
   if (!docType) {
-    // Pas de type → on revalide tout par sécurité
     revalidatePath("/", "layout");
     return NextResponse.json({ revalidated: true, paths: ["/"], scope: "layout" });
   }

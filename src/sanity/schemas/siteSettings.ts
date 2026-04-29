@@ -5,6 +5,7 @@ export default defineType({
   name: "siteSettings",
   title: "Paramètres du site",
   type: "document",
+  liveEdit: true,
   icon: CogIcon,
   description: "Les informations générales du site : contact, adresse, réseaux sociaux...",
   groups: [
