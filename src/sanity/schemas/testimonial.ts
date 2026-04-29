@@ -5,7 +5,6 @@ export default defineType({
   name: "testimonial",
   title: "Témoignage",
   type: "document",
-  liveEdit: true,
   icon: CommentIcon,
   description: "Les témoignages d'organisateurs affichés sur la page d'accueil et la page Organisateurs.",
   fields: [

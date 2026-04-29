@@ -5,7 +5,6 @@ export default defineType({
   name: "event",
   title: "Événement",
   type: "document",
-  liveEdit: true,
   icon: CalendarIcon,
   description:
     "Les événements sportifs et culturels sur lesquels l'Amicale mobilise des bénévoles.",

@@ -5,7 +5,6 @@ export default defineType({
   name: "volunteerPage",
   title: "👤 Page Espace Bénévole",
   type: "document",
-  liveEdit: true,
   icon: UserIcon,
   description: "Page /espace-benevole : redirection vers Recrewteer + guide d'utilisation + mini-FAQ.",
   groups: [

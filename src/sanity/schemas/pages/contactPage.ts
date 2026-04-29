@@ -5,7 +5,6 @@ export default defineType({
   name: "contactPage",
   title: "📬 Page Contact",
   type: "document",
-  liveEdit: true,
   icon: EnvelopeIcon,
   description:
     "Page /contact. Pour modifier l'adresse, l'email ou le téléphone affichés dans la sidebar, va plutôt dans Paramètres du site.",

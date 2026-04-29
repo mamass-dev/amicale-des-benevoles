@@ -51,10 +51,8 @@ async function query<T>(
 ): Promise<T | null> {
   if (!sanityEnabled || !client) return null;
   try {
-    // Cache long avec tag "sanity" pour permettre revalidation ciblée
-    // via le webhook /api/revalidate quand un doc est publié.
     return await client.fetch<T>(groq, params ?? {}, {
-      next: { revalidate: 86400, tags: ["sanity"] },
+      next: { revalidate: 60 },
     });
   } catch {
     return null;

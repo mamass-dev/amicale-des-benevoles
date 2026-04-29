@@ -5,7 +5,6 @@ export default defineType({
   name: "aboutPage",
   title: "ℹ️ Page À propos",
   type: "document",
-  liveEdit: true,
   icon: UsersIcon,
   groups: [
     { name: "hero", title: "Hero", default: true },

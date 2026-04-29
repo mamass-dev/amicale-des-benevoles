@@ -5,7 +5,6 @@ export default defineType({
   name: "legalPage",
   title: "⚖️ Page Mentions légales",
   type: "document",
-  liveEdit: true,
   icon: DocumentTextIcon,
   description:
     "Mentions légales (RGPD, hébergeur, propriété intellectuelle...). Cette page n'est volontairement pas indexée par Google.",

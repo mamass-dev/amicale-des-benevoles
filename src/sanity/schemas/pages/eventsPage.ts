@@ -5,7 +5,6 @@ export default defineType({
   name: "eventsPage",
   title: "📅 Page Événements",
   type: "document",
-  liveEdit: true,
   icon: CalendarIcon,
   description:
     "Page /evenements (la liste filtrable). Pour ajouter ou modifier un événement, va dans la section « Événements ».",

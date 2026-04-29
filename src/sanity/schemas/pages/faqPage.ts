@@ -5,7 +5,6 @@ export default defineType({
   name: "faqPage",
   title: "❓ Page FAQ",
   type: "document",
-  liveEdit: true,
   icon: HelpCircleIcon,
   description: "Questions/réponses affichées sur /faq. Ces contenus alimentent aussi le schéma FAQ pour Google.",
   groups: [

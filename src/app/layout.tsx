@@ -5,12 +5,10 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { getSiteSettings } from "@/sanity/lib/fetch";
 
-// Pages statiques (rapide à charger) avec ISR long (1 jour).
-// Avec liveEdit activé sur les schemas Sanity, toute modif est publiée
-// immédiatement côté DB. Le webhook /api/revalidate (configuré dans
-// Sanity Manage) invalide le cache instantanément après publication.
-// Sans webhook : les changements apparaissent au max après 1 jour.
-export const revalidate = 86400;
+// Workflow Sanity standard : draft → bouton Publish → publié.
+// Le site se rafraîchit automatiquement toutes les 60 secondes (ISR).
+// Donc max 1 minute entre Publish et voir le changement sur le site.
+export const revalidate = 60;
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
