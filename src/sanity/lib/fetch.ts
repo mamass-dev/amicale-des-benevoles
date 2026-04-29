@@ -47,18 +47,14 @@ import {
 
 async function query<T>(
   groq: string,
-  params?: Record<string, string>,
-  options?: { revalidate?: number; tags?: string[] }
+  params?: Record<string, string>
 ): Promise<T | null> {
   if (!sanityEnabled || !client) return null;
   try {
-    return await client.fetch<T>(groq, params ?? {}, {
-      next: {
-        revalidate:
-          options?.revalidate ?? (process.env.NODE_ENV === "development" ? 0 : 30),
-        ...(options?.tags ? { tags: options.tags } : {}),
-      },
-    });
+    // Pas de cache : chaque request va lire Sanity directement.
+    // Combiné à `dynamic = "force-dynamic"` au layout, les changements
+    // dans le studio apparaissent immédiatement après publication.
+    return await client.fetch<T>(groq, params ?? {}, { cache: "no-store" });
   } catch {
     return null;
   }
