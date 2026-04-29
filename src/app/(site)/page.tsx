@@ -1,13 +1,12 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, Heart, Star, Sparkles } from "lucide-react";
+import { ArrowRight, Heart, Sparkles } from "lucide-react";
 import Marquee from "@/components/Marquee";
 import StatsSection from "@/components/StatsSection";
 import EventCard from "@/components/EventCard";
 import ReviewsSection from "@/components/ReviewsSection";
 import {
   getEvents,
-  getTestimonials,
   getReviews,
   getPartners,
   getStats,
@@ -17,9 +16,8 @@ import {
 import { getIcon } from "@/lib/icons";
 
 export default async function HomePage() {
-  const [events, testimonials, reviews, partners, stats, content, settings] = await Promise.all([
+  const [events, reviews, partners, stats, content, settings] = await Promise.all([
     getEvents(),
-    getTestimonials(),
     getReviews(),
     getPartners(),
     getStats(),
@@ -240,27 +238,6 @@ export default async function HomePage() {
                   />
                 </div>
               ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="py-24 bg-primary/5">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl sm:text-4xl font-bold text-center mb-12">{content.testimonialsTitle}</h2>
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {testimonials.map((t) => (
-              <blockquote key={t.name} className="relative p-8 rounded-2xl bg-card border border-border">
-                <div className="flex items-center gap-1 mb-4">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="h-4 w-4 text-accent" fill="currentColor" />
-                  ))}
-                </div>
-                <p className="text-muted leading-relaxed italic mb-4">&ldquo;{t.text}&rdquo;</p>
-                <footer className="font-semibold">
-                  {t.name} <span className="text-muted font-normal">&mdash; {t.org}</span>
-                </footer>
-              </blockquote>
-            ))}
           </div>
         </div>
       </section>
