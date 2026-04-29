@@ -1,12 +1,11 @@
 import Link from "next/link";
 import { ChevronRight, Home } from "lucide-react";
+import { siteUrl as baseUrl } from "@/lib/site";
 
 export type BreadcrumbItem = {
   label: string;
   href?: string;
 };
-
-const baseUrl = "https://amicaledesbenevoles.org";
 
 export default function Breadcrumbs({ items }: { items: BreadcrumbItem[] }) {
   const all: BreadcrumbItem[] = [{ label: "Accueil", href: "/" }, ...items];

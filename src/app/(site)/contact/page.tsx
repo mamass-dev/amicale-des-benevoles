@@ -4,6 +4,7 @@ import { Mail, Phone, MapPin, Clock } from "lucide-react";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import ContactForm from "@/components/ContactForm";
 import { getSiteSettings, getContactContent } from "@/sanity/lib/fetch";
+import { siteUrl as baseUrl } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Contact — Nous écrire",
@@ -22,8 +23,6 @@ export const metadata: Metadata = {
     url: "/contact",
   },
 };
-
-const baseUrl = "https://amicaledesbenevoles.org";
 
 export default async function ContactPage() {
   const [content, settings] = await Promise.all([getContactContent(), getSiteSettings()]);

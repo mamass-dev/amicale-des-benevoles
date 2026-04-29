@@ -1,9 +1,12 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { getSiteSettings } from "@/sanity/lib/fetch";
+import { siteUrl } from "@/lib/site";
 
 // Workflow Sanity standard : draft → bouton Publish → publié.
 // Le site se rafraîchit automatiquement toutes les 60 secondes (ISR).
@@ -21,7 +24,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://amicaledesbenevoles.org"),
+  metadataBase: new URL(siteUrl),
   title: {
     default: "Amicale des Bénévoles — Bénévolat événementiel sportif & culturel",
     template: "%s | Amicale des Bénévoles",
@@ -44,7 +47,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "fr_FR",
-    url: "https://amicaledesbenevoles.org",
+    url: siteUrl,
     siteName: "Amicale des Bénévoles",
     title: "Amicale des Bénévoles — Créateur d'expériences citoyennes",
     description:
@@ -61,7 +64,7 @@ export const metadata: Metadata = {
     googleBot: { index: true, follow: true },
   },
   alternates: {
-    canonical: "https://amicaledesbenevoles.org",
+    canonical: siteUrl,
   },
 };
 
@@ -84,8 +87,8 @@ export default async function RootLayout({
               "@context": "https://schema.org",
               "@type": "NGO",
               name: "Amicale des Bénévoles",
-              url: "https://amicaledesbenevoles.org",
-              logo: "https://amicaledesbenevoles.org/logo.png",
+              url: siteUrl,
+              logo: `${siteUrl}/logo.png`,
               description:
                 "Association loi 1901 pour la promotion et le développement du bénévolat dans le milieu événementiel sportif et culturel.",
               address: {
@@ -116,6 +119,8 @@ export default async function RootLayout({
           {children}
         </main>
         <Footer settings={settings} />
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );

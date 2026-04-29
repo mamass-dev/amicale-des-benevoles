@@ -1,7 +1,6 @@
 import type { MetadataRoute } from "next";
 import { getEvents } from "@/sanity/lib/fetch";
-
-const baseUrl = "https://amicaledesbenevoles.org";
+import { siteUrl as baseUrl } from "@/lib/site";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const events = await getEvents();

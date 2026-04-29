@@ -6,12 +6,11 @@ import { MapPin, Calendar, ArrowLeft, ArrowRight, Clock, CheckCircle2 } from "lu
 import { getEvents, getEventBySlug, getSiteSettings } from "@/sanity/lib/fetch";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import EventCard from "@/components/EventCard";
+import { siteUrl as baseUrl } from "@/lib/site";
 
 type Props = {
   params: Promise<{ slug: string }>;
 };
-
-const baseUrl = "https://amicaledesbenevoles.org";
 
 export async function generateStaticParams() {
   const events = await getEvents();
