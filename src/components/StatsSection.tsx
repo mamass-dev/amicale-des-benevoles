@@ -36,7 +36,7 @@ function AnimatedNumber({ value, suffix }: { value: number; suffix: string }) {
   }, [value, hasAnimated]);
 
   return (
-    <div ref={ref} className="text-4xl sm:text-5xl font-bold text-accent">
+    <div ref={ref} className="text-4xl sm:text-5xl lg:text-6xl font-bold text-primary-light tabular-nums">
       {display.toLocaleString("fr-FR")}
       {suffix}
     </div>
@@ -53,9 +53,9 @@ export default function StatsSection({ stats }: { stats: Stat[] }) {
         <p className="text-center text-slate-300 mb-12 max-w-2xl mx-auto">
           Des résultats qui témoignent de la qualité de nos programmes et de l&apos;engagement de notre communauté.
         </p>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-8">
+        <div className="flex flex-wrap justify-center gap-x-12 gap-y-10 sm:gap-x-16 lg:gap-x-24">
           {stats.map((stat) => (
-            <div key={stat.label} className="text-center">
+            <div key={stat.label} className="text-center min-w-[140px]">
               <AnimatedNumber value={stat.value} suffix={stat.suffix} />
               <div className="mt-2 text-sm text-slate-300">{stat.label}</div>
             </div>
