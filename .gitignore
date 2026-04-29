@@ -43,7 +43,3 @@ next-env.d.ts
 # backups
 /sanity-backup/
 
-# Cloudflare / OpenNext
-/.open-next/
-/.wrangler/
-cloudflare-env.d.ts

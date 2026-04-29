@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -122,6 +124,8 @@ export default async function RootLayout({
           href={settings.inscriptionUrl || "https://event.recrewteer.com/v2/organization/121/form/7034"}
           label={settings.navCtaLabel || "Rejoindre l'Amicale"}
         />
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
