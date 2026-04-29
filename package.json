@@ -7,12 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "seed:pages": "node scripts/seed-pages.mjs",
-    "seed:new": "node scripts/seed-new-content.mjs",
-    "seed:images": "node scripts/upload-images.mjs",
-    "sync:sanity": "node scripts/sync-sanity.mjs",
-    "audit:sanity": "node scripts/audit-sanity.mjs",
-    "publish:drafts": "node scripts/publish-drafts.mjs"
+    "audit:sanity": "node scripts/audit-sanity.mjs"
   },
   "dependencies": {
     "@sanity/icons": "^3.7.4",
