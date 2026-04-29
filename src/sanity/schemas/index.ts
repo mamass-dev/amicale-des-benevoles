@@ -2,6 +2,7 @@ import event from "./event";
 import teamMember from "./teamMember";
 import partner from "./partner";
 import testimonial from "./testimonial";
+import review from "./review";
 import stat from "./stat";
 import siteSettings from "./siteSettings";
 import homePage from "./pages/homePage";
@@ -18,6 +19,7 @@ export const schemaTypes = [
   teamMember,
   partner,
   testimonial,
+  review,
   stat,
   siteSettings,
   homePage,

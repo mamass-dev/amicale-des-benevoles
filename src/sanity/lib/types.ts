@@ -47,6 +47,15 @@ export type Testimonial = {
   image?: string;
 };
 
+export type Review = {
+  authorName: string;
+  source: "google" | "trustpilot";
+  rating: number;
+  text: string;
+  eventName?: string;
+  visitedAt?: string;
+};
+
 export type Stat = {
   label: string;
   value: number;

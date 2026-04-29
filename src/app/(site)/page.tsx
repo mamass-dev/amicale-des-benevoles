@@ -4,9 +4,11 @@ import { ArrowRight, Heart, Star, Sparkles } from "lucide-react";
 import Marquee from "@/components/Marquee";
 import StatsSection from "@/components/StatsSection";
 import EventCard from "@/components/EventCard";
+import ReviewsSection from "@/components/ReviewsSection";
 import {
   getEvents,
   getTestimonials,
+  getReviews,
   getPartners,
   getStats,
   getHomeContent,
@@ -15,9 +17,10 @@ import {
 import { getIcon } from "@/lib/icons";
 
 export default async function HomePage() {
-  const [events, testimonials, partners, stats, content, settings] = await Promise.all([
+  const [events, testimonials, reviews, partners, stats, content, settings] = await Promise.all([
     getEvents(),
     getTestimonials(),
+    getReviews(),
     getPartners(),
     getStats(),
     getHomeContent(),
@@ -261,6 +264,8 @@ export default async function HomePage() {
           </div>
         </div>
       </section>
+
+      <ReviewsSection reviews={reviews} />
 
       <section className="py-16 border-t border-border">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

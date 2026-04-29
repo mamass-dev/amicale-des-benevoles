@@ -5,6 +5,7 @@ import {
   teamMembersQuery,
   partnersQuery,
   testimonialsQuery,
+  reviewsQuery,
   statsQuery,
   siteSettingsQuery,
   homePageQuery,
@@ -16,7 +17,7 @@ import {
   faqPageQuery,
   contactPageQuery,
 } from "./queries";
-import type { SanityEvent, TeamMembers, Partner, Testimonial, Stat } from "./types";
+import type { SanityEvent, TeamMembers, Partner, Testimonial, Review, Stat } from "./types";
 import {
   events as staticEvents,
   teamMembers as staticTeam,
@@ -90,6 +91,10 @@ export async function getPartners(): Promise<Partner[]> {
 
 export async function getTestimonials(): Promise<Testimonial[]> {
   return (await query<Testimonial[]>(testimonialsQuery)) ?? staticTestimonials;
+}
+
+export async function getReviews(): Promise<Review[]> {
+  return (await query<Review[]>(reviewsQuery)) ?? [];
 }
 
 export async function getStats(): Promise<Stat[]> {

@@ -57,6 +57,12 @@ export const testimonialsQuery = groq`
   }
 `;
 
+export const reviewsQuery = groq`
+  *[_type == "review"] | order(order asc, visitedAt desc) {
+    authorName, source, rating, text, eventName, visitedAt
+  }
+`;
+
 export const statsQuery = groq`
   *[_type == "stat"] | order(order asc) {
     label, value, suffix
