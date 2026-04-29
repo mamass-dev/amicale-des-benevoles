@@ -5,6 +5,11 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { getSiteSettings } from "@/sanity/lib/fetch";
 
+// ISR : toutes les pages se regénèrent automatiquement toutes les 30 secondes.
+// Combiné au webhook /api/revalidate, les changements Sanity apparaissent
+// quasi-instantanément (webhook) ou max 30s plus tard (ISR fallback).
+export const revalidate = 30;
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
