@@ -14,6 +14,7 @@ import {
   getSiteSettings,
 } from "@/sanity/lib/fetch";
 import { getIcon } from "@/lib/icons";
+import { isEventPast } from "@/lib/event-status";
 
 export default async function HomePage() {
   const [events, reviews, partners, stats, content, settings] = await Promise.all([
@@ -24,7 +25,7 @@ export default async function HomePage() {
     getHomeContent(),
     getSiteSettings(),
   ]);
-  const upcomingEvents = events.slice(0, 6);
+  const upcomingEvents = events.filter((e) => !isEventPast(e)).slice(0, 6);
   const joinUrl = settings.inscriptionUrl || "https://event.recrewteer.com/v2/organization/121/form/7034";
 
   return (

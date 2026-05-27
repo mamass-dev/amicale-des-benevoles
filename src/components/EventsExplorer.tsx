@@ -5,6 +5,7 @@ import dynamic from "next/dynamic";
 import { Search, Calendar, X, LayoutGrid, MapPin } from "lucide-react";
 import EventCard from "@/components/EventCard";
 import type { SanityEvent } from "@/sanity/lib/types";
+import { isEventPast, sortEventsUpcomingFirst } from "@/lib/event-status";
 
 type FilterType = "all" | "sportif" | "culturel";
 type View = "list" | "map";
@@ -62,7 +63,7 @@ export default function EventsExplorer({
   }, [events]);
 
   const filtered = useMemo(() => {
-    return events.filter((e) => {
+    const matched = events.filter((e) => {
       if (type !== "all" && e.type !== type) return false;
       if (month !== "all" && e.dateStart) {
         const m = String(new Date(e.dateStart).getMonth());
@@ -75,7 +76,11 @@ export default function EventsExplorer({
       }
       return true;
     });
+    return sortEventsUpcomingFirst(matched);
   }, [events, type, month, search]);
+
+  const pastCount = useMemo(() => filtered.filter((e) => isEventPast(e)).length, [filtered]);
+  const upcomingCount = filtered.length - pastCount;
 
   const hasFilters = type !== "all" || month !== "all" || search.trim() !== "";
 
@@ -155,7 +160,9 @@ export default function EventsExplorer({
         <div className="text-sm text-muted" aria-live="polite">
           {filtered.length === 0
             ? "Aucun événement ne correspond à ta recherche."
-            : `${filtered.length} événement${filtered.length > 1 ? "s" : ""} trouvé${filtered.length > 1 ? "s" : ""}`}
+            : pastCount > 0
+              ? `${upcomingCount} à venir · ${pastCount} édition${pastCount > 1 ? "s" : ""} passée${pastCount > 1 ? "s" : ""}`
+              : `${filtered.length} événement${filtered.length > 1 ? "s" : ""} à venir`}
         </div>
 
         <div role="tablist" aria-label="Vue" className="inline-flex rounded-full bg-card border border-border p-1">
@@ -187,7 +194,7 @@ export default function EventsExplorer({
       ) : filtered.length > 0 ? (
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {filtered.map((event) => (
-            <EventCard key={event.slug} event={event} />
+            <EventCard key={event.slug} event={event} isPast={isEventPast(event)} />
           ))}
         </div>
       ) : (

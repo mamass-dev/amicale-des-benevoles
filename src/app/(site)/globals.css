@@ -117,6 +117,14 @@ html {
   background: var(--accent);
 }
 
+.amb-marker--past .amb-marker__pin {
+  background: #94a3b8;
+  width: 20px;
+  height: 20px;
+  opacity: 0.75;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.18);
+}
+
 .leaflet-popup-content-wrapper {
   border-radius: 14px;
 }

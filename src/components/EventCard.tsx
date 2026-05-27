@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { MapPin, Calendar } from "lucide-react";
+import { MapPin, Calendar, CalendarCheck2 } from "lucide-react";
 
 type Event = {
   slug: string;
@@ -15,8 +15,66 @@ type Event = {
 
 const DEFAULT_JOIN_URL = "https://event.recrewteer.com/v2/organization/121/form/7034";
 
-export default function EventCard({ event }: { event: Event }) {
+export default function EventCard({
+  event,
+  isPast = false,
+}: {
+  event: Event;
+  isPast?: boolean;
+}) {
+  if (isPast) {
+    return (
+      <article className="group relative bg-card rounded-2xl border border-border overflow-hidden opacity-60 select-none">
+        <span className="sr-only">Édition passée, inscriptions clôturées.</span>
+        <div className="aspect-[16/9] relative overflow-hidden bg-primary/5">
+          <Image
+            src={event.image}
+            alt={event.name}
+            fill
+            className="object-cover grayscale"
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-black/10" />
+          <div className="absolute top-3 left-3">
+            <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-slate-700/90 text-white">
+              {event.type === "sportif" ? "Sportif" : "Culturel"}
+            </span>
+          </div>
+          <div className="absolute top-3 right-3">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-white/95 text-slate-700 shadow-sm">
+              <CalendarCheck2 className="h-3.5 w-3.5" /> Édition passée
+            </span>
+          </div>
+        </div>
+
+        <div className="p-5">
+          <h3 className="font-bold text-lg mb-2 line-clamp-2 text-muted">
+            {event.name}
+          </h3>
+
+          <div className="space-y-1.5 mb-4">
+            <div className="flex items-center gap-2 text-sm text-muted">
+              <Calendar className="h-4 w-4 shrink-0" />
+              <span>{event.dates}</span>
+            </div>
+            <div className="flex items-center gap-2 text-sm text-muted">
+              <MapPin className="h-4 w-4 shrink-0" />
+              <span>{event.location}</span>
+            </div>
+          </div>
+
+          <p className="text-sm text-muted line-clamp-2 mb-4">{event.description}</p>
+
+          <div className="rounded-lg border border-dashed border-border bg-muted/5 px-4 py-2 text-center text-sm font-medium text-muted">
+            Édition terminée
+          </div>
+        </div>
+      </article>
+    );
+  }
+
   const joinUrl = event.registrationUrl || DEFAULT_JOIN_URL;
+
   return (
     <article className="group relative bg-card rounded-2xl border border-border overflow-hidden hover:shadow-xl hover:shadow-primary/10 transition-all duration-300 hover:-translate-y-1">
       <div className="aspect-[16/9] relative overflow-hidden bg-primary/5">
