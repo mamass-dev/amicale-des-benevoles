@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import { MapPin, Calendar, ArrowLeft, ArrowRight, Clock, CheckCircle2 } from "lucide-react";
+import { MapPin, Calendar, ArrowLeft, ArrowRight, Clock, CheckCircle2, BedDouble, UtensilsCrossed } from "lucide-react";
 import { getEvents, getEventBySlug, getSiteSettings } from "@/sanity/lib/fetch";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import EventCard from "@/components/EventCard";
@@ -64,7 +64,11 @@ export default async function EventPage({ params }: Props) {
   ]);
   if (!event) notFound();
 
-  const joinUrl = settings.inscriptionUrl || "https://event.recrewteer.com/v2/organization/121/form/7034";
+  const joinUrl =
+    event.registrationUrl ||
+    settings.inscriptionUrl ||
+    "https://event.recrewteer.com/v2/organization/121/form/7034";
+  const hasPerks = Boolean(event.hasAccommodation || event.hasCatering);
   const similar = allEvents
     .filter((e) => e.slug !== event.slug && e.type === event.type)
     .slice(0, 3);
@@ -185,6 +189,38 @@ export default async function EventPage({ params }: Props) {
           <p className="text-base sm:text-lg text-muted leading-relaxed mb-10">
             {event.description}
           </p>
+
+          {hasPerks && (
+            <div className="mb-10 rounded-2xl border border-primary/30 bg-gradient-to-br from-primary/10 via-primary/5 to-transparent p-5 sm:p-6">
+              <p className="text-xs font-semibold uppercase tracking-wider text-primary mb-3">
+                Avantages bénévoles
+              </p>
+              <div className="grid sm:grid-cols-2 gap-3 sm:gap-4">
+                {event.hasAccommodation && (
+                  <div className="flex items-center gap-3 rounded-xl bg-white/70 dark:bg-card border border-primary/20 px-4 py-3 shadow-sm">
+                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary/15 text-primary">
+                      <BedDouble className="h-5 w-5" />
+                    </span>
+                    <div>
+                      <p className="font-semibold text-sm sm:text-base">Hébergement inclus</p>
+                      <p className="text-xs text-muted">Logement pris en charge pendant la mission</p>
+                    </div>
+                  </div>
+                )}
+                {event.hasCatering && (
+                  <div className="flex items-center gap-3 rounded-xl bg-white/70 dark:bg-card border border-primary/20 px-4 py-3 shadow-sm">
+                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary/15 text-primary">
+                      <UtensilsCrossed className="h-5 w-5" />
+                    </span>
+                    <div>
+                      <p className="font-semibold text-sm sm:text-base">Restauration incluse</p>
+                      <p className="text-xs text-muted">Repas et boissons offerts sur place</p>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
 
           <div className="grid sm:grid-cols-2 gap-6 mb-10">
             <div className="p-6 rounded-2xl bg-card border border-border">

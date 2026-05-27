@@ -10,9 +10,13 @@ type Event = {
   type: string;
   description: string;
   image: string;
+  registrationUrl?: string;
 };
 
+const DEFAULT_JOIN_URL = "https://event.recrewteer.com/v2/organization/121/form/7034";
+
 export default function EventCard({ event }: { event: Event }) {
+  const joinUrl = event.registrationUrl || DEFAULT_JOIN_URL;
   return (
     <article className="group relative bg-card rounded-2xl border border-border overflow-hidden hover:shadow-xl hover:shadow-primary/10 transition-all duration-300 hover:-translate-y-1">
       <div className="aspect-[16/9] relative overflow-hidden bg-primary/5">
@@ -61,7 +65,7 @@ export default function EventCard({ event }: { event: Event }) {
             En savoir plus
           </Link>
           <a
-            href="https://event.recrewteer.com/v2/organization/121/form/7034"
+            href={joinUrl}
             target="_blank"
             rel="noopener noreferrer"
             aria-label={`S'inscrire comme bénévole pour ${event.name}`}

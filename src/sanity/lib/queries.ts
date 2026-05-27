@@ -13,6 +13,9 @@ export const eventsQuery = groq`
     "image": image.asset->url,
     missions,
     practicalInfo,
+    registrationUrl,
+    hasAccommodation,
+    hasCatering,
     coordinates,
     _updatedAt
   }
@@ -31,6 +34,9 @@ export const eventBySlugQuery = groq`
     "image": image.asset->url,
     missions,
     practicalInfo,
+    registrationUrl,
+    hasAccommodation,
+    hasCatering,
     coordinates,
     _updatedAt
   }

@@ -11,6 +11,7 @@ export default defineType({
   groups: [
     { name: "infos", title: "Informations", icon: CalendarIcon, default: true },
     { name: "details", title: "Détails page" },
+    { name: "inscription", title: "Inscription & avantages" },
     { name: "geo", title: "Géolocalisation" },
   ],
   fields: [
@@ -120,6 +121,38 @@ export default defineType({
       description:
         "4-6 points pratiques (encadrement, repas, hébergement, t-shirt fourni...). Si vide, des infos par défaut s'affichent.",
       group: "details",
+    }),
+
+    defineField({
+      name: "registrationUrl",
+      title: "Lien d'inscription externe",
+      type: "url",
+      description:
+        "Lien vers le formulaire d'inscription dédié à CET événement (ex : recrewteer, Helloasso, page partenaire). Si vide, le bouton « S'inscrire » utilisera le lien d'inscription général du site.",
+      group: "inscription",
+      validation: (r) =>
+        r.uri({
+          scheme: ["http", "https"],
+          allowRelative: false,
+        }),
+    }),
+    defineField({
+      name: "hasAccommodation",
+      title: "Hébergement proposé",
+      type: "boolean",
+      description:
+        "Coche si l'organisation propose un hébergement aux bénévoles. Un badge « Hébergement inclus » apparaît alors sur la page de l'événement.",
+      group: "inscription",
+      initialValue: false,
+    }),
+    defineField({
+      name: "hasCatering",
+      title: "Restauration proposée",
+      type: "boolean",
+      description:
+        "Coche si l'organisation propose la restauration aux bénévoles. Un badge « Restauration incluse » apparaît alors sur la page de l'événement.",
+      group: "inscription",
+      initialValue: false,
     }),
 
     defineField({
