@@ -118,7 +118,8 @@ export default function EventCard({
         <div className="flex flex-col sm:flex-row gap-2">
           <Link
             href={`/evenements/${event.slug}`}
-            className="flex-1 text-center rounded-lg border border-border px-4 py-2 text-sm font-medium hover:bg-primary/5 transition-colors"
+            aria-label={`En savoir plus sur ${event.name}`}
+            className="flex-1 text-center rounded-lg border border-border px-4 py-2 text-sm font-medium hover:bg-primary/5 transition-colors after:absolute after:inset-0 after:content-['']"
           >
             En savoir plus
           </Link>
@@ -127,7 +128,7 @@ export default function EventCard({
             target="_blank"
             rel="noopener noreferrer"
             aria-label={`S'inscrire comme bénévole pour ${event.name}`}
-            className="flex-1 text-center rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-white hover:bg-primary-dark transition-colors"
+            className="relative z-10 flex-1 text-center rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-white hover:bg-primary-dark transition-colors"
           >
             S&apos;inscrire
           </a>
