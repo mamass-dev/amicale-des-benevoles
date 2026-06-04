@@ -17,6 +17,8 @@ export const metadata: Metadata = {
 export default async function EspaceBenevolePage() {
   const [content, settings] = await Promise.all([getVolunteerContent(), getSiteSettings()]);
   const joinUrl = settings.inscriptionUrl || "https://event.recrewteer.com/v2/organization/121/form/7034";
+  // Lien de connexion à l'espace bénévole existant (≠ formulaire d'inscription)
+  const accessUrl = "https://widget.weezevent.com/crew/organization/121/auth";
   const supportEmail = settings.email || "contact@amicaledesbenevoles.org";
 
   return (
@@ -57,7 +59,7 @@ export default async function EspaceBenevolePage() {
 
           <div className="max-w-lg mx-auto text-center">
             <a
-              href={joinUrl}
+              href={accessUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-full bg-secondary px-8 py-4 text-lg font-semibold text-white shadow-lg shadow-secondary/25 hover:bg-secondary-dark transition-all"

@@ -1,7 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, Heart, Sparkles } from "lucide-react";
-import Marquee from "@/components/Marquee";
 import StatsSection from "@/components/StatsSection";
 import EventCard from "@/components/EventCard";
 import ReviewsSection from "@/components/ReviewsSection";
@@ -77,8 +76,6 @@ export default async function HomePage() {
           </div>
         </div>
       </section>
-
-      <Marquee />
 
       <section className="py-20 sm:py-24 bg-secondary/[0.02]">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
