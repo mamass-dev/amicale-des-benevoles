@@ -73,6 +73,14 @@ export default async function EventPage({ params }: Props) {
     .filter((e) => e.slug !== event.slug && e.type === event.type)
     .slice(0, 3);
 
+  const organizerJsonLd = event.organizerName
+    ? {
+        "@type": "Organization",
+        name: event.organizerName,
+        ...(event.organizerUrl ? { url: event.organizerUrl } : {}),
+      }
+    : { "@type": "NGO", name: "Amicale des Bénévoles", url: baseUrl };
+
   const eventJsonLd = {
     "@context": "https://schema.org",
     "@type": "Event",
@@ -93,11 +101,11 @@ export default async function EventPage({ params }: Props) {
     },
     ...(event.image ? { image: [event.image] } : {}),
     url: `${baseUrl}/evenements/${event.slug}`,
-    organizer: {
-      "@type": "NGO",
-      name: "Amicale des Bénévoles",
-      url: baseUrl,
-    },
+    // `performer` est recommandé par Google pour l'affichage enrichi des
+    // événements. On y met l'organisateur de l'épreuve quand il est renseigné
+    // dans Sanity, sinon l'Amicale (qui anime la mission bénévole).
+    organizer: organizerJsonLd,
+    performer: organizerJsonLd,
     offers: {
       "@type": "Offer",
       url: joinUrl,

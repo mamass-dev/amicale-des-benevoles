@@ -124,6 +124,22 @@ export default defineType({
     }),
 
     defineField({
+      name: "organizerName",
+      title: "Organisateur de l'événement",
+      type: "string",
+      description:
+        "Nom de la structure qui organise l'événement (ex : « Extra Sports », « ASO »). Utilisé pour les données enrichies Google (champ « performer/organizer »). Si vide, l'Amicale est indiquée.",
+      group: "infos",
+    }),
+    defineField({
+      name: "organizerUrl",
+      title: "Site de l'organisateur",
+      type: "url",
+      description: "Lien vers le site officiel de l'événement ou de l'organisateur (facultatif).",
+      group: "infos",
+      validation: (r) => r.uri({ scheme: ["http", "https"], allowRelative: false }),
+    }),
+    defineField({
       name: "registrationUrl",
       title: "Lien d'inscription externe",
       type: "url",

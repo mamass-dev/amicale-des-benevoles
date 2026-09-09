@@ -4,21 +4,23 @@ import { Heart, Quote, ArrowRight } from "lucide-react";
 import { getTeamMembers, getAboutContent, getSiteSettings } from "@/sanity/lib/fetch";
 import { getIcon } from "@/lib/icons";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import UpcomingMissions from "@/components/UpcomingMissions";
 
 export const metadata: Metadata = {
-  title: "À propos | Notre histoire, notre équipe, nos valeurs",
+  title: "Association de bénévolat événementiel à Lyon : qui sommes-nous ?",
   description:
-    "Découvrez l'Amicale des Bénévoles : association loi 1901 créée en 2019 à Lyon pour promouvoir le bénévolat événementiel sportif et culturel. Plus de 3000 bénévoles mobilisés en France.",
+    "L'Amicale des Bénévoles est une association loi 1901 créée en 2019 à Lyon. Elle mobilise +3000 bénévoles sur des événements sportifs et culturels partout en France : histoire, équipe, valeurs et comment nous rejoindre.",
   keywords: [
-    "amicale des bénévoles histoire",
+    "association bénévole Lyon",
     "association bénévolat Lyon",
+    "association de bénévoles",
     "bénévolat événementiel",
-    "équipe amicale bénévoles",
+    "amicale des bénévoles",
   ],
   alternates: { canonical: "/a-propos" },
   openGraph: {
-    title: "À propos de l'Amicale des Bénévoles",
-    description: "Association loi 1901 créée en 2019 à Lyon. +3000 bénévoles engagés en France.",
+    title: "Association de bénévolat événementiel à Lyon — Amicale des Bénévoles",
+    description: "Association loi 1901 créée en 2019 à Lyon. +3000 bénévoles engagés sur des événements sportifs et culturels en France.",
     url: "/a-propos",
   },
 };
@@ -211,6 +213,11 @@ export default async function AProposPage() {
           </div>
         </div>
       </section>
+
+      <UpcomingMissions
+        title="Nos prochaines missions bénévoles"
+        subtitle="Concrètement, voici où tu peux t'engager avec nous dans les prochaines semaines."
+      />
 
       <section className="py-16 bg-primary/5">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

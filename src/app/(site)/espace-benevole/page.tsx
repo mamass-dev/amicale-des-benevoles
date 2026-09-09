@@ -4,12 +4,20 @@ import { User, ExternalLink, ArrowRight, Calendar, LifeBuoy, Mail } from "lucide
 import { getVolunteerContent, getSiteSettings } from "@/sanity/lib/fetch";
 import { getIcon } from "@/lib/icons";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import UpcomingMissions from "@/components/UpcomingMissions";
 
 export const metadata: Metadata = {
-  title: "Espace Bénévole | Accès à ton espace personnel",
+  title: "Devenir bénévole : inscription gratuite et espace bénévole",
   description:
-    "Accède à ton espace bénévole personnel sur Recrewteer. Retrouve tes événements, tes disponibilités, tes informations et les newsletters de l'Amicale des Bénévoles.",
-  keywords: ["espace bénévole", "compte bénévole", "inscription bénévole", "Recrewteer"],
+    "Envie de faire du bénévolat sur un événement sportif ou culturel à Lyon ou ailleurs en France ? Inscris-toi gratuitement à l'Amicale des Bénévoles, choisis tes missions et accède à ton espace bénévole (événements, disponibilités, newsletters).",
+  keywords: [
+    "devenir bénévole",
+    "inscription bénévole",
+    "faire du bénévolat",
+    "bénévolat près de chez moi",
+    "espace bénévole",
+    "compte bénévole",
+  ],
   alternates: { canonical: "/espace-benevole" },
   openGraph: { url: "/espace-benevole" },
 };
@@ -71,6 +79,11 @@ export default async function EspaceBenevolePage() {
           </div>
         </div>
       </section>
+
+      <UpcomingMissions
+        title="Prochaines missions bénévoles"
+        subtitle="Pas encore inscrit ? Repère l'événement qui te plaît, puis crée ton compte bénévole."
+      />
 
       <section className="py-16 bg-secondary/[0.03] border-t border-border">
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">

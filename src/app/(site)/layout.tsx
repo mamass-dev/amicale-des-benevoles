@@ -27,15 +27,19 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Amicale des Bénévoles — Bénévolat événementiel sportif & culturel",
+    default: "Devenir bénévole sur un événement sportif à Lyon et en France — Amicale des Bénévoles",
     template: "%s | Amicale des Bénévoles",
   },
   description:
-    "Association loi 1901 pour la promotion du bénévolat événementiel sportif et culturel. Rejoignez +3000 bénévoles sur des événements partout en France : SaintéLyon, High Five Festival, Lyon Street Food...",
+    "Tu veux faire du bénévolat sur un événement sportif ou culturel ? L'Amicale des Bénévoles (association lyonnaise, +3000 bénévoles) te propose des missions gratuites sur la SaintéLyon, le Marathon d'Avignon, le T100… Repas et t-shirt offerts, aucune expérience requise. Inscription en 2 minutes.",
   keywords: [
+    "devenir bénévole",
     "bénévolat",
+    "bénévolat événement sportif",
     "bénévole événementiel",
     "association bénévoles Lyon",
+    "bénévolat Lyon",
+    "bénévolat autour de moi",
     "bénévolat sportif",
     "bénévolat culturel",
     "événements sportifs bénévoles",
@@ -50,14 +54,14 @@ export const metadata: Metadata = {
     locale: "fr_FR",
     url: siteUrl,
     siteName: "Amicale des Bénévoles",
-    title: "Amicale des Bénévoles — Créateur d'expériences citoyennes",
+    title: "Devenir bénévole sur un événement sportif — Amicale des Bénévoles",
     description:
-      "Rejoignez +3000 bénévoles engagés sur des événements sportifs et culturels partout en France.",
+      "Rejoins +3000 bénévoles sur des événements sportifs et culturels à Lyon et partout en France. Missions gratuites, repas et t-shirt offerts.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Amicale des Bénévoles",
-    description: "Créateur d'expériences citoyennes 100% événementiel",
+    title: "Devenir bénévole sur un événement sportif — Amicale des Bénévoles",
+    description: "Rejoins +3000 bénévoles sur des événements sportifs et culturels à Lyon et en France.",
   },
   robots: {
     index: true,

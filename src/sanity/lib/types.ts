@@ -13,6 +13,8 @@ export type SanityEvent = {
   registrationUrl?: string;
   hasAccommodation?: boolean;
   hasCatering?: boolean;
+  organizerName?: string;
+  organizerUrl?: string;
   coordinates?: { lat: number; lng: number };
   _updatedAt?: string;
 };

@@ -16,6 +16,8 @@ export const eventsQuery = groq`
     registrationUrl,
     hasAccommodation,
     hasCatering,
+    organizerName,
+    organizerUrl,
     coordinates,
     _updatedAt
   }
@@ -37,6 +39,8 @@ export const eventBySlugQuery = groq`
     registrationUrl,
     hasAccommodation,
     hasCatering,
+    organizerName,
+    organizerUrl,
     coordinates,
     _updatedAt
   }
