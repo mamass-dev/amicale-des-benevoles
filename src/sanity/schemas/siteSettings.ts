@@ -155,8 +155,8 @@ export default defineType({
       name: "whatsappUrl",
       title: "WhatsApp (chaîne)",
       type: "url",
-      description: "Non affiché dans le footer pour le moment.",
-      group: "social",
+      description: "Lien de la chaîne WhatsApp (https://www.whatsapp.com/channel/...). Icône affichée dans le footer.",
+      group: ["social", "footer"],
     }),
     defineField({
       name: "navCtaLabel",
