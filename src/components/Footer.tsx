@@ -180,7 +180,17 @@ export default function Footer({ settings }: FooterProps) {
         </div>
 
         <div className="mt-12 pt-8 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center gap-4">
-          <p className="text-xs text-slate-500">{copyright}</p>
+          <p className="text-xs text-slate-500">
+            {copyright} · Site réalisé par{" "}
+            <a
+              href="https://globecreateur.fr"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-stone-300 transition-colors"
+            >
+              Globe Créateur
+            </a>
+          </p>
           <Link href="/mentions-legales" className="text-xs text-slate-500 hover:text-stone-300 transition-colors">
             {settings.footerLegalLabel || "Mentions légales"}
           </Link>
