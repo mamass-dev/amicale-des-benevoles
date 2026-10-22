@@ -114,6 +114,12 @@ export default async function RootLayout({
             }),
           }}
         />
+        {/* Rybbit analytics (auto-hébergé, sans cookie) : stats.globecreateur.fr */}
+        <script
+          src="https://stats.globecreateur.fr/api/script.js"
+          data-site-id="735ac0e57948"
+          defer
+        />
       </head>
       <body className="min-h-full flex flex-col">
         <a href="#main-content" className="skip-link">
