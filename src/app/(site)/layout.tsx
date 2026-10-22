@@ -6,6 +6,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import StickyMobileCTA from "@/components/StickyMobileCTA";
+import TrackClicks from "@/components/TrackClicks";
 import { getSiteSettings } from "@/sanity/lib/fetch";
 import { siteUrl } from "@/lib/site";
 
@@ -136,6 +137,7 @@ export default async function RootLayout({
         />
         <Analytics />
         <SpeedInsights />
+        <TrackClicks />
       </body>
     </html>
   );

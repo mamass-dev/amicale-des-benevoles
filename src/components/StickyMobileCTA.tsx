@@ -23,6 +23,7 @@ export default function StickyMobileCTA({ href, label }: Props) {
 
   return (
     <div
+      data-track-location="sticky"
       className={`fixed bottom-4 left-4 right-4 z-40 lg:hidden transition-all duration-300 ${
         show ? "translate-y-0 opacity-100" : "translate-y-24 opacity-0 pointer-events-none"
       }`}

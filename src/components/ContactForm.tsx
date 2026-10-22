@@ -1,5 +1,7 @@
 "use client";
 
+import { track } from "@/lib/track";
+
 import { useState } from "react";
 import { Send } from "lucide-react";
 
@@ -30,6 +32,7 @@ export default function ContactForm({ recipient, note }: { recipient: string; no
     <form
       onSubmit={(e) => {
         e.preventDefault();
+        track("lead_submit", { form: "contact", subject });
         window.location.href = mailto;
       }}
       className="space-y-5"
